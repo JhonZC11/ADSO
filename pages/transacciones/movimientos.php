@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../../css/nav-bar.css">
     <link rel="stylesheet" href="../../css/barra.css">
     <link rel="stylesheet" href="../../css/general.css">
@@ -97,8 +98,36 @@
             <td colspan="1"><input type="text" name="n_factura" id="nf"></td>
         </tr>
         <tr>
-            <td colspan="1">Proveedor: </td><td colspan="1"><input type="text" name="proveedor" id="p"></td>
-            <td colspan="1" class="table-cell"><label for="">.</label></td>
+            <td colspan="1">Proveedor: </td>
+            <td colspan="1"><input type="text" name="proveedor" id="p"></td>
+            <td colspan="1" class="table-cell"><label for="" id="resultado">.</label></td>
+                        
+    <script>
+        $(document).ready(function(){
+            $('#p').change(function(){
+                realizarSolicitudAjax();
+            });
+        });
+        function realizarSolicitudAjax(){
+            $.ajax({
+                url: 'consultar_proveedores.php',
+                type: 'GET',
+                dataType: 'json',
+                success: function(data){
+                    // Manipula los datos obtenidos como desees
+                    var resultadoTexto='';
+                    $.each(data, function(index, proveedor){
+                        resultadoTexto += proveedor.nombre;
+                    });
+                    $('#resultado').text(resultadoTexto);
+                },
+                error: function(xhr, status, error){
+                    console.error('Error al obtener los datos de los proveedores:', status, error);
+                    $('#resultado').html('Error al cargar los datos de los proveedores. Por favor, intenta de nuevo más tarde.');
+                }
+            });
+        }
+    </script>
             <td colspan="1">Fecha Factura: </td>
             <td colspan="1"><input type="date" name="f_factura" id="ff"></td>
         </tr>
@@ -125,7 +154,7 @@
                     <input type="text" style="width:80px;" id="v_kg"  name="v_kg" onchange="vTotal();">
                 </td>
                 <td class="d">
-                    <label for="" width="50px" id="v_total" name="v_total" ></label>
+                    <input for="" id="v_total" name="v_total" readonly> $
                 </td>
             </tr>
         </tbody>

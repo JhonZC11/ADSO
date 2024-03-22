@@ -66,6 +66,17 @@ class movimiento{
         }
 
     }
+
+    public function trae($conn){
+        $sql = "SELECT nit, nombre FROM proveedores";
+        $resultado = $conn->query($sql);
+        $proveedores = array();
+        while ($fila = $resultado->fetch_assoc()) {
+            $proveedores[] = $fila;
+        }
+        $json =json_encode($proveedores); 
+        return $json;
+    }
 }
 $a = new movimiento();
 $proveedor_real = $a->proveedor($conn, $proveedor);
