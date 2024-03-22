@@ -1,0 +1,72 @@
+.inv{background-color: white;
+    width: 40%;
+    text-align: center;
+    border: 1px solid #858383;
+    position: absolute;
+    left: 30%;
+    top: 20%;
+    padding-bottom: 1%;
+}
+table{
+    margin-top: 5%;
+    border: 1px solid #cfcfcf;
+    padding: 10px;
+    position: relative;
+    left: 15%;
+}
+td{padding: 5px; border: 1px solid black;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.buttons{position: relative; left: 15%;}
+.cancel{
+    margin: 10px;
+    padding: 10px;
+    border: 2px solid rgb(224, 76, 76); 
+    background-color: white;
+    color:  rgb(224, 76, 76);
+    border-radius: 0px 10px 0px 10px;
+    font-size: 15px;
+    box-shadow: inset 0 0 0 0 rgb(224, 76, 76);
+    transition: ease-out 0.5s;
+}
+.cancel:hover{
+    color: white;
+    border: 2px solid white;
+    background-color: rgb(224, 76, 76);
+    box-shadow: inset 0 -100px 0 0 rgb(224, 76, 76);
+}
+
+.registrar{
+    padding: 10px;
+    border: 2px solid #72CA5F; 
+    background-color: white;
+    color: #72CA5F;
+    border-radius: 0px 10px 0px 10px;
+    font-size: 15px;
+    box-shadow: inset 0 0 0 0 #72CA5F;
+    transition: ease-out 0.5s;
+}
+.registrar:hover{
+    color: white;
+    border: 2px solid white;
+    background-color: #72CA5F;
+    box-shadow: inset 0 -100px 0 0 #72CA5F;
+}

@@ -1,0 +1,125 @@
+<head>
+    <style>
+        /*Se da estilo a la nav-bar*/
+#header{
+    display: inline-flex;
+    margin:auto;
+    width: 100%;
+    min-width: 100%;
+    max-width: 1400px;
+    height: 40px;
+    background-color:#72CA5F;
+}
+li{list-style: none;}
+ul,ol{list-style: none;}
+.nav li a{
+    background-color:#72CA5F;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+    transition: ease 0.3s;
+}
+.nav li a:hover {background-color: #434343;}
+.nav > li {float:left;}
+.nav li ul {
+    display: none;
+    position: absolute;
+    min-width: 140px;
+}
+.nav li:hover > ul {display: block;}
+.salir{
+    float: right;
+    background-color:#72CA5F;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+    transition: ease 0.3s;
+    font-size: 17px;
+}
+.salir:hover{
+    background-color: #434343;
+}
+
+/*-------------------------------------*/
+
+*{margin: 0px; padding: 0px;             
+    font-family: 'PT Sans Narrow', sans-serif;
+    font-family: 'Work Sans', sans-serif;
+}
+body{background: #dbe4d9;}   
+
+
+footer>img{
+    position: absolute;
+    left: 80%;
+    top: 66%;
+    opacity: 0.8;
+    z-index: 0;
+}
+    </style>
+</head>
+<header>
+    <div id="header">
+    <ul class="nav">
+        
+        <li><a href="pages/transacciones/movimientos.php" id="M_Inventario">Transacciones</a>
+            <ul>
+                <li><a href="pages/transacciones/movimientos.php" id="M_Inventario">Movimientos de Inventarios</a></li>
+            </ul>
+        </li>
+
+        <li><a href="pages/inventarios/ingresos-fisicos.php">Inventarios</a>
+            <ul>
+                <li><a href="pages/inventarios/ingresos-fisicos.php">Ingreso Físico</a></li>
+                <li><a href="pages/inventarios/analisis-diferencias.php">Análisis de Diferencias</a></li>
+            </ul>        
+        </li>
+            
+                              
+        <li><a href="pages/centro-procesos/procesar.php">Centro de Procesos</a>
+            <ul>
+                <li><a href="pages/centro-procesos/procesar.php">Procesar Fruta</a></li>
+                <li><a href="pages/centro-procesos/registroxorden.php">Registro por Orden</a></li>
+            </ul>
+        </li>    
+        <li><a href="pages/informes/ventas.php">Informes</a>
+            <ul>
+                <li><a href="pages/informes/ventas.php">Ventas</a></li>
+                <li><a href="pages/informes/inventarios.php">Inventarios</a></li>
+                <li><a href="pages/informes/balances.php">Contabilidad</a></li>
+            </ul>
+        </li>
+        <li><a href="pages/consulta-documentos/ordenes-proceso.php">Consulta Documentos</a>
+            <ul>
+                <li><a href="pages/consulta-documentos/ordenes-proceso.php">Ordenes de Proceso</a></li>
+                <li><a href="pages/consulta-documentos/transacciones.php">Transacciones</a></li>
+                <li><a href="pages/consulta-documentos/analisis-inventarios.php">Análisis de Inventarios</a></li>
+                <li><a href="pages/consulta-documentos/devoluciones.php">Notas Crédito</a></li>
+            </ul>
+        </li>
+        <li><a href="pages/usuarios.php">Usuarios</a>
+            <ul>
+                <li><a href="pages/usuarios.php" id="a">Gestión usuarios</a></li>                    
+            </ul>
+        </li>
+        <li><a href="pages/clientes.php">Clientes</a>
+            <ul>
+                <li><a href="pages/clientes.php" id="a">Gestión clientes</a></li>                    
+            </ul>
+        </li>
+        <li><a href="pages/proveedores.php">Proveedores</a>
+            <ul>
+                <li><a href="pages/proveedores.php" id="a">Gestión proveedores</a></li>                    
+            </ul>
+        </li>
+        <li><a href="pages/operarios.php">Operarios</a>
+            <ul>
+                <li><a href="pages/operarios.php" id="a">Gestión operarios</a></li>                    
+            </ul>
+        </li>
+    </ul>
+    <li><a href="../index.php" class="salir">Salir</a></li>
+    </div>      
+</header>

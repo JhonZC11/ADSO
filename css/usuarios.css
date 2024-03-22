@@ -1,0 +1,271 @@
+/*
+*{margin: 0px; padding: 0px;             
+    font-family: 'PT Sans Narrow', sans-serif;
+    font-family: 'Work Sans', sans-serif;
+}
+body{background: #dbe4d9;}  
+
+
+
+
+
+Se da estilo a la barra de titulo del modal
+
+.bar{
+    background-color:#72CA5F; 
+    color: white; 
+    columns: 2; 
+    width: 100%; 
+    border: 1px solid #949090;
+}
+.txt{
+    position: relative; left: 70%; 
+    padding: 5px; 
+    font-size: 18px; 
+    font-weight: bolder;
+}
+.txt-m{
+    position: relative; left: 80%; 
+    padding: 5px; 
+    font-size: 18px; 
+    font-weight: bolder;
+}
+.close{float: right;}
+.close>button{
+    padding: 7px; 
+    background-color: rgb(224, 76, 76); 
+    border: 1px solid #e99090; 
+    color: white; 
+    font-weight: bolder; 
+    transition: ease-out 0.5s;
+}
+.close>button:hover{
+    background-color: rgb(241, 37, 37);
+    cursor: pointer;
+}
+
+---------------------------------------------*/
+
+
+/*Estilo del forumlario para ingresar los datos*/
+form{
+    width: 30%; 
+    border: 1px solid #949090; 
+    position: absolute; left: 35%; top: 20%; 
+    color: #2f302e; 
+    box-shadow:  18px 9px 34px -4px rgb(0,0,0,0.5);
+    display: none;
+}
+
+.content{padding: 15px;   background-color:  aliceblue;}
+.content{text-align: center;}
+.content>input{
+    float: right; 
+    width: 40%; 
+    border: 1px solid #949090; 
+    padding: 3px;
+}
+.buttons{background-color: aliceblue; text-align: center; padding: 10px;}
+select{
+    float: right; 
+    width: 42%; 
+    border: 1px solid #949090; 
+    padding: 3px;
+}
+
+
+/*----------------------------------------------------------------*/
+
+
+.informativo{
+    width: 20%; 
+    background-color:rgb(145, 177, 247); 
+    border: 1px solid rgb(105, 106, 109); 
+    position: absolute; left:40%; top: 40%; 
+    box-shadow: 18px 9px 34px -4px rgb(0,0,0,0.5);
+    text-align: center;
+    display: none;
+}
+.bar_i{
+    background-color:rgba(2, 40, 255, 0.616); 
+    color: rgb(223, 212, 212); 
+    columns: 2; 
+    width: 100%; 
+    border: 1px solid #949090;
+}
+.err_txt{
+    position: relative; left: 50%; 
+    padding: 5px; 
+    font-size: 18px; 
+    font-weight: bolder; 
+}
+.btn_err{float: right;}
+.btn_err>button{
+    padding: 7px; 
+    background-color: rgb(224, 76, 76); 
+    border: 1px solid #e99090; 
+    color: white; 
+    font-weight: bolder; 
+    transition: ease-out 0.5s;
+}
+.btn_err>button:hover{
+background-color:  rgb(211, 20, 20);;
+}
+.txt_i{padding: 20px; color: rgb(22, 22, 22);  }
+
+
+/*Estilo del modal de errores*/
+
+.error{
+    width: 20%; 
+    background-color:rgb(226, 132, 132); 
+    border: 1px solid rgb(224, 76, 76); 
+    position: absolute; left:40%; top: 40%; 
+    box-shadow: 18px 9px 34px -4px rgb(0,0,0,0.5);
+    text-align: center;
+    display: none;
+}
+
+.bar_err{
+    background-color:rgb(224, 76, 76); 
+    color: rgb(223, 212, 212); 
+    columns: 2; 
+    width: 100%; 
+    border: 1px solid #949090;
+}
+.err_txt{
+    position: relative; left: 50%; 
+    padding: 5px; 
+    font-size: 18px; 
+    font-weight: bolder; 
+}
+.btn_err{float: right;}
+.btn_err>button{
+    padding: 7px; 
+    background-color: rgb(224, 76, 76); 
+    border: 1px solid #e99090; 
+    color: white; 
+    font-weight: bolder; 
+    transition: ease-out 0.5s;
+}
+.btn_err>button:hover{
+background-color:  rgb(211, 20, 20);;
+}
+.txt_e{padding: 20px; color: rgb(255, 255, 255);  }
+
+
+
+/*Se da estilo a la tabla que contiene los datos dentro del crud*/
+
+
+.usuarios{
+    margin-top: 5%;
+    margin-left: 35.5%;
+    width: 30%;
+    height: 100%;
+    background-color: white;
+    border: 1px solid #a2a5a0;
+    display: block;
+}
+.usuarios>table{
+    display: flex;
+}
+.tabla{
+    overflow: auto;
+    margin-left: 3%;
+}
+th{
+    background-color: #dbf7d9;
+    font-size: 19px;
+    padding: 5px 25px;
+    border: 1px solid #c5c5c5;
+    font-weight: bold;
+}
+td{
+    padding: 4px;
+    border: 1px solid #c5c5c5;
+    text-align: center;      
+}
+
+td>button{
+    padding: 5px 12px;
+    margin: 2px;
+}
+
+.ingresar>button {
+    float: right;
+    width: 25%;
+    padding: 5px 25px;
+}
+
+
+/*-------------------------------------*/
+
+/*Se da estilo a los botones del CRUD*/
+
+.registrar{
+    padding: 10px;
+    border: 2px solid #72ca5f; 
+    background-color: white;
+    color: #72CA5F;
+    border-radius: 0px 10px 0px 10px;
+    font-size: 15px;
+    box-shadow: inset 0 0 0 0 #72CA5F;
+    transition: ease-out 0.5s;
+}
+.registrar:hover{
+    color: white;
+    border: 2px solid white;
+    background-color: #72CA5F;
+    box-shadow: inset 0 -100px 0 0 #72CA5F;
+}
+.edit{
+    color: white;
+    background-color: #85bae6;
+    transition: ease-out 0.5s;
+    border: 1px solid #85bae6;
+    text-decoration: none; margin: 3px; padding: 3px;
+    
+}
+.edit:hover{
+    color: white;
+    border: 2px solid white;
+    background-color: #148bec;
+
+}
+.delete{
+    background-color: #e99090;
+    color: white;
+    transition: ease-out 0.3s;
+    border: 1px solid #a2a5a0;
+    text-decoration: none; margin: 3px; padding: 3px;
+
+}
+.delete:hover{
+    color: white;
+    border: 2px solid white;
+    background-color:rgb(241, 37, 37);
+}
+.cancel{
+    margin: 10px;
+    padding: 10px;
+    border: 2px solid rgb(224, 76, 76); 
+    background-color: white;
+    color:  rgb(224, 76, 76);
+    border-radius: 0px 10px 0px 10px;
+    font-size: 15px;
+    box-shadow: inset 0 0 0 0 rgb(224, 76, 76);
+    transition: ease-out 0.5s;
+}
+.cancel:hover{
+    color: white;
+    border: 2px solid white;
+    background-color: rgb(224, 76, 76);
+    box-shadow: inset 0 -100px 0 0 rgb(224, 76, 76);
+}
+
+
+/*-----------------------------------------*/
+
+
+

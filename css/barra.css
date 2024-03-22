@@ -1,0 +1,34 @@
+.bar{
+    background-color:#72CA5F; 
+    color: white; 
+    columns: 2; 
+    width: 100%; 
+    border: 1px solid #949090;
+}
+.txt{
+    position: relative; left: 70%; 
+    padding: 5px; 
+    font-size: 18px; 
+    font-weight: bolder;
+}
+.txt-m{
+    position: relative; left: 80%; 
+    padding: 5px; 
+    font-size: 18px; 
+    font-weight: bolder;
+}
+.close{float: right;}
+.close>button{
+    padding: 7px; 
+    background-color: rgb(224, 76, 76); 
+    border: 1px solid #e99090; 
+    color: white; 
+    font-weight: bolder; 
+    transition: ease-out 0.5s;
+}
+.close>button:hover{
+    background-color: rgb(241, 37, 37);
+    cursor: pointer;
+}
+
+/*--------------

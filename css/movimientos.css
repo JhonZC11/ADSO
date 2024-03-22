@@ -1,0 +1,52 @@
+.movimientos{
+    background-color: white;
+    width: 50%;
+    position: absolute;
+    left: 25%;
+    top: 20%;
+}
+form{padding: 20px;}
+.table-cell{width: 30%;}
+.table-items{ width: 100%; }
+.table-items>tbody>tr>th,td{border: 1px solid #a8a6a6;}
+.table-desc-item{width: 30%;}
+.d{text-align: center;}
+th{background-color:#dbf7d9; color: black; font-weight: bold;}
+th, td{padding: 5px;}
+
+
+.buttons{position: relative; left: 65%;}
+.cancel{
+    margin: 10px;
+    padding: 10px;
+    border: 2px solid rgb(224, 76, 76); 
+    background-color: white;
+    color:  rgb(224, 76, 76);
+    border-radius: 0px 10px 0px 10px;
+    font-size: 15px;
+    box-shadow: inset 0 0 0 0 rgb(224, 76, 76);
+    transition: ease-out 0.5s;
+}
+.cancel:hover{
+    color: white;
+    border: 2px solid white;
+    background-color: rgb(224, 76, 76);
+    box-shadow: inset 0 -100px 0 0 rgb(224, 76, 76);
+}
+
+.registrar{
+    padding: 10px;
+    border: 2px solid #72CA5F; 
+    background-color: white;
+    color: #72CA5F;
+    border-radius: 0px 10px 0px 10px;
+    font-size: 15px;
+    box-shadow: inset 0 0 0 0 #72CA5F;
+    transition: ease-out 0.5s;
+}
+.registrar:hover{
+    color: white;
+    border: 2px solid white;
+    background-color: #72CA5F;
+    box-shadow: inset 0 -100px 0 0 #72CA5F;
+}
