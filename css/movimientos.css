@@ -4,6 +4,7 @@
     position: absolute;
     left: 25%;
     top: 20%;
+    display: none;
 }
 form{padding: 20px;}
 .table-cell{width: 30%;}
@@ -14,6 +15,37 @@ form{padding: 20px;}
 th{background-color:#dbf7d9; color: black; font-weight: bold;}
 th, td{padding: 5px;}
 
+main{
+    margin: 10px;
+    background-color: white;
+    padding: 50px;    
+}
+.table-main {
+    margin-top: 20px;
+    margin-left:10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#re{
+    position: absolute;
+    left: 88%;
+    top: 16.5%;
+}
 
 .buttons{position: relative; left: 65%;}
 .cancel{

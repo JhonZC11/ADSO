@@ -83,6 +83,7 @@
         </div>      
 </header>
 
+
 <div class="movimientos" id="form">
 <div class="bar" id="">
         <div class="txt-m">Movimientos</div><div class="close"><button id="closeUsuarios" onclick="cierraForm();" >X</button></div>
@@ -166,6 +167,74 @@
     </div>    
 </form>
 </div>
+<?php
+    require("../../php/db.php");
+    require("../../php/movimiento.php");
+    $movimiento = new movimiento();
+    $resultados = $movimiento->muestraMovimientos($conn);
+?>
+
+<main class="">
+    <h1>Transacciones</h1><button class="registrar" id="re" onclick="muestraForm();">Agregar</button><br><hr>
+    <table class="table-main">
+        <tr>
+            <th>N Movimiento</th>
+            <th>N Factura</th>
+            <th>F Factura</th>
+            <th>F Registro</th>
+            <th>Proveedor</th>
+            <th>Motivo</th>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Valor kg</th>
+            <th>Valor total</th>
+            <th>Usuario</th>
+        </tr>
+        <?php
+        while ($a = $resultados->fetch_row()){
+            echo "<tr>
+                    <td>
+                        $a[1]
+                    </td>
+                    <td>
+                        $a[2]
+                    </td>
+                    <td>
+                        $a[3]
+                    </td>
+                    <td>
+                        $a[4]
+                    </td>
+                    <td>
+                        $a[14]
+                    </td>
+                    <td>
+                        $a[12]
+                    </td>
+                    <td>
+                        $a[13]
+                    </td>
+                    <td>
+                        $a[5]
+                    </td>
+                    <td>
+                        $a[6]
+                    </td>
+                    <td>
+                        $a[7]
+                    </td>
+                    <td>
+                        $a[15]
+                    </td>
+                 </tr>";
+        }
+        ?>
+        
+    </table>
+</main>
+
+
+
 
 
 <footer>
