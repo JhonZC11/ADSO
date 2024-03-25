@@ -85,7 +85,19 @@
         <li><a href="../index.php" class="salir">Salir</a></li>
         </div>      
 </header>
-
+<script>
+    let item = ["1","Fruta Guanabana"]
+    function cargaItem(){
+    var inp =document.getElementById("item").value;
+    var i =document.getElementById("d_item")
+    if(inp==item[0]){
+        i.innerHTML=item[1]
+    }else{
+        alert("Item desconocido!")
+        inp.focus();
+    }
+}
+</script>
 
 <div class="ad" id="ad">
     <div class="bar" id="">
@@ -104,7 +116,8 @@
             <td>ID</td><td class="t">Descripción</td><td>Cantidad a procesar</td><td>Cantidad Stock</td>
         </tr>
         <tr>
-            <td><input type="text" class="inp"></td><td class="t"></td><td><input type="text" name="" id="" class="inp"></td><td></td>
+            <td><input type="text" class="inp" id="item" onchange="cargaItem();"></td>
+            <td class="t" id="d_item"></td><td><input type="text" name="" id="" class="inp"></td><td></td>
         </tr>
         
         <tr class="tableheads">
