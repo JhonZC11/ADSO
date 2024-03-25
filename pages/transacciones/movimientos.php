@@ -245,7 +245,6 @@
 
     <script>
         $(document).ready(function() {
-            $("#modal").draggable();
             $("#form").draggable();
         });
     </script>

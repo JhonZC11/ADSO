@@ -23,6 +23,9 @@
     </style>
 </head>
 <body>
+<?php
+    $file = file_get_contents("../../php/user.txt");
+?>
 <header>
         <div id="header">
         <ul class="nav">
@@ -90,8 +93,8 @@
     <div class="bar" id="">
         <div class="txt-m">Ingreso Inventario Físico</div><div class="close"><button id="closeUsuarios" onclick="cierraForm();" >X</button></div>
     </div>
-    <form action="../../php/inventarios/insert.php" method="post"><br>
-    <label for="">Usuario: </label><span name="usuario"></span><br><br>
+    <form action="../../php/inserta_inventario.php" method="post"><br>
+    <label for="">Usuario: </label><span name="usuario"><?php echo $file; ?></span><br><br>
     <label for="">Fecha: </label><input type="date" name="d" id="">
     <label for="">Tipo: </label><input type="text" name="t">
     <table>
@@ -106,7 +109,7 @@
             </tr>
             
             <tr>
-                <td>02</td><td>FRUTA BOLSA 10KG</td><td><input type="text" name="2" class="inp"></td>
+                <td>02</td><td>FRUTA SIN CASCARA</td><td><input type="text" name="2" class="inp"></td>
             </tr>
             
             <tr>
@@ -118,7 +121,7 @@
             </tr>
             
             <tr>
-                <td>05</td><td>FRUTA SIN CASCARA</td><td><input type="text" name="5" class="inp"></td>
+                <td>05</td><td>FRUTA BOLSA X10KG</td><td><input type="text" name="5" class="inp"></td>
             </tr>
         </tbody>
     </table>
