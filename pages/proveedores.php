@@ -102,6 +102,7 @@
                 $sql = "SELECT * FROM proveedores";
                 $resultados = $conn->query($sql);
                 while ($resultado = $resultados->fetch_row()){
+                    $id = $resultado[0];
                     echo "<tr>
                     <td>$resultado[1]</td>
                     <td>$resultado[2]</td>
@@ -109,16 +110,20 @@
                     <td>$resultado[4]</td>
                     <td>$resultado[5]</td>
                     <td>$resultado[6]</td>
-                    <td><a class='edit' href='../php/update.php?
+                    <td><a class='edit' href='../php/update_proveedor.php?
                     id=$resultado[0]&
                     cc=$resultado[1]&
                     nom=$resultado[2]&
-                    ape=$resultado[3]'>
+                    tel=$resultado[3]&
+                    dir=$resultado[4]&
+                    ciu=$resultado[5]&
+                    mail=$resultado[6]'>
                     Edit</button>
-                    <a class='delete' href='../php/delete.php?
+                    <a class='delete' href='../php/delete_proveedor.php?
                     id=$resultado[0]'>Delete</button>
                     </td></tr>";
                 }
+
             ?>
         </tbody>
     </table>
@@ -130,56 +135,21 @@
 
 </div>
 
-<form action="../php/proveedores/insert.php" id="form" method="POST">
+<form action="../php/inserta_proveedor.php" id="form" method="POST">
 
     <div class="bar">
         <div class="txt">Registro Cliente</div><div class="close"><button  id="close">X</button></div>
     </div>
     
     <div class="content"><br>
+        <input type="text" value="<?php echo $id; ?>" hidden>
         <label for="">Identificación: </label><input type="text" id="iden" name="iden"><br><br>
         <label for="">Nombres: </label><input type="text" id="nombre" name="nombres"><br><br>
-        <label for="">Ciudad: </label><input type="text" id="ciudad" name="ciudad"><br><br>
-        <label for="">Departamento: </label>
-        <select type="" id="date" name="date">
-            <option value="0">Seleccione...</option>
-            <option value="amazonas">Amazonas</option>
-            <option value="antioquia">Antioquia</option>
-            <option value="arauca">Arauca</option>
-            <option value="atlantico">Atlántico</option>
-            <option value="bolivar">Bolívar</option>
-            <option value="boyaca">Boyacá</option>
-            <option value="caldas">Caldas</option>
-            <option value="caqueta">Caquetá</option>
-            <option value="casanare">Casanare</option>
-            <option value="cauca">Cauca</option>
-            <option value="cesar">Cesar</option>
-            <option value="choco">Chocó</option>
-            <option value="cordoba">Córdoba</option>
-            <option value="cundinamarca">Cundinamarca</option>
-            <option value="guainia">Guainía</option>
-            <option value="guaviare">Guaviare</option>
-            <option value="huila">Huila</option>
-            <option value="la_guajira">La Guajira</option>
-            <option value="magdalena">Magdalena</option>
-            <option value="meta">Meta</option>
-            <option value="narino">Nariño</option>
-            <option value="norte_de_santander">Norte de Santander</option>
-            <option value="putumayo">Putumayo</option>
-            <option value="quindio">Quindío</option>
-            <option value="risaralda">Risaralda</option>
-            <option value="san_andres_providencia">San Andrés y Providencia</option>
-            <option value="santander">Santander</option>
-            <option value="sucre">Sucre</option>
-            <option value="tolima">Tolima</option>
-            <option value="valle_del_cauca">Valle del Cauca</option>
-            <option value="vaupes">Vaupés</option>
-            <option value="vichada">Vichada</option>
-        </select><br><br>
+        <label for="">Telefono: </label><input type="text" id="" name="telefono"><br><br>
         <label for="">Dirección: </label><input type="text" name="direccion" id="direccion"><br><br>
+        <label for="">Ciudad: </label><input type="text" id="ciudad" name="ciudad"><br><br>
         <label for="">Correo: </label><input type="mail" id="mail" name="mail" ><br><br>
-        <label for="">Telefono: </label><input type="text" id="" name="telefono">;
-        <br><br><br><hr> 
+        <br><br><hr> 
     </div>
     <div class="buttons">
         <button class="cancel" id="cancel">Cancelar</button>
