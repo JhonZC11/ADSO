@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="../../css/barra.css">
     <link rel="stylesheet" href="../../css/general.css">
     <link rel="stylesheet" href="../../css/movimientos.css">
-    <script src="../../js/movimientos.js" refer></script>    
+   
 </head>
 <body>
 <header>
@@ -248,5 +248,6 @@
             $("#form").draggable();
         });
     </script>
+    <script src="../../js/movimientos.js" refer></script> 
 </body>
 </html>

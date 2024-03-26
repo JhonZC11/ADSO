@@ -1,9 +1,13 @@
 let motivos = ["EAC", "DB", "FC"]
 let d_motivos = ["Entrada Almacen", "Dar baja", "Factura Compra(Insumos)"]
 let item = ["1","Fruta Guanabana"]
+
+
 function cargaMotivo(){
+
     var inp = document.getElementById("motivo").value;
     var d =document.getElementById("d_motivo")
+    
     if(inp!=motivos[0]&&inp!=motivos[1]&&inp!=motivos[2]){
         alert("Motivos invalidos!")
         $("#motivo").focus()
@@ -11,6 +15,10 @@ function cargaMotivo(){
         d.innerHTML=d_motivos[0];
     }  else if (inp==motivos[1]){
         d.innerHTML=d_motivos[1];
+        var inputProveedor = document.getElementById("p");
+        var inp2 = document.getElementById("v_kg");
+        inp2.readOnly=true;
+        inputProveedor.readOnly=true;
     }  else if (inp==motivos[2]){
         d.innerHTML=d_motivos[2];
     } else {
