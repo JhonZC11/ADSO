@@ -103,32 +103,38 @@
             <td colspan="1"><input type="text" name="proveedor" id="p"></td>
             <td colspan="1" class="table-cell"><label for="" id="resultado">.</label></td>
                         
-    <script>
-        $(document).ready(function(){
-            $('#p').change(function(){
-                realizarSolicitudAjax();
-            });
+<script>
+    $(document).ready(function(){
+        $('#p').change(function(){
+            realizarSolicitudAjax();
         });
-        function realizarSolicitudAjax(){
-            $.ajax({
-                url: 'consultar_proveedores.php',
-                type: 'GET',
-                dataType: 'json',
-                success: function(data){
-                    // Manipula los datos obtenidos como desees
-                    var resultadoTexto='';
-                    $.each(data, function(index, proveedor){
-                        resultadoTexto += proveedor.nombre;
-                    });
-                    $('#resultado').text(resultadoTexto);
-                },
-                error: function(xhr, status, error){
-                    console.error('Error al obtener los datos de los proveedores:', status, error);
-                    $('#resultado').html('Error al cargar los datos de los proveedores. Por favor, intenta de nuevo más tarde.');
-                }
-            });
-        }
-    </script>
+    });
+
+    function realizarSolicitudAjax(){
+        // Obtener el valor del input
+        var valorInput = $('#p').val();
+
+        $.ajax({
+            url: 'consultar_proveedores.php',
+            type: 'GET',
+            data: {inputValue: valorInput}, // Pasar el valor del input como datos
+            dataType: 'json',
+            success: function(data){
+                // Manipula los datos obtenidos como desees
+                var resultadoTexto='';
+                $.each(data, function(index, proveedor){
+                    resultadoTexto += proveedor.nombre;
+                });
+                $('#resultado').text(resultadoTexto);
+            },
+            error: function(xhr, status, error){
+                console.error('Error al obtener los datos de los proveedores:', status, error);
+                $('#resultado').html('Error al cargar los datos de los proveedores. Por favor, intenta de nuevo más tarde.');
+            }
+        });
+    }
+</script>
+
             <td colspan="1">Fecha Factura: </td>
             <td colspan="1"><input type="date" name="f_factura" id="ff"></td>
         </tr>

@@ -7,8 +7,11 @@ if ($conexion->connect_error) {
     die("Error de conexión: " . $conexion->connect_error);
 }
 
+// Obtener el valor del input
+$p = $_GET['inputValue'];
+
 // Consulta SQL para obtener los datos de la tabla de proveedores
-$sql = "SELECT nit, nombre FROM proveedores";
+$sql = "SELECT nombre FROM proveedores WHERE nit = '$p'";
 $resultado = $conexion->query($sql);
 
 // Convertir los resultados a un arreglo asociativo
@@ -22,3 +25,4 @@ $conexion->close();
 
 // Devolver los datos como JSON
 echo json_encode($proveedores);
+?>
