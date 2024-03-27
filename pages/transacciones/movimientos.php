@@ -197,8 +197,35 @@
             <th>Usuario</th>
         </tr>
         <?php
-        while ($a = $resultados->fetch_row()){
-            echo "<tr>
+        $numElementosPorPagina = 10;
+        $sqlTotal = "SELECT COUNT(*) AS total FROM movimientos";
+        $resultadoTotal = $conn->query($sqlTotal);
+        $total = $resultadoTotal->fetch_assoc()['total'];
+        $numPaginas = ceil($total / $numElementosPorPagina);
+
+        $paginaActual = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
+        $paginaActual = max(1, min($numPaginas, $paginaActual));
+
+        $indiceInicio = ($paginaActual - 1) * $numElementosPorPagina;
+        intval($indiceInicio);
+        $consultaSQL = "SELECT * FROM (
+            SELECT movimientos.*,
+                motivos.descripcion AS nombre_motivo, 
+                productos.descripcion AS nombre_producto, 
+                proveedores.nombre AS nombre_proveedor, 
+                operarios.cedula AS nombre_usuario
+            FROM movimientos
+            INNER JOIN motivos ON movimientos.motivos_idmotivos = motivos.idmotivos
+            INNER JOIN productos ON movimientos.productos_idproductos = productos.idproductos
+            INNER JOIN proveedores ON movimientos.proveedores_idproveedores = proveedores.idproveedores
+            INNER JOIN operarios ON movimientos.usuarios_idusuarios = operarios.idoperarios
+        ) AS movimientos_con_joins
+        LIMIT $indiceInicio, $numElementosPorPagina";
+        $resultadoConsulta = $conn->query($consultaSQL);
+// Mostrar los datos obtenidos de la consulta
+        while ($a = $resultadoConsulta->fetch_row()) {
+            echo 
+                "<tr>
                     <td>
                         $a[1]
                     </td>
@@ -232,11 +259,17 @@
                     <td>
                         $a[15]
                     </td>
-                 </tr>";
-        }
-        ?>
-        
-    </table>
+                </tr>";
+        }?>
+        </table><br><br><?php
+// Construir la paginación
+    echo '<div class="paginacion">';
+    for ($i = 1; $i <= $numPaginas; $i++) {
+        echo '<a href="?pagina=' . $i . '" id="a">' . $i . '</a> ';
+    }
+    echo '</div>';
+?>
+
 </main>
 
 

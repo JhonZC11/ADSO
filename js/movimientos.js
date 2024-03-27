@@ -1,6 +1,10 @@
 let motivos = ["EAC", "DB", "FC"]
 let d_motivos = ["Entrada Almacen", "Dar baja", "Factura Compra(Insumos)"]
-let item = ["1","Fruta Guanabana"]
+let item = ["1","Fruta Guanabana", 
+            "2", "Guanabana sin cáscara", 
+            "3", "Fruta sin semilla", 
+            "4", "Fruta limpia", 
+            "5", "Fruta en bolsas 10kg"]
 
 
 function cargaMotivo(){
@@ -29,11 +33,13 @@ function cargaMotivo(){
 function cargaItem(){
     var inp =document.getElementById("item").value;
     var i =document.getElementById("d_item")
-    if(inp==item[0]){
-        i.innerHTML=item[1]
-    }else{
-        alert("Item desconocido!")
-        inp.focus();
+    var index = item.indexOf(inp);
+
+    if (index !== -1) {  // Verificar si el índice es válido
+        i.innerHTML = item[index + 1]; // Mostrar el siguiente item
+    } else {
+        alert("¡Item desconocido o fuera de rango!");
+        document.getElementById("item").focus(); // Enfocar el input
     }
 }
 function vTotal(){

@@ -81,3 +81,4 @@ class movimiento{
         return $resultado;
     }
 }
+$m = new movimiento();
