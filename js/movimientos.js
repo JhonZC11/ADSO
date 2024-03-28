@@ -7,6 +7,9 @@ let item = ["1","Fruta Guanabana",
             "5", "Fruta en bolsas 10kg"]
 
 
+
+
+
 function cargaMotivo(){
 
     var inp = document.getElementById("motivo").value;
@@ -15,16 +18,27 @@ function cargaMotivo(){
     if(inp!=motivos[0]&&inp!=motivos[1]&&inp!=motivos[2]){
         alert("Motivos invalidos!")
         $("#motivo").focus()
+
+
     } else if (inp==motivos[0]){
         d.innerHTML=d_motivos[0];
+
+
     }  else if (inp==motivos[1]){
         d.innerHTML=d_motivos[1];
         var inputProveedor = document.getElementById("p");
         var inp2 = document.getElementById("v_kg");
+        var nf = document.getElementById("nf");
+        nf.readOnly=true;
         inp2.readOnly=true;
         inputProveedor.readOnly=true;
+        alert("Algunos campos no son digitables con este movito")
+
+
     }  else if (inp==motivos[2]){
         d.innerHTML=d_motivos[2];
+
+
     } else {
         alert("Motivos invalidos!")
         $("#motivo").focus()
@@ -34,7 +48,6 @@ function cargaItem(){
     var inp =document.getElementById("item").value;
     var i =document.getElementById("d_item")
     var index = item.indexOf(inp);
-
     if (index !== -1) {  // Verificar si el índice es válido
         i.innerHTML = item[index + 1]; // Mostrar el siguiente item
     } else {
@@ -49,18 +62,16 @@ function vTotal(){
     var label = document.getElementById("v_total").value=vT;
     
 }
+function c (){
+    var motivo = document.getElementById("motivo").value;
+    if (movito==motivos[0]) {
+        cargaItem();           
+    } else if (motivo==motivos[1]){
+        var inp =document.getElementById("item").value;
+        inp = "1";
+        inp.readOnly=true;
+        cargaItem();
+    } else if (motivo==motivos[2]){
 
-function validarFormulario() {
-    var campo1 = document.getElementById("motivo").value;
-    var campo2 = document.getElementById("nf").value;
-    var campo3 = document.getElementById("p").value;
-    var campo4 = document.getElementById("ff").value;
-    var campo5 = document.getElementById("item").value;
-    var campo6 = document.getElementById("cant").value;
-    var campo7 = document.getElementById("v_kg").value;
-
-    if (campo1 === "" || campo2 === "" || campo3 === ""|| campo4 === ""|| campo5 === ""|| campo6 === ""|| campo7 === "") {
-        alert("Por favor, completa al menos un campo.");
-        return false; // Evita que se envíe el formulario
     }
 }

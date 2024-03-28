@@ -11,7 +11,41 @@ class movimiento{
         return $proveedor_real;
     }
 
-    public function insert(
+    public function insertaBaja(
+        $conn, 
+        $id_item,
+        $motivo,        
+        $cant, $fecha){
+            if($motivo==""||$id_item==""||$cant=="")
+                {echo "Error, campos errados";}
+            else {
+                $n = "N/A";
+                $sql = "INSERT INTO movimientos 
+                        (productos_idproductos, motivos_idmotivos, 
+                        cantidad, proveedores_idproveedores, 
+                        usuarios_idusuarios, fecha_factura, 
+                        fecha_actual, n_movimiento, n_factura) 
+                        VALUES 
+                        ('$id_item', '$motivo', '$cant', '5', '1', 
+                        '$fecha', CURRENT_TIMESTAMP, '2', '$n')";
+                $conn->query($sql);
+
+                $sql1 = "SELECT CANTIDAD FROM inventario_stock WHERE productos_idproductos='$id_item'";
+                $eje = $conn->query($sql1);
+                while($fila = $eje->fetch_row()){
+                    $cantidad = intval($fila[0]);
+                }
+                $canti = $cantidad - $cant;
+                $sql2 = "UPDATE inventario_stock SET  
+                cantidad = '$canti' WHERE productos_idproductos = '$id_item'";
+                $conn->query($sql2);
+                header("location:../pages/transacciones/movimientos.php");
+            }
+        }
+
+
+    
+        public function insert(
         $conn, 
         $id_item,
         $motivo,

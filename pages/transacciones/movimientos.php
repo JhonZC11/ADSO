@@ -88,11 +88,11 @@
 <div class="bar" id="">
         <div class="txt-m">Movimientos</div><div class="close"><button id="closeUsuarios" onclick="cierraForm();" >X</button></div>
 </div>
-<form action="../../php/o_movimientos.php" method="post" onsubmit="validarFormulario();">
+<form action="../../php/o_movimientos.php" method="post">
     <table>
         <tr>
             <td colspan="1">Motivo: </td><td colspan="1">
-                <input type="text" name="motivo" id="motivo" onchange="cargaMotivo();">
+                <input type="text" name="motivo" id="motivo" required onchange="cargaMotivo();">
             </td>
             <td colspan="1" class="table-cell"><label for="" id="d_motivo">.</label></td>
             <td colspan="1">Número Factura: </td>
@@ -136,7 +136,7 @@
 </script>
 
             <td colspan="1">Fecha Factura: </td>
-            <td colspan="1"><input type="date" name="f_factura" id="ff"></td>
+            <td colspan="1"><input type="date" name="f_factura" required id="ff"></td>
         </tr>
     </table>
     <br><br>
