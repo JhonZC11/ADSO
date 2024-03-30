@@ -11,7 +11,7 @@ if ($conexion->connect_error) {
 $p = $_GET['inputValue'];
 
 // Consulta SQL para obtener los datos de la tabla de proveedores
-$sql = "SELECT nombre FROM proveedores WHERE nit = '$p'";
+$sql = "SELECT nombre, productos FROM proveedores WHERE nit = '$p'";
 $resultado = $conexion->query($sql);
 
 // Convertir los resultados a un arreglo asociativo

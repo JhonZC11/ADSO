@@ -103,37 +103,6 @@
             <td colspan="1"><input type="text" name="proveedor" id="p"></td>
             <td colspan="1" class="table-cell"><label for="" id="resultado">.</label></td>
                         
-<script>
-    $(document).ready(function(){
-        $('#p').change(function(){
-            realizarSolicitudAjax();
-        });
-    });
-
-    function realizarSolicitudAjax(){
-        // Obtener el valor del input
-        var valorInput = $('#p').val();
-
-        $.ajax({
-            url: 'consultar_proveedores.php',
-            type: 'GET',
-            data: {inputValue: valorInput}, // Pasar el valor del input como datos
-            dataType: 'json',
-            success: function(data){
-                // Manipula los datos obtenidos como desees
-                var resultadoTexto='';
-                $.each(data, function(index, proveedor){
-                    resultadoTexto += proveedor.nombre;
-                });
-                $('#resultado').text(resultadoTexto);
-            },
-            error: function(xhr, status, error){
-                console.error('Error al obtener los datos de los proveedores:', status, error);
-                $('#resultado').html('Error al cargar los datos de los proveedores. Por favor, intenta de nuevo más tarde.');
-            }
-        });
-    }
-</script>
 
             <td colspan="1">Fecha Factura: </td>
             <td colspan="1"><input type="date" name="f_factura" required id="ff"></td>
@@ -149,7 +118,7 @@
         <tbody>
             <tr>
                 <td class="d">
-                    <input type="text" style="width:50px;" id="item" onchange="cargaItem();" name="id_item" >
+                    <input type="text" style="width:50px;" id="item" name="id_item" >
                 </td>
                 <td class="table-desc-item">
                     <label for="" id="d_item"></label>
@@ -173,6 +142,42 @@
     </div>    
 </form>
 </div>
+<script>
+    $(document).ready(function(){
+        $('#p').change(function(){
+            realizarSolicitudAjax();
+        });
+    });
+
+    function realizarSolicitudAjax() {
+    // Obtener el valor del input
+    var valorInput = $('#p').val();
+
+    $.ajax({
+        url: 'consultar_proveedores.php',
+        type: 'GET',
+        data: { inputValue: valorInput }, // Pasar el valor del input como datos
+        dataType: 'json',
+        success: function (data) {
+            // Manipula los datos obtenidos como desees
+            var resultadoTexto = '';
+            var json = '';
+
+            $.each(data, function (index, proveedor) {
+                resultadoTexto += proveedor.nombre;
+                json += proveedor.productos;
+            });
+            $('#resultado').text(resultadoTexto);
+            const productos = JSON.parse(json);
+            $('#d_item').text(productos[0].descripcion);
+        },
+        error: function (xhr, status, error) {
+            console.error('Error al obtener los datos de los proveedores:', status, error);
+            $('#resultado').html('Error al cargar los datos de los proveedores. Por favor, intenta de nuevo más tarde.');
+        }
+    });
+}
+</script>
 <?php
     require("../../php/db.php");
     require("../../php/movimiento.php");

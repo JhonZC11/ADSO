@@ -1,0 +1,6 @@
+[
+{"id_insumo":"1","descripcion":"Bolsas","unidad":"Unidad","valor":"22500","cantidad":"100"},
+{"id_insumo":"2","descripcion":"Fibra","unidad":"mts","valor":"10000","cantidad":"1500"},
+{"id_insumo":"3","descripcion":"Benzoato","unidad":"Kg","valor":"30000","cantidad":"1.5"},
+{"id_insumo":"4","descripcion":"Escorpico","unidad":"Kg","valor":"20000","cantidad":"0.5"}
+]

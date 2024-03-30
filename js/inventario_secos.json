@@ -1,0 +1,8 @@
+[
+{"id_secos":"1","descripcion":"Tijeras","unidad":"Unidad","valor":"1000"},
+{"id_secos":"2","descripcion":"Bandejas","unidad":"Unidad","valor":"5000"},
+{"id_secos":"3","descripcion":"Tarro 1Kg","unidad":"Unidad","valor":"1200"},
+{"id_secos":"4","descripcion":"Tarro 20kg","unidad":"Unidad","valor":"2000"},
+{"id_secos":"5","descripcion":"Tarro 40kg","unidad":"Unidad","valor":"20000"},
+{"id_secos":"6","descripcion":"Jabon","unidad":"4L","valor":"26000"}
+]
