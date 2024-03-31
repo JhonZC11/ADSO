@@ -144,60 +144,63 @@
 </form>
 </div>
 <script>
-    $(document).ready(function(){
-        $('#p').change(function(){
-            realizarSolicitudAjax();
-        });
-        $('#cantidad, #valor_unidad').change(function() {
-            calcularVtotal();
-        });
+$(document).ready(function(){
+    $('#p').change(function(){
+        realizarSolicitudAjax();
     });
-    
-    function calcularVtotal() {
-        var cantidad = parseFloat($('#cant').val());
-        var valorUnidad = parseFloat($('#vU').val());
+});
 
-        // Verificar si ambos valores son numéricos
-        if (!isNaN(cantidad) && !isNaN(valorUnidad)) {
-            var vtotal = cantidad * valorUnidad;
-            $('#v_total').val(vtotal.toFixed(2)); // Redondear a 2 decimales y mostrar en el campo
-        } else {
-            $('#v_total').val(''); // Si uno o ambos valores no son numéricos, borrar el campo vtotal
-        }
-    }
-
-
-    function realizarSolicitudAjax() {
+function realizarSolicitudAjax() {
     // Obtener el valor del input
     var valorInput = $('#p').val();
 
     $.ajax({
         url: 'consultar_proveedores.php',
         type: 'GET',
-        data: { inputValue: valorInput }, // Pasar el valor del input como datos
+        data: { inputValue: valorInput },
         dataType: 'json',
         success: function (data) {
-            // Manipula los datos obtenidos como desees
             var resultadoTexto = '';
             var json = '';
             var datos = '';
+
             $.each(data, function (index, proveedor) {
                 resultadoTexto += proveedor.nombre;
                 json += proveedor.productos;
             });
+
             $('#resultado').text(resultadoTexto);
             const productos = JSON.parse(json);
+
             productos.forEach(function(item){
-                datos += '<tr><td class="d"><input type="checkbox" value="' + item.id_secos + '"></td><td>' + item.descripcion +' / '+  item.unidad  +
-                '</td><td class="d"><input type="text" style="width:50px;" id="cant" name="cant" onchange="vTotal();"></td><td id="vU">'+ item.valor + '</td><td class="d"><input for="" id="v_total" name="v_total" readonly>$</td></tr>';
-            })
-            document.getElementById("datos").innerHTML = datos;
+                datos += '<tr><td class="d"><input type="checkbox" value="' + item.id_secos + '"></td><td>' + item.descripcion + ' / ' + item.unidad +
+                '</td><td class="d"><input type="text" class="cant" name="cant" style="width:50px;"></td><td class="v_kg">' + item.valor + '</td><td class="d"><input type="text" class="v_total" readonly></td></tr>';
+            });
+
+            $('#datos').html(datos);
+
+            // Agregar el evento change a los campos de cantidad
+            $('.cant').change(function() {
+                calcularVtotal($(this).closest('tr')); // Pasar la fila correspondiente a la función calcularVtotal
+            });
         },
         error: function (xhr, status, error) {
             console.error('Error al obtener los datos de los proveedores:', status, error);
             $('#resultado').html('Error al cargar los datos de los proveedores. Por favor, intenta de nuevo más tarde.');
         }
     });
+}
+
+function calcularVtotal(fila) {
+    var cantidad = parseInt(fila.find('.cant').val());
+    var valorUnidad = parseInt(fila.find('.v_kg').text());
+
+    if (!isNaN(cantidad) && !isNaN(valorUnidad)) {
+        var vtotal = cantidad * valorUnidad;
+        fila.find('.v_total').val(vtotal);
+    } else {
+        fila.find('.v_total').val('');
+    }
 }
 </script>
 <?php
