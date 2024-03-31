@@ -6,6 +6,8 @@ $n_factura = $_POST["n_factura"];
 $proveedor = $_POST["proveedor"];
 $f_factura = $_POST["f_factura"];
 $id_item = $_POST["id_item"];
+$items = $_POST['items'];
+$cantidades = $_POST['cantd'];
 $cant = intval($_POST["cant"]);
 $v_kg = intval($_POST["v_kg"]);
 $total = $cant * $v_kg;
@@ -21,7 +23,10 @@ if($motivo=="EAC"){
     $a->insertaBaja($conn, $id_item, $motivo_real, $cant, $f_factura);
 } else if ($motivo=="FC"){
     $motivo_real = "3";
-    
+    $n_movimiento = $n_factura.$motivo_real;
+    $proveedor_real = $a->proveedor($conn, $proveedor);
+    echo "Estamos claros";
+    $a->insertFC($conn,$motivo, $n_factura, $proveedor_real, $f_factura, $items,$cantidades);
 }
 
 

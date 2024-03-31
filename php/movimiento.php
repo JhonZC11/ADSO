@@ -43,6 +43,37 @@ class movimiento{
             }
         }
 
+    public function insertFC(
+        $conn, $motivo, $n_factura, $proveedor, $f_factura, $items, $cant) {
+            if ($motivo == "" || $cant == "" || $n_factura == "" || $proveedor == "" || $f_factura == "" || $items == "") {
+                echo "Error, campos errados";
+            } else {
+                $cantidades = array_filter($cant);
+                $cantidades = array_values($cantidades);
+                $datos = array();
+                $ids = array();
+                foreach ($items as $key => $opcion) {
+                        echo $cantidades[$key];
+                        $opcionYUnidad = explode('_', $opcion);
+                        $idopcion = $opcionYUnidad[0];
+                        $opcionSeleccionada = $opcionYUnidad[1];
+                        $unidadSeleccionada = $opcionYUnidad[2];
+                        $datos[] = array(
+                            'id' => $idopcion,
+                            'descripcion' => $opcionSeleccionada,
+                            'valor' => $unidadSeleccionada,
+                        );
+                        $ids[] = array($idopcion);
+                        $sql = "UPDATE inventario_secos SET stock='$cantidades[$key]' WHERE id_secos='$idopcion'";
+                        $conn->query($sql);
+                }   
+            }
+                $jsonDatos = json_encode($datos);
+                $sql = "INSERT INTO facturas_compras (n_fc, fecha_factura, fecha_actual, proveedores_idproveedores, usuarios_idusuarios, detalle) 
+                VALUES  ('$n_factura', '$f_factura', CURRENT_TIMESTAMP, '$proveedor', '1', '$jsonDatos')";
+                $conn->query($sql);
+            }
+    
 
     
         public function insert(

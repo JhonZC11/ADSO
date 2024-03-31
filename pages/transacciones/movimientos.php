@@ -118,7 +118,7 @@
         <tbody id = "datos">
             <tr>
                 <td class="d">
-                    <input type="text" style="width:50px;" id="item" name="id_item" >
+                    <input type="text" style="width:50px;" id="item" name="id_item" onchange="cargaItem();" >
                 </td>
                 <td class="table-desc-item">
                     <label for="" id="d_item"></label>
@@ -173,8 +173,8 @@ function realizarSolicitudAjax() {
             const productos = JSON.parse(json);
 
             productos.forEach(function(item){
-                datos += '<tr><td class="d"><input type="checkbox" value="' + item.id_secos + '"></td><td>' + item.descripcion + ' / ' + item.unidad +
-                '</td><td class="d"><input type="text" class="cant" name="cant" style="width:50px;"></td><td class="v_kg">' + item.valor + '</td><td class="d"><input type="text" class="v_total" readonly></td></tr>';
+                datos += '<tr><td class="d"><input type="checkbox" name="items[]" value="' + item.id_secos + '_'+ item.descripcion+ '_'+ item.valor +'"></td><td>' + item.descripcion + ' / ' + item.unidad +
+                '</td><td class="d"><input type="text" class="cant" name="cantd[]" style="width:50px;"></td><td><input type="text" class="v_kg" readonly value="' + item.valor + '"></td><td class="d"><input type="text" class="v_total" readonly></td></tr>';
             });
 
             $('#datos').html(datos);
@@ -193,7 +193,7 @@ function realizarSolicitudAjax() {
 
 function calcularVtotal(fila) {
     var cantidad = parseInt(fila.find('.cant').val());
-    var valorUnidad = parseInt(fila.find('.v_kg').text());
+    var valorUnidad = parseInt(fila.find('.v_kg').val());
 
     if (!isNaN(cantidad) && !isNaN(valorUnidad)) {
         var vtotal = cantidad * valorUnidad;
