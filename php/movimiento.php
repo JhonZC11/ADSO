@@ -53,28 +53,30 @@ class movimiento{
                 $datos = array();
                 $ids = array();
                 $valorT = 0;
+                $total =0;
                 foreach ($items as $key => $opcion) {
                         $opcionYUnidad = explode('_', $opcion);
                         $idopcion = $opcionYUnidad[0];
                         $opcionSeleccionada = $opcionYUnidad[1];
                         $unidadSeleccionada = $opcionYUnidad[2];
-                        $valorT += $opcionYUnidad[2];
+                        $valorT = $unidadSeleccionada * $cantidades[$key];
+                        $total += $valorT;
                         $datos[] = array(
                             'id' => $idopcion,
                             'descripcion' => $opcionSeleccionada,
                             'valor' => $unidadSeleccionada,
                             'cantidad'=> $cantidades[$key],
-                            'vTotal'=>$unidadSeleccionada * $cantidades[$key] 
+                            'vTotal'=>$valorT
                         );
                         $ids[] = array($idopcion);
                         $sql = "UPDATE inventario_secos SET stock='$cantidades[$key]' WHERE id_secos='$idopcion'";
                         $conn->query($sql);
                 }   
-                echo $valorT;
+                echo $total;
             }
                 $jsonDatos = json_encode($datos);
-                $sql = "INSERT INTO facturas_compras (n_fc, fecha_factura, fecha_actual, proveedores_idproveedores, usuarios_idusuarios, detalle) 
-                VALUES  ('$n_factura', '$f_factura', CURRENT_TIMESTAMP, '$proveedor', '1', '$jsonDatos')";
+                $sql = "INSERT INTO facturas_compras (n_fc, fecha_factura, fecha_actual, vTotal, proveedores_idproveedores, usuarios_idusuarios, detalle) 
+                VALUES  ('$n_factura', '$f_factura', CURRENT_TIMESTAMP, '$total', '$proveedor', '1', '$jsonDatos')";
                 $conn->query($sql);
                 header("location:../pages/transacciones/movimientos.php");
             }
