@@ -25,7 +25,6 @@ if($motivo=="EAC"){
     $motivo_real = "3";
     $n_movimiento = $n_factura.$motivo_real;
     $proveedor_real = $a->proveedor($conn, $proveedor);
-    echo "Estamos claros";
     $a->insertFC($conn,$motivo, $n_factura, $proveedor_real, $f_factura, $items,$cantidades);
 }
 

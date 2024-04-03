@@ -45,27 +45,39 @@ function cargaMotivo(){
 
 
 function cargaItem(){
-    var inp = document.getElementById("motivo").value;
-    var inp =document.getElementById("item").value;
-    var i =document.getElementById("d_item")
+    let motivo = document.getElementById("motivo").value;
     let motivos = ["EAC", "DB", "FC"]
 
-    if(inp==motivos[0]||inp==motivos[1]){
-        let item = 
-        [
-            "1","Fruta Guanabana", 
-            "2", "Guanabana sin cáscara", 
-            "3", "Fruta sin semilla", 
-            "4", "Fruta limpia", 
-            "5", "Fruta en bolsas 10kg"
-        ]
+    if(motivo==motivos[0]){
+        let item = ["1", "Fruta Guanabana"]
+        var inp =document.getElementById("item").value;
+        var i =document.getElementById("d_item")
         var index = item.indexOf(inp);
-        if (index !== -1) {  
-            i.innerHTML = item[index + 1];
+        if (index !== -1) {  // Verificar si el índice es válido
+            i.innerHTML = item[index + 1]; // Mostrar el siguiente item
+        } else {
+            alert("¡Item desconocido o fuera de rango!");
+            document.getElementById("item").focus(); // Enfocar el input
+        }}
+    else if(motivo==motivos[1]){
+        let item = 
+                [
+                    "1", "Fruta Guanabana", 
+                    "2", "Fruta sin cascara",
+                    "3", "Fruta sin semilla",
+                    "4", "Fruta limpia",
+                    "5", "Fruta en bolsas 10kg"
+                ]
+        var inp =document.getElementById("item").value;
+        var i =document.getElementById("d_item")
+        var index = item.indexOf(inp);
+        if (index !== -1) {  // Verificar si el índice es válido
+            i.innerHTML = item[index + 1]; // Mostrar el siguiente item
+        } else {
+            alert("¡Item desconocido o fuera de rango!");
+            document.getElementById("item").focus(); // Enfocar el input
         }
-
-    } else if (inp==motivos[2]) {
-        
+    } else if (motivo==motivos[2]) {
         fetch("inventario_insumos.json")
             .then(response => response.json())
             .then(data =>{
@@ -74,9 +86,9 @@ function cargaItem(){
             .catch(error=>console.log(error));
 
     } else {
-        alert("¡Item desconocido o fuera de rango!");
+        alert("¡Motivo desconocido o fuera de rango!");
         document.getElementById("item").focus(); // Enfocar el input
-    }
+    } 
 }
 
 
