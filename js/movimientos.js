@@ -3,9 +3,6 @@ let d_motivos = ["Entrada Almacen", "Dar baja", "Factura Compra(Insumos)"]
 
 
 
-
-
-
 function cargaMotivo(){
 
     var inp = document.getElementById("motivo").value;
@@ -42,7 +39,7 @@ function cargaMotivo(){
 }
 
 
-
+//============================== NO TOCAR  ====================================
 
 function cargaItem(){
     let motivo = document.getElementById("motivo").value;
@@ -91,7 +88,7 @@ function cargaItem(){
     } 
 }
 
-
+//=========================================================================================
 
 
 

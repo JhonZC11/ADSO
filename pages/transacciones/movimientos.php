@@ -250,6 +250,7 @@ function calcularVtotal(fila) {
             INNER JOIN proveedores ON movimientos.proveedores_idproveedores = proveedores.idproveedores
             INNER JOIN operarios ON movimientos.usuarios_idusuarios = operarios.idoperarios
         ) AS movimientos_con_joins
+        ORDER BY movimientos_con_joins.fecha_actual DESC
         LIMIT $indiceInicio, $numElementosPorPagina";
         $resultadoConsulta = $conn->query($consultaSQL);
 // Mostrar los datos obtenidos de la consulta
