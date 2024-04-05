@@ -241,12 +241,12 @@ function calcularVtotal(fila) {
         $consultaSQL = "SELECT * FROM (
             SELECT movimientos.*,
                 motivos.descripcion AS nombre_motivo, 
-                productos.descripcion AS nombre_producto, 
+                stock.descripcion AS nombre_producto, 
                 proveedores.nombre AS nombre_proveedor, 
                 operarios.cedula AS nombre_usuario
             FROM movimientos
             INNER JOIN motivos ON movimientos.motivos_idmotivos = motivos.idmotivos
-            INNER JOIN productos ON movimientos.productos_idproductos = productos.idproductos
+            INNER JOIN stock ON movimientos.productos_idproductos = stock.id
             INNER JOIN proveedores ON movimientos.proveedores_idproveedores = proveedores.idproveedores
             INNER JOIN operarios ON movimientos.usuarios_idusuarios = operarios.idoperarios
         ) AS movimientos_con_joins

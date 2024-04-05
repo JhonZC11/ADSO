@@ -28,16 +28,16 @@ class movimiento{
                         VALUES 
                         ('$id_item', '$motivo', '$cant', '5', '1', 
                         '$fecha', CURRENT_TIMESTAMP, '2', '$n')";
-                $conn->query($sql);
+                         $conn->query($sql);
 
-                $sql1 = "SELECT CANTIDAD FROM inventario_stock WHERE productos_idproductos='$id_item'";
+                $sql1 = "SELECT CANTIDAD FROM stock WHERE id='$id_item'";
                 $eje = $conn->query($sql1);
                 while($fila = $eje->fetch_row()){
                     $cantidad = intval($fila[0]);
                 }
                 $canti = $cantidad - $cant;
-                $sql2 = "UPDATE inventario_stock SET  
-                cantidad = '$canti' WHERE productos_idproductos = '$id_item'";
+                $sql2 = "UPDATE stock SET  
+                cantidad = '$canti' WHERE id = '$id_item'";
                 $conn->query($sql2);
                 header("location:../pages/transacciones/movimientos.php");
             }

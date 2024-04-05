@@ -15,6 +15,7 @@ function cargaMotivo(){
 
     } else if (inp==motivos[0]){
         d.innerHTML=d_motivos[0];
+        
 
 
     }  else if (inp==motivos[1]){
@@ -25,8 +26,8 @@ function cargaMotivo(){
         nf.readOnly=true;
         inp2.readOnly=true;
         inputProveedor.readOnly=true;
-        alert("Algunos campos no son digitables con este movito")
-
+        //alert("Algunos campos no son digitables con este movito")
+        alert("Estos son los items disponibles\nItem\tDescripcion\n[1]\tFruta Guanabana\n[2]\tGuanabana sin cascara\n[3]\tGuanabana sin semilla\n[4]\tGuanabana limpia\n[5]\tGuanaba Bolsa 10kg\n[6]\tPaquete Bolsas x 100u\n[7]\tFibra 1500m\n[8]\tBenzoato 1,5kg\n[9]\tEscorpico 0,5kg\n[10]\tTijeras\n[11]\tBandeja\n[12]\tTarro 1kg\n[13]\tTarro 20kg\n[14]\tTarro 40kg\n[15]\tJabon 4L")
 
     }  else if (inp==motivos[2]){
         d.innerHTML=d_motivos[2];
@@ -63,7 +64,18 @@ function cargaItem(){
                     "2", "Fruta sin cascara",
                     "3", "Fruta sin semilla",
                     "4", "Fruta limpia",
-                    "5", "Fruta en bolsas 10kg"
+                    "5", "Fruta en bolsas 10kg",
+                    "6", "Paquete Bolsas x 100u",
+                    "7", "Fibra 1500m",
+                    "8", "Benzoato 1,5kg",
+                    "9", "Escorpico 0,5kg",
+                    "10","Tijeras",
+                    "11","Bandeja",
+                    "12","Tarro 1kg",
+                    "13","Tarro 20kg",
+                    "14","Tarro 40kg",
+                    "15","Jabon 4L"
+
                 ]
         var inp =document.getElementById("item").value;
         var i =document.getElementById("d_item")
