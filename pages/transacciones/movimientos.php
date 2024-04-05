@@ -255,6 +255,7 @@ function calcularVtotal(fila) {
         $resultadoConsulta = $conn->query($consultaSQL);
 // Mostrar los datos obtenidos de la consulta
         while ($a = $resultadoConsulta->fetch_row()) {
+            $precio = "$" . number_format($a[7], 0, '.') ; 
             echo 
                 "<tr>
                     <td>
@@ -285,7 +286,7 @@ function calcularVtotal(fila) {
                         $a[6]
                     </td>
                     <td>
-                        $a[7]
+                        $precio
                     </td>
                     <td>
                         $a[15]
