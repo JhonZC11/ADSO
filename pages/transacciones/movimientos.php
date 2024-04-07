@@ -85,9 +85,9 @@
 
 
 <div class="movimientos" id="form">
-<div class="bar" id="">
-        <div class="txt-m">Movimientos</div><div class="close"><button id="closeUsuarios" onclick="cierraForm();" >X</button></div>
-</div>
+    <div class="bar" id="">
+            <div class="txt-m">Movimientos</div><div class="close"><button id="closeUsuarios" onclick="cierraForm();" >X</button></div>
+    </div>
 <form action="../../php/o_movimientos.php" method="post">
     <table>
         <tr>
@@ -144,6 +144,7 @@
 </form>
 </div>
 <script>
+    
 $(document).ready(function(){
     $('#p').change(function(){
         realizarSolicitudAjax();

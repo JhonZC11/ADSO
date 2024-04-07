@@ -41,8 +41,8 @@ class movimiento{
                 $conn->query($sql2);
                 header("location:../pages/transacciones/movimientos.php");
             }
-        }
-
+    }
+    
     public function insertFC(
         $conn, $motivo, $n_factura, $proveedor, $f_factura, $items, $cant) {
             if ($motivo == "" || $cant == "" || $n_factura == "" || $proveedor == "" || $f_factura == "" || $items == "") {
@@ -79,11 +79,9 @@ class movimiento{
                 VALUES  ('$n_factura', '$f_factura', CURRENT_TIMESTAMP, '$total', '$proveedor', '1', '$jsonDatos')";
                 $conn->query($sql);
                 header("location:../pages/transacciones/movimientos.php");
-            }
+    }
     
-
-    
-        public function insert(
+    public function insert(
         $conn, 
         $id_item,
         $motivo,
@@ -119,8 +117,11 @@ class movimiento{
             ('$n_movimiento', '$n_factura', '$f_factura', CURRENT_TIMESTAMP, '$cant', '$v_kg', '$total', '$proveedor', '$motivo', '$id_item', '1')";
             $sql2 = "UPDATE inventario_stock SET  
             cantidad = '$canti' WHERE productos_idproductos = '$id_item'";
+            $sql3 = "UPDATE stock SET cantidad='$canti' WHERE id='$id_item'";
             $exe = $conn->query($sql);
             $e = $conn ->query($sql2);
+            $eje=$conn->query($sql3);
+            
             header("location:../pages/transacciones/movimientos.php");
         }
 
