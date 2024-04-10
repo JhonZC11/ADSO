@@ -105,7 +105,7 @@ class movimiento{
             echo "Error, campos errados";
         }
         else{
-            $sql1 = "SELECT CANTIDAD FROM inventario_stock WHERE productos_idproductos='$id_item'";
+            $sql1 = "SELECT CANTIDAD FROM stock WHERE id='$id_item'";
             $eje = $conn->query($sql1);
             while($fila = $eje->fetch_row()){
                 $cantidad = intval($fila[0]);
@@ -115,8 +115,8 @@ class movimiento{
             (n_movimiento, n_factura, fecha_factura, fecha_actual, cantidad, valor_kg, valor_total, proveedores_idproveedores, motivos_idmotivos, productos_idproductos, usuarios_idusuarios) 
             VALUES 
             ('$n_movimiento', '$n_factura', '$f_factura', CURRENT_TIMESTAMP, '$cant', '$v_kg', '$total', '$proveedor', '$motivo', '$id_item', '1')";
-            $sql2 = "UPDATE inventario_stock SET  
-            cantidad = '$canti' WHERE productos_idproductos = '$id_item'";
+            $sql2 = "UPDATE stock SET  
+            cantidad = '$canti' WHERE id = '$id_item'";
             $sql3 = "UPDATE stock SET cantidad='$canti' WHERE id='$id_item'";
             $exe = $conn->query($sql);
             $e = $conn ->query($sql2);
@@ -139,19 +139,154 @@ class movimiento{
     }
 
     public function muestraMovimientos ($conn){
-        //$sql = "SELECT * FROM movimientos";
-        $sql = "SELECT movimientos.*,
-        motivos.descripcion AS nombre_motivo, 
-        productos.descripcion AS nombre_producto, 
-        proveedores.nombre AS nombre_proveedor, 
-        operarios.cedula AS nombre_usuario
-        FROM movimientos
-        INNER JOIN motivos ON movimientos.motivos_idmotivos = motivos.idmotivos
-        INNER JOIN productos ON movimientos.productos_idproductos = productos.idproductos
-        INNER JOIN proveedores ON movimientos.proveedores_idproveedores = proveedores.idproveedores
-        INNER JOIN operarios ON movimientos.usuarios_idusuarios = operarios.idoperarios";
-        $resultado = $conn->query($sql);
-        return $resultado;
+        $numElementosPorPagina = 10;
+        $sqlTotal = "SELECT COUNT(*) AS total FROM movimientos";
+        $resultadoTotal = $conn->query($sqlTotal);
+        $total = $resultadoTotal->fetch_assoc()['total'];
+        $numPaginas = ceil($total / $numElementosPorPagina);
+
+        $paginaActual = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
+        $paginaActual = max(1, min($numPaginas, $paginaActual));
+
+        $indiceInicio = ($paginaActual - 1) * $numElementosPorPagina;
+        intval($indiceInicio);
+        $consultaSQL = "SELECT * FROM (
+            SELECT movimientos.*,
+                motivos.descripcion AS nombre_motivo, 
+                stock.descripcion AS nombre_producto, 
+                proveedores.nombre AS nombre_proveedor, 
+                operarios.cedula AS nombre_usuario
+            FROM movimientos
+            INNER JOIN motivos ON movimientos.motivos_idmotivos = motivos.idmotivos
+            INNER JOIN stock ON movimientos.productos_idproductos = stock.id
+            INNER JOIN proveedores ON movimientos.proveedores_idproveedores = proveedores.idproveedores
+            INNER JOIN operarios ON movimientos.usuarios_idusuarios = operarios.idoperarios
+        ) AS movimientos_con_joins
+        ORDER BY movimientos_con_joins.fecha_actual DESC
+        LIMIT $indiceInicio, $numElementosPorPagina";
+        $resultadoConsulta = $conn->query($consultaSQL);
+        // Mostrar los datos obtenidos de la consulta
+        while ($a = $resultadoConsulta->fetch_row()) {
+            $precio = "$" . number_format($a[7], 0, '.') ; 
+            echo 
+                "<tr>
+                    <td>
+                        $a[1]
+                    </td>
+                    <td>
+                        $a[2]
+                    </td>
+                    <td>
+                        $a[3]
+                    </td>
+                    <td>
+                        $a[4]
+                    </td>
+                    <td>
+                        $a[14]
+                    </td>
+                    <td>
+                        $a[12]
+                    </td>
+                    <td>
+                        $a[13]
+                    </td>
+                    <td>
+                        $a[5]
+                    </td>
+                    <td>
+                        $a[6]
+                    </td>
+                    <td>
+                        $precio
+                    </td>
+                    <td>
+                        $a[15]
+                    </td>
+                </tr>";
+        }?>
+        </table><br><br><?php
+    echo '<div class="paginacion">';
+    for ($i = 1; $i <= $numPaginas; $i++) {
+        echo '<a href="?pagina=' . $i . '" id="a">' . $i . '</a> ';
+    }
+    echo '</div>';
+    }
+
+    public function muestraFacturas($conn){
+        $numElementosPorPagina = 10;
+        $sqlTotal = "SELECT COUNT(*) AS total FROM facturas_compras";
+        $resultadoTotal = $conn->query($sqlTotal);
+        $total = $resultadoTotal->fetch_assoc()['total'];
+        $numPaginas = ceil($total / $numElementosPorPagina);
+
+        $paginaActual = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
+        $paginaActual = max(1, min($numPaginas, $paginaActual));
+
+        $indiceInicio = ($paginaActual - 1) * $numElementosPorPagina;
+        intval($indiceInicio);
+        $consultaSQL = "SELECT * FROM (
+            SELECT facturas_compras.*,
+                proveedores.nombre AS nombre_proveedor, 
+                operarios.cedula AS nombre_usuario
+            FROM facturas_compras
+            INNER JOIN proveedores ON facturas_compras.proveedores_idproveedores = proveedores.idproveedores
+            INNER JOIN operarios ON facturas_compras.usuarios_idusuarios = operarios.idoperarios
+        ) AS movimientos_con_joins
+        ORDER BY movimientos_con_joins.fecha_actual DESC
+        LIMIT $indiceInicio, $numElementosPorPagina";
+        $resultadoConsulta = $conn->query($consultaSQL);
+        // Mostrar los datos obtenidos de la consulta
+        while ($a = $resultadoConsulta->fetch_row()) {
+            //$precio = "$" . number_format($a[7], 0, '.') ; 
+            echo 
+                "<tr>
+                    <td>
+                        $a[1]
+                    </td>
+                    <td>
+                        $a[2]
+                    </td>
+                    <td>
+                        $a[3]
+                    </td>
+                    <td>
+                        $a[4]
+                    </td>
+                    <td>
+                        $a[8]
+                    </td>
+                    <td>
+                        $a[9]
+                    </td>
+                </tr>";
+        }?>
+        </table><br><br><?php
+    echo '<div class="paginacion">';
+    for ($i = 1; $i <= $numPaginas; $i++) {
+        echo '<a href="?pagina=' . $i . '" id="a">' . $i . '</a> ';
+    }
+    echo '</div>';
+    }
+
+    public function valorTotalFacturas($conn){
+        $t = 0;
+        $sql = "SELECT SUM(vTotal) AS total FROM facturas_compras";
+        $e = $conn->query($sql);
+        while($fila = $e->fetch_assoc()){
+            $t = $fila['total'];
+        }
+        return $t;
+    }
+
+    public function valorTotal($conn){
+        $t = 0;
+        $sql = "SELECT SUM(valor_total) AS total FROM movimientos";
+        $e = $conn->query($sql);
+        while($fila = $e->fetch_assoc()){
+            $t = $fila['total'];
+        }
+        return $t;
     }
 }
 $m = new movimiento();

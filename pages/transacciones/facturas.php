@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="../../css/movimientos.css">
    <style>
         .vT{
-            margin-left: 350px;
+            margin-left: 450px;
         }
         .a{
             margin-left: 20px;
@@ -28,7 +28,7 @@
             border-radius: 0px 10px 0px 10px;
             font-size: 18px;
             position: absolute;
-            left: 81%;
+            left: 80%;
             top: 13%;
             transition: ease-out 0.5s;
         }
@@ -37,7 +37,6 @@
             background-color: blue;
             box-shadow: inset 0 -100px 0 0 blue;
         }
-
    </style>
 </head>
 <body>
@@ -231,27 +230,22 @@ function calcularVtotal(fila) {
     require("../../php/db.php");
     require("../../php/movimiento.php");
     $movimiento = new movimiento();
-    $t = "$" . number_format($movimiento->valorTotal($conn), 0, '.');
+    $t = "$" . number_format($movimiento->valorTotalFacturas($conn), 0, '.');
 ?>
 
 <main class="">
-    <h1>Transacciones <span class="vT">EAC y DB hasta ahora: <?php echo $t;?></span></h1><a href="facturas.php" class="a">FC</a><button class="registrar" id="re" onclick="muestraForm();">Agregar</button><br><hr>
+    <h1>Transacciones <span class="vT">FC hasta ahora: <?php echo $t;?></span></h1><a href="movimientos.php" class="a">EAC</a><button class="registrar" id="re" onclick="muestraForm();">Agregar</button><br><hr>
     <table class="table-main">
         <tr>
-            <th>N Movimiento</th>
             <th>N Factura</th>
             <th>F Factura</th>
             <th>F Registro</th>
-            <th>Proveedor</th>
-            <th>Motivo</th>
-            <th>Producto</th>
-            <th>Cantidad</th>
-            <th>Valor kg</th>
             <th>Valor total</th>
+            <th>Proveedor</th>
             <th>Usuario</th>
         </tr>
 <?php
-    $movimiento->muestraMovimientos($conn);
+    $movimiento->muestraFacturas($conn);
 ?>
 
 </main>
