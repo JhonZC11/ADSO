@@ -154,11 +154,12 @@ $(document).ready(function(){
 function realizarSolicitudAjax() {
     // Obtener el valor del input
     var valorInput = $('#p').val();
+    var m = $('#motivo').val();
 
     $.ajax({
         url: 'consultar_proveedores.php',
         type: 'GET',
-        data: { inputValue: valorInput },
+        data: { inputValue: valorInput, motivo: m},
         dataType: 'json',
         success: function (data) {
             var resultadoTexto = '';

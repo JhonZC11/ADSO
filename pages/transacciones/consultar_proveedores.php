@@ -9,20 +9,17 @@ if ($conexion->connect_error) {
 
 // Obtener el valor del input
 $p = $_GET['inputValue'];
+$m = $_GET['motivo'];
 
-// Consulta SQL para obtener los datos de la tabla de proveedores
-$sql = "SELECT nombre, productos FROM proveedores WHERE nit = '$p'";
-$resultado = $conexion->query($sql);
+    $sql = "SELECT nombre, productos FROM proveedores WHERE nit = '$p' AND categoria='$m'";
+    $resultado = $conexion->query($sql);
+    $proveedores = array();
+    while ($fila = $resultado->fetch_assoc()) {
+        $proveedores[] = $fila;
+    }
 
-// Convertir los resultados a un arreglo asociativo
-$proveedores = array();
-while ($fila = $resultado->fetch_assoc()) {
-    $proveedores[] = $fila;
-}
+    $conexion->close();
 
-// Cerrar la conexión
-$conexion->close();
+    echo json_encode($proveedores);
 
-// Devolver los datos como JSON
-echo json_encode($proveedores);
 ?>
