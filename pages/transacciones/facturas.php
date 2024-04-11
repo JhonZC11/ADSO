@@ -37,6 +37,12 @@
             background-color: blue;
             box-shadow: inset 0 -100px 0 0 blue;
         }
+        .d{
+            width: 200px;
+        }
+        .table-main{
+            margin-left: 250px;
+        }        
    </style>
 </head>
 <body>
@@ -243,12 +249,15 @@ function calcularVtotal(fila) {
             <th>Valor total</th>
             <th>Proveedor</th>
             <th>Usuario</th>
+            <th>Detalle</th>
         </tr>
 <?php
     $movimiento->muestraFacturas($conn);
-?>
+?>}
+
 
 </main>
+
 
 
 

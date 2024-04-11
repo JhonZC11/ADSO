@@ -28,7 +28,7 @@
             border-radius: 0px 10px 0px 10px;
             font-size: 18px;
             position: absolute;
-            left: 81%;
+            left: 80%;
             top: 13%;
             transition: ease-out 0.5s;
         }
@@ -37,7 +37,6 @@
             background-color: blue;
             box-shadow: inset 0 -100px 0 0 blue;
         }
-
    </style>
 </head>
 <body>
@@ -250,14 +249,12 @@ function calcularVtotal(fila) {
             <th>Valor total</th>
             <th>Usuario</th>
         </tr>
+
 <?php
     $movimiento->muestraMovimientos($conn);
 ?>
 
 </main>
-
-
-
 
 
 <footer>

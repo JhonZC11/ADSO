@@ -236,9 +236,19 @@ class movimiento{
         ORDER BY movimientos_con_joins.fecha_actual DESC
         LIMIT $indiceInicio, $numElementosPorPagina";
         $resultadoConsulta = $conn->query($consultaSQL);
+ 
         // Mostrar los datos obtenidos de la consulta
         while ($a = $resultadoConsulta->fetch_row()) {
-            //$precio = "$" . number_format($a[7], 0, '.') ; 
+            $precio = "$" . number_format($a[4], 0, '.') ; 
+            $json = json_decode($a[7], true);
+            $json_content = '';
+
+            // Iterar sobre los datos del JSON
+            foreach ($json as $registro) {
+                $vU = "$" . number_format($registro['valor'], 0, '.');
+                // Concatenar los datos del registro en la variable
+                $json_content .= "<hr>Nombre: " . $registro['descripcion'] . "<br>Cantidad: " . $registro['cantidad'] . "<br>Valor Unidad: " . $vU . "<br><hr>";
+            }
             echo 
                 "<tr>
                     <td>
@@ -251,13 +261,18 @@ class movimiento{
                         $a[3]
                     </td>
                     <td>
-                        $a[4]
+                        $precio
                     </td>
                     <td>
                         $a[8]
                     </td>
                     <td>
                         $a[9]
+                    </td>
+                    <td class='d'>
+                        <details><hr>
+                            $json_content<hr>
+                        </details>
                     </td>
                 </tr>";
         }?>

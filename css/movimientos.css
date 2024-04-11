@@ -14,7 +14,7 @@ form{padding: 20px;}
 .d{text-align: center;}
 th{background-color:#dbf7d9; color: black; font-weight: bold;}
 th, td{padding: 5px;}
-
+td {font-weight: bold; color: rgb(96, 96, 96);}
 main{
     margin: 10px;
     background-color: white;
@@ -43,8 +43,6 @@ main{
     background-color: #72CA5F;
     box-shadow: inset 0 -100px 0 0 #72CA5F;
 }
-
-
 
 
 
