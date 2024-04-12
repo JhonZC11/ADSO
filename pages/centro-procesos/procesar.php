@@ -88,15 +88,63 @@
 <script>
     let item = ["1","Fruta Guanabana"]
     function cargaItem(){
-    var inp =document.getElementById("item").value;
-    var i =document.getElementById("d_item")
-    if(inp==item[0]){
-        i.innerHTML=item[1]
-    }else{
-        alert("Item desconocido!")
-        inp.focus();
+        var inp =document.getElementById("item").value;
+        var i =document.getElementById("d_item")
+        if(inp==item[0]){
+            i.innerHTML=item[1]
+        }else{
+            alert("Item desconocido!")
+            inp.focus();
+        }
     }
+    $(document).ready(function(){
+        $('#p').change(function(){
+            realizarSolicitudAjax();
+        });
+    }); 
+
+function realizarSolicitudAjax() {
+    // Obtener el valor del input
+    var valorInput = $('#p').val();
+    var m = $('#motivo').val();
+
+    $.ajax({
+        url: 'consultar_proveedores.php',
+        type: 'GET',
+        data: { inputValue: valorInput, motivo: m},
+        dataType: 'json',
+        success: function (data) {
+            var resultadoTexto = '';
+            var json = '';
+            var datos = '';
+
+            $.each(data, function (index, proveedor) {
+                resultadoTexto += proveedor.nombre;
+                json += proveedor.productos;
+            });
+
+            $('#resultado').text(resultadoTexto);
+            const productos = JSON.parse(json);
+
+            productos.forEach(function(item){
+                datos += '<tr><td class="d"><input type="checkbox" name="items[]" value="' + item.id_secos + '_'+ item.descripcion+ '_'+ item.valor +'"></td><td>' + item.descripcion + ' / ' + item.unidad +
+                '</td><td class="d"><input type="text" class="cant" name="cantd[]" style="width:50px;"></td><td><input type="text" class="v_kg" readonly value="' + item.valor + '"></td><td class="d"><input type="text" class="v_total" readonly></td></tr>';
+            });
+
+            $('#datos').html(datos);
+
+            // Agregar el evento change a los campos de cantidad
+            $('.cant').change(function() {
+                calcularVtotal($(this).closest('tr')); // Pasar la fila correspondiente a la función calcularVtotal
+            });
+        },
+        error: function (xhr, status, error) {
+            console.error('Error al obtener los datos de los proveedores:', status, error);
+            $('#resultado').html('Error al cargar los datos de los proveedores. Por favor, intenta de nuevo más tarde.');
+        }
+    });
 }
+
 </script>
 
 <div class="ad" id="ad">

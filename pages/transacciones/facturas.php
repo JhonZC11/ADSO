@@ -237,6 +237,7 @@ function calcularVtotal(fila) {
     require("../../php/movimiento.php");
     $movimiento = new movimiento();
     $t = "$" . number_format($movimiento->valorTotalFacturas($conn), 0, '.');
+
 ?>
 
 <main class="">

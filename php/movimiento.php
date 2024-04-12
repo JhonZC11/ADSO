@@ -70,7 +70,15 @@ class movimiento{
                         );
                         $ids[] = array($idopcion);
                         $sql = "UPDATE inventario_secos SET stock='$cantidades[$key]' WHERE id_secos='$idopcion'";
+                        $sql3 = "SELECT cantidad FROM stock WHERE id='$idopcion'";
+                        $eje = $conn->query($sql3);
+                        while($fila = $eje->fetch_row()){
+                            $cantidad = intval($fila[0]);
+                        }
+                        $canti = $cantidades[$key] + $cantidad;
+                        $sql2 = "UPDATE stock SET cantidad='$canti' WHERE id='$idopcion'";
                         $conn->query($sql);
+                        $conn->query($sql2);
                 }   
                 echo $total;
             }
@@ -78,7 +86,7 @@ class movimiento{
                 $sql = "INSERT INTO facturas_compras (n_fc, fecha_factura, fecha_actual, vTotal, proveedores_idproveedores, usuarios_idusuarios, detalle) 
                 VALUES  ('$n_factura', '$f_factura', CURRENT_TIMESTAMP, '$total', '$proveedor', '1', '$jsonDatos')";
                 $conn->query($sql);
-                header("location:../pages/transacciones/movimientos.php");
+                header("location:../pages/transacciones/facturas.php");
     }
     
     public function insert(
@@ -168,6 +176,8 @@ class movimiento{
         // Mostrar los datos obtenidos de la consulta
         while ($a = $resultadoConsulta->fetch_row()) {
             $precio = "$" . number_format($a[7], 0, '.') ; 
+            $c = number_format($a[5],0,'.');
+            $v = number_format($a[6],0,'.');
             echo 
                 "<tr>
                     <td>
@@ -192,10 +202,10 @@ class movimiento{
                         $a[13]
                     </td>
                     <td>
-                        $a[5]
+                        $c
                     </td>
                     <td>
-                        $a[6]
+                        $v
                     </td>
                     <td>
                         $precio
