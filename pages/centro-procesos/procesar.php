@@ -86,57 +86,80 @@
         </div>      
 </header>
 <script>
-    let item = ["1","Fruta Guanabana"]
+    let item = ["1","Fruta Guanabana",
+                "2","Guanabana sin cascara",
+                "3","Guanabana sin semilla",
+                "4","Guanabana limpia",
+                "5","Guanabana Bolsa x10kg"]
+    let valor = [
+                 "3000", //Pelar
+                 "300",  //Despulpar
+                 "3000", //Limpiar
+                 "1000"  //Empacar
+                ]
     function cargaItem(){
         var inp =document.getElementById("item").value;
-        var i =document.getElementById("d_item")
+        var i =document.getElementById("d_item2")
+        var id = document.getElementById("id2")
+        var costo = document.getElementById("costo")
+        var costoTotal = document.getElementById("costoTotal")
+        var canti = document.getElementById("cantidad").value;
+        var total = canti*0.15;
+        var CantidadTotal = document.getElementById("cantidadTotal").value=canti-total;
         if(inp==item[0]){
             i.innerHTML=item[1]
-        }else{
+            id.value=item[2]
+            costo.value=valor[0]
+            costoTotal.value=valor[0]
+        } else if(inp==item[2]){
+            i.innerHTML=item[3]
+            id.value=item[4]
+        }else if(inp==item[4]){
+            i.innerHTML=item[5]
+            id.value=item[6]
+        }else if(inp==item[5]){
+            i.innerHTML=item[6]
+            id.value=item[7]
+        }
+        else{
             alert("Item desconocido!")
             inp.focus();
         }
     }
+</script>
+<script>
+var usuario ={};
+
     $(document).ready(function(){
-        $('#p').change(function(){
+        $('#item').change(function(){
             realizarSolicitudAjax();
+        });
+        $('#cc').change(function(){
+            realizarSolicitudAjax2();
         });
     }); 
 
 function realizarSolicitudAjax() {
     // Obtener el valor del input
-    var valorInput = $('#p').val();
-    var m = $('#motivo').val();
-
+    var valorInput = $('#item').val();
+    var cc = $('#cc').val();
     $.ajax({
-        url: 'consultar_proveedores.php',
+        url: 'consulta_cantidad.php',
         type: 'GET',
-        data: { inputValue: valorInput, motivo: m},
+        data: { inputValue: valorInput, cc: cc},
         dataType: 'json',
         success: function (data) {
             var resultadoTexto = '';
-            var json = '';
-            var datos = '';
-
+            var nombre = '';
+            var operario = '';
             $.each(data, function (index, proveedor) {
-                resultadoTexto += proveedor.nombre;
-                json += proveedor.productos;
+                resultadoTexto += proveedor.cantidad;
+                nombre += proveedor.descripcion;
             });
-
-            $('#resultado').text(resultadoTexto);
-            const productos = JSON.parse(json);
-
-            productos.forEach(function(item){
-                datos += '<tr><td class="d"><input type="checkbox" name="items[]" value="' + item.id_secos + '_'+ item.descripcion+ '_'+ item.valor +'"></td><td>' + item.descripcion + ' / ' + item.unidad +
-                '</td><td class="d"><input type="text" class="cant" name="cantd[]" style="width:50px;"></td><td><input type="text" class="v_kg" readonly value="' + item.valor + '"></td><td class="d"><input type="text" class="v_total" readonly></td></tr>';
-            });
-
-            $('#datos').html(datos);
-
-            // Agregar el evento change a los campos de cantidad
-            $('.cant').change(function() {
-                calcularVtotal($(this).closest('tr')); // Pasar la fila correspondiente a la función calcularVtotal
-            });
+            $('#operario-label').html(operario);
+            $('#d_item').html(nombre);
+            $('#c').val(resultadoTexto);
+            $('#operario-label').html(usuario);
         },
         error: function (xhr, status, error) {
             console.error('Error al obtener los datos de los proveedores:', status, error);
@@ -145,45 +168,80 @@ function realizarSolicitudAjax() {
     });
 }
 
+function realizarSolicitudAjax2() {
+    // Obtener el valor del input
+    var valorInput = $('#cc').val();
+    $.ajax({
+        url: 'consulta_operario.php',
+        type: 'GET',
+        data: { inputValue: valorInput},
+        dataType: 'json',
+        success: function (data) {
+            var resultadoTexto = '';
+            $.each(data, function (index, proveedor) {
+                resultadoTexto += proveedor.nombres;
+            });
+            usuario = resultadoTexto;
+            $('#operario-label').html(resultadoTexto);
+        },
+        error: function (xhr, status, error) {
+            console.error('Error al obtener los datos de los proveedores:', status, error);
+            $('#resultado').html('Error al cargar los datos de los proveedores. Por favor, intenta de nuevo más tarde.');
+        }
+    });
+}
 </script>
+
 
 <div class="ad" id="ad">
     <div class="bar" id="">
         <div class="txt-m">Procesar</div><div class="close"><button id="closeUsuarios" onclick="cierra();" >X</button></div>
     </div>
-    <div class="head">
-        <label for="">Operario:</label>    
-        <input type="text" id="operario">
-        <span id="operario-label" class="label">.</span>
-        <label for="">Fecha:</label>
-        <input type="date">
-    </div>
-    <hr>
-    <table>
-        <tr class="tableheads">
-            <td>ID</td><td class="t">Descripción</td><td>Cantidad a procesar</td><td>Cantidad Stock</td>
-        </tr>
-        <tr>
-            <td><input type="text" class="inp" id="item" onchange="cargaItem();"></td>
-            <td class="t" id="d_item"></td><td><input type="text" name="" id="" class="inp"></td><td></td>
-        </tr>
-        
-        <tr class="tableheads">
-            <td>ID</td><td>Genera</td><td>Costo por kg</td><td>Costo por proceso</td>
-        </tr>
-        <tr>
-            <td>.</td><td></td><td></td><td></td><td></td>
-        </tr>
-    </table>
+    <form action="../../php/procesos.php" method="post">
+        <div class="head">
+            <label for="">Operario:</label>    
+            <input type="text" id="cc" name="cc">
+            <span id="operario-label" class="label">.</span>
+            <label for="">Fecha:</label>
+            <input type="date" name="fecha">
+        </div>
         <hr>
+        <table>
+            <tr class="tableheads">
+                <td>ID</td><td class="t">Descripción</td><td>Cantidad a procesar</td><td>Cantidad Stock</td>
+            </tr>
+            <tr>
+                <td><input type="text" class="inp" id="item" name="item"></td>
+                <td class="t" id="d_item"></td>
+                <td><input type="text" name="cantidad" id="cantidad" class="inp" onchange="cargaItem();"></td>
+                <td><input type="text" class="inp" id="c" readonly></td>
+            </tr>
+            
+            <tr class="tableheads">
+                <td>ID</td><td>Genera</td><td>Costo por hora/kg</td><td>Costo por proceso</td>
+            </tr>
+            <tr>
+                <td><input type="text" id="id2" class="inp" name="nextId" readonly></td>
+                <td id="d_item2"></td>
+                <td><input type="text" id="costo" name="costo" class="inp" readonly></td>
+                <td><input type="text" id="costoTotal" name="costoTotal" class="inp" readonly></td>
+            </tr>
+            <tr class="tableheads">
+                <td colspan="4">Cantidad Resultante: </td>
+            </tr>
+            <tr>
+                <td colspan="4"><input type="text" id="cantidadTotal" name="cantidadTotal"> kg</td>
+            </tr>
+        </table>
+            <hr>
 
-    
-    <div class="buttons2">
-        <button class="cancel" id="close" onclick="cierra();">Cancelar</button>
-        <input type="submit" class="registrar" value="Registrar">
-    </div>    
+        
+        <div class="buttons2">
+            <button class="cancel" id="close" onclick="cierra();">Cancelar</button>
+            <input type="submit" class="registrar" value="Registrar">
+        </div>    
+    </form>
 </div>
-
 
 
 
