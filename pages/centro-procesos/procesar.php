@@ -92,39 +92,80 @@
                 "4","Guanabana limpia",
                 "5","Guanabana Bolsa x10kg"]
     let valor = [
-                 "3000", //Pelar
-                 "300",  //Despulpar
-                 "3000", //Limpiar
-                 "1000"  //Empacar
+                 "1","3000", "Pelar", //Pelar
+                 "2","300", "Despulpar", //Despulpar
+                 "3","3000", "Limpiar",//Limpiar
+                 "4","1000", "Empacar" //Empacar
                 ]
     function cargaItem(){
+        
         var inp =document.getElementById("item").value;
-        var i =document.getElementById("d_item2")
-        var id = document.getElementById("id2")
+        var descripcionPrimerItem = document.getElementById("d_item")
+        var descripcionSegundoItem =document.getElementById("d_item2")
+        var idSegundoItem = document.getElementById("id2")
+
+
+        var idProceso = document.getElementById("idProceso")
+        var proceso = document.getElementById("proceso")
+
+        var horas = document.getElementById("horas")
+
         var costo = document.getElementById("costo")
         var costoTotal = document.getElementById("costoTotal")
+        
         var canti = document.getElementById("cantidad").value;
         var total = canti*0.15;
         var CantidadTotal = document.getElementById("cantidadTotal").value=canti-total;
-        if(inp==item[0]){
-            i.innerHTML=item[1]
-            id.value=item[2]
-            costo.value=valor[0]
-            costoTotal.value=valor[0]
-        } else if(inp==item[2]){
-            i.innerHTML=item[3]
-            id.value=item[4]
-        }else if(inp==item[4]){
-            i.innerHTML=item[5]
-            id.value=item[6]
-        }else if(inp==item[5]){
-            i.innerHTML=item[6]
-            id.value=item[7]
+        
+        if(inp<5){
+            if(inp==item[0]){ //1
+                descripcionPrimerItem.innerHTML=item[1] //Fruta guanabana
+                descripcionSegundoItem.innerHTML=item[3] //Fruta sin cascara
+                idSegundoItem.value=item[2] // 2
+                costo.value=valor[1] // 3000
+                proceso.innerHTML=valor[2] // pelar
+                idProceso.value=valor[0]
+                horas.removeAttribute('readonly')
+                $('#horas').change(function(){
+                    var h = document.getElementById("horas").value;
+                    costoTotal.value=  h * valor[1]
+                })
+            } else if(inp==item[2]){ // 2
+                descripcionPrimerItem.innerHTML=item[3] // Sin cascara
+                descripcionSegundoItem.innerHTML=item[5] // Sin semilla
+                idSegundoItem.value=item[4] // 3
+                idProceso.value=valor[3]
+                costo.value=valor[4]// 300
+                costoTotal.value= canti * valor[4] // multiplicacion
+                proceso.innerHTML=valor[5] // pelar
+            }else if(inp==item[4]){ // 3
+                descripcionPrimerItem.innerHTML=item[5] // Sin semilla
+                descripcionSegundoItem.innerHTML=item[7] // Limpia
+                idSegundoItem.value=item[6] // 4
+                idProceso.value=valor[6]
+                costo.value=valor[7]// 3000
+                proceso.innerHTML=valor[8] // limpiar
+                horas.removeAttribute('readonly')
+                $('#horas').change(function(){
+                    var h = document.getElementById("horas").value;
+                    costoTotal.value=  h * valor[1]
+                })
+            }else if(inp==item[6]){ // 4
+                descripcionPrimerItem.innerHTML=item[7] // Limpia
+                descripcionSegundoItem.innerHTML=item[9] // Empacada
+                idSegundoItem.value=item[8] // 4
+                idProceso.value=valor[9]
+                costo.value=valor[10]// 3000
+                costoTotal.value=valor[10] // multiplicacion
+                proceso.innerHTML=valor[11] // limpiar
+            }else{
+                alert("Item desconocido!")
+                inp.focus();
+            }
+        } else {
+            alert("Item fuera de rango")
         }
-        else{
-            alert("Item desconocido!")
-            inp.focus();
-        }
+
     }
 </script>
 <script>
@@ -143,7 +184,11 @@ function realizarSolicitudAjax() {
     // Obtener el valor del input
     var valorInput = $('#item').val();
     var cc = $('#cc').val();
-    $.ajax({
+    if(valorInput>5){
+        valorInput="";
+        alert("Item fuera de rango")
+    } else {
+        $.ajax({
         url: 'consulta_cantidad.php',
         type: 'GET',
         data: { inputValue: valorInput, cc: cc},
@@ -166,6 +211,8 @@ function realizarSolicitudAjax() {
             $('#resultado').html('Error al cargar los datos de los proveedores. Por favor, intenta de nuevo más tarde.');
         }
     });
+    }
+    
 }
 
 function realizarSolicitudAjax2() {
@@ -208,7 +255,7 @@ function realizarSolicitudAjax2() {
         <hr>
         <table>
             <tr class="tableheads">
-                <td>ID</td><td class="t">Descripción</td><td>Cantidad a procesar</td><td>Cantidad Stock</td>
+                <td class="d">ID</td><td class="">Descripción</td><td>Cantidad a procesar</td><td>Cantidad Stock</td>
             </tr>
             <tr>
                 <td><input type="text" class="inp" id="item" name="item"></td>
@@ -218,19 +265,25 @@ function realizarSolicitudAjax2() {
             </tr>
             
             <tr class="tableheads">
-                <td>ID</td><td>Genera</td><td>Costo por hora/kg</td><td>Costo por proceso</td>
+                <td class="d">ID</td><td>Genera</td><td>Costo por hora/kg</td><td>Costo por proceso</td>
             </tr>
             <tr>
                 <td><input type="text" id="id2" class="inp" name="nextId" readonly></td>
-                <td id="d_item2"></td>
+                <td id="d_item2" class="t"></td>
                 <td><input type="text" id="costo" name="costo" class="inp" readonly></td>
                 <td><input type="text" id="costoTotal" name="costoTotal" class="inp" readonly></td>
             </tr>
             <tr class="tableheads">
-                <td colspan="4">Cantidad Resultante: </td>
+                    
+                <td colspan="1">Cantidad Resultante: </td>
+                <td colspan="1">Horas trabajadas</td>
+                <td colspan="2">Proceso realizado: </td>
+                
             </tr>
             <tr>
-                <td colspan="4"><input type="text" id="cantidadTotal" name="cantidadTotal"> kg</td>
+                <td colspan="1"><input type="text" id="cantidadTotal" name="cantidadTotal" class="inp"> kg</td>
+                <td colspan="1"><input type="text" id="horas" name="horas" class="inp" readonly></td>
+                <td colspan="2" id="proceso" class="t"><input type="hidden" name="idProceso" id="idProceso"></td>
             </tr>
         </table>
             <hr>
