@@ -184,9 +184,10 @@ function realizarSolicitudAjax() {
     // Obtener el valor del input
     var valorInput = $('#item').val();
     var cc = $('#cc').val();
-    if(valorInput>5){
+    if(valorInput>=5){
         valorInput="";
         alert("Item fuera de rango")
+        window.location.reload()
     } else {
         $.ajax({
         url: 'consulta_cantidad.php',
@@ -201,10 +202,19 @@ function realizarSolicitudAjax() {
                 resultadoTexto += proveedor.cantidad;
                 nombre += proveedor.descripcion;
             });
-            $('#operario-label').html(operario);
-            $('#d_item').html(nombre);
-            $('#c').val(resultadoTexto);
-            $('#operario-label').html(usuario);
+            if(resultadoTexto<=0){
+                alert("No hay cantidad suficiente para operar!")
+                window.location.reload();
+            }else if(valorInput==4 && resultadoTexto < 10){
+                alert("No hay cantidad suficiente para empacar\nTienes "+resultadoTexto+"kg de Guanabana Limpia")
+                window.location.reload();
+            }else{
+                $('#operario-label').html(operario);
+                $('#d_item').html(nombre);
+                $('#c').val(resultadoTexto);
+                $('#operario-label').html(usuario);
+                
+            }
         },
         error: function (xhr, status, error) {
             console.error('Error al obtener los datos de los proveedores:', status, error);
@@ -247,7 +257,7 @@ function realizarSolicitudAjax2() {
     <form action="../../php/procesos.php" method="post">
         <div class="head">
             <label for="">Operario:</label>    
-            <input type="text" id="cc" name="cc">
+            <input type="text" id="cc" name="cc" require>
             <span id="operario-label" class="label">.</span>
             <label for="">Fecha:</label>
             <input type="date" name="fecha">
@@ -261,7 +271,7 @@ function realizarSolicitudAjax2() {
                 <td><input type="text" class="inp" id="item" name="item"></td>
                 <td class="t" id="d_item"></td>
                 <td><input type="text" name="cantidad" id="cantidad" class="inp" onchange="cargaItem();"></td>
-                <td><input type="text" class="inp" id="c" readonly></td>
+                <td><input type="text" class="inp" id="c" name="cantidadStock" readonly></td>
             </tr>
             
             <tr class="tableheads">
@@ -283,7 +293,8 @@ function realizarSolicitudAjax2() {
             <tr>
                 <td colspan="1"><input type="text" id="cantidadTotal" name="cantidadTotal" class="inp"> kg</td>
                 <td colspan="1"><input type="text" id="horas" name="horas" class="inp" readonly></td>
-                <td colspan="2" id="proceso" class="t"><input type="hidden" name="idProceso" id="idProceso"></td>
+                <td colspan="2" id="proceso" class="t"></td>
+                <input type="hidden" name="idProceso" id="idProceso">
             </tr>
         </table>
             <hr>
