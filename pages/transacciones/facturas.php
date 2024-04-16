@@ -8,10 +8,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&family=Work+Sans:wght@100&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
     <link rel="stylesheet" href="../../css/nav-bar.css">
     <link rel="stylesheet" href="../../css/barra.css">
     <link rel="stylesheet" href="../../css/general.css">
@@ -103,6 +106,11 @@
             <li><a href="../operarios.php">Operarios</a>
                 <ul>
                     <li><a href="../operarios.php" id="a">Gestión operarios</a></li>                    
+                </ul>
+            </li>
+            <li><a href="../ventas/main.php">Ventas</a>
+                <ul>
+                    <li><a href="../ventas/main.php" id="a">Sala de Ventas</a></li>                    
                 </ul>
             </li>
         </ul>
@@ -254,7 +262,7 @@ function calcularVtotal(fila) {
         </tr>
 <?php
     $movimiento->muestraFacturas($conn);
-?>}
+?>
 
 
 </main>

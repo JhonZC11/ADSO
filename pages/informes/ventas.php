@@ -8,8 +8,21 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&family=Work+Sans:wght@100&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../css/nav-bar.css">
 
+    <!--  PRIMERO SE CARGA EL JQUERY Y LUEGO EL JQUERY IU -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <!--                   JQUERY IU                          -->   
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    
+    <script src="../../js/usuarios.js" refer></script>
+    <link rel="stylesheet" href="../../css/nav-bar.css">
+    <link rel="stylesheet" href="../../css/barra.css">
+    <link rel="stylesheet" href="../../css/general.css">
+    <link rel="stylesheet" href="../../css/i-ventas.css">
 </head>
 <body>
 <header>
@@ -71,14 +84,62 @@
                     <li><a href="../operarios.php" id="a">Gestión operarios</a></li>                    
                 </ul>
             </li>
+            <li><a href="../ventas/main.php">Ventas</a>
+                <ul>
+                    <li><a href="../ventas/main.php" id="a">Sala de Ventas</a></li>                    
+                </ul>
+            </li>
         </ul>
         <li><a href="../index.php" class="salir">Salir</a></li>
         </div>      
-    </header>
-    
-    <footer>
+</header>
+
+<div class="i-ventas" id="form">
+    <div class="bar" id="">
+            <div class="txt-m">Movimientos</div><div class="close"><button id="closeUsuarios" onclick="cierraForm();" >X</button></div>
+    </div>
+<form action="../../php/o_movimientos.php" method="post">
+    <table>
+        <tr>
+            <td colspan="1">Motivo: </td><td colspan="1">
+                <input type="text" name="motivo" id="motivo" required onchange="cargaMotivo();">
+            </td>
+            <td colspan="1" class="table-cell"><label for="" id="d_motivo">.</label></td>
+            <td colspan="1">Número Factura: </td>
+            <td colspan="1"><input type="text" name="n_factura" id="nf"></td>
+        </tr>
+        <tr>
+            <td colspan="1">Proveedor: </td>
+            <td colspan="1"><input type="text" name="proveedor" id="p"></td>
+            <td colspan="1" class="table-cell"><label for="" id="resultado">.</label></td>
+                        
+
+            <td colspan="1">Fecha Factura: </td>
+            <td colspan="1"><input type="date" name="f_factura" required id="ff"></td>
+        </tr>
+    </table>
+    <div class="buttons">
+        <button class="cancel" id="close">Cancelar</button>
+        <input type="submit" class="registrar" value="Registrar">
+    </div>    
+</form>
+</div>
+
+
+
+
+
+<footer>
 <img src="../../img/bg.png" alt="" width="20%">
 </footer>
+<script>
+$(document).ready(function() {
+    $("#form").draggable();
+});
+</script>
+
+
+<script src="../../js/usuarios.js" refer></script>
 
 </body>
 </html>

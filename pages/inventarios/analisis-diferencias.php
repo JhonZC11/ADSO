@@ -83,6 +83,11 @@
                     <li><a href="../operarios.php" id="a">Gestión operarios</a></li>                    
                 </ul>
             </li>
+            <li><a href="../ventas/main.php">Ventas</a>
+                <ul>
+                    <li><a href="../ventas/main.php" id="a">Sala de Ventas</a></li>                    
+                </ul>
+            </li>
         </ul>
         <li><a href="../index.php" class="salir">Salir</a></li>
         </div>      

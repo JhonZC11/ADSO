@@ -12,6 +12,7 @@
     }
 
     $(document).ready(function() {
+        $("#iv").draggable();
         $("#usuarios").draggable();
         $("#form").draggable();
     });
