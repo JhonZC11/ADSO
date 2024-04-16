@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clientes</title>
+    <title>Formulario de Actualización</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&family=Work+Sans:wght@100&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <link rel="stylesheet" href="../css/nav-bar.css">
-    <link rel="stylesheet" href="../css/barra.css">
-    <link rel="stylesheet" href="../css/general.css">
-    <link rel="stylesheet" href="../css/clientes.css">
+    <link rel="stylesheet" href="../../css/nav-bar.css">
+    <link rel="stylesheet" href="../../css/usuarios.css">
+    <link rel="stylesheet" href="../../css/barra.css">
     <style>
-        td{font-weight: bolder; color:gray;}
-    </style>
+    form{display:block;}
+    .content, input{font-weight: bolder; color: black;}
+</style>
 </head>
 <body>
 <header>
@@ -89,96 +89,51 @@
         </div>      
 </header>
 
-<div class="usuarios" id="usuarios">
 
-<div class="bar" id="">
-    <div class="txt-m">Registro Clientes</div><div class="close"><button id="closeUsuarios" onclick="cierraForm();" >X</button></div>
-</div>
-
-<div class="tabla">
-
-    <table id = "tabla">
-        <thead>
-            <tr>
-                <th>Cedula</th><th>Nombres</th><th>Telefono</th><th>Direccion</th><th>Ciudad</th><th>Correo</th><th>Fecha Nacimiento</th><th>Opciones</th>
-            </tr>
-            <hr>
-        </thead>
-        <tbody>
-            <?php
-                require ("../php/db.php");
-                $sql = "SELECT * FROM clientes";
-                $resultados = $conn->query($sql);
-                while ($resultado = $resultados->fetch_row()){
-                    echo "<tr>
-                    <td>$resultado[1]</td>
-                    <td>$resultado[2]</td>
-                    <td>$resultado[3]</td>
-                    <td>$resultado[4]</td>
-                    <td>$resultado[5]</td>
-                    <td>$resultado[6]</td>
-                    <td>$resultado[7]</td>
-                    <td>
-                    <a class='edit' href='../php/clientes/update.php?id=$resultado[0]&cc=$resultado[1]&nom=$resultado[2]&tel=$resultado[3]&dir=$resultado[4]&ciudad=$resultado[5]&correo=$resultado[6]&date=$resultado[7]'>Edit</button>
-                    <a class='delete' href='../php/clientes/delete.php?id=$resultado[0]'>Delete</button></td>
-                    </tr>";
-                }
-            ?>
-        </tbody>
-    </table>
-</div>
-<div class="ingresar">
-    <button class="registrar" id="registroCRUD" onclick="muestraForm();" >Agregar Usuario</button>
-</div>
+<?php
+$id = $_GET["id"];
+$identificador = $_GET["cc"];
+$nom = $_GET["nom"];
+$tel = $_GET["tel"];
+$dir = $_GET["dir"];
+$ciudad = $_GET["ciudad"];
+$mail = $_GET["correo"];
+$date = $_GET["date"];
 
 
-</div>
-
-<form action="../php/clientes/insert.php" id="form" method="POST">
-
-    <div class="bar">
-        <div class="txt">Registro Cliente</div><div class="close"><button  id="close">X</button></div>
-    </div>
-    
-    <div class="content"><br>
-        <label for="">Identificación: </label><input type="text" id="iden" name="cc"><br><br>
-        <label for="">Nombres: </label><input type="text" id="nombre" name="nombres"><br><br>
-        <label for="">Telefono: </label><input type="text" id="telefono" name="telefono"><br><br>
-        <label for="">Direccion</label><input type="text" name="direccion" id="direccion"><br><br>
-        <label for="">Ciudad: </label><input type="text" name="ciudad" id="ciudad"><br><br>
-        <label for="">Correo: </label><input type="mail" id="mail" name="mail" ><br><br>
-        <label for="">Fecha Nacimiento: </label><input type="date" id="mail" name="fecha" ><br><br>
-       <br><br><hr> 
-    </div>
-    <div class="buttons">
-        <button class="cancel" id="cancel">Cancelar</button>
-        <input type="submit" class="registrar" value="Registrar">
-        <br><br><hr><br>
-    </div>
-</form>
+?>
 
 
+    <form action="process_update.php" id="form" method="POST">
+        
+        <div class="bar">
+            <div class="txt">Actualización</div><div class="close"><button  id="close">X</button></div>
+        </div>
+        
+        <div class="content"><br>
+            <input type="hidden" name="id" value="<?php echo $id?>">
+            <label for="">Identificación: </label><input type="" id="iden" name="cc" readonly value="<?= $identificador?>"><br><br>
+            <label for="">Nombres: </label><input type="text" id="nombre" name="nombres" value="<?= $nom?>"><br><br>
+            <label for="">Mail: </label><input type="mail" id="cc" name="mail" value="<?= $mail?>" ><br><br>
+            <label for="">Dirección: </label><input type="text" id="cc" name="direccion" value="<?= $dir?>" ><br><br>
+            <label for="">Ciudad: </label><input type="text" id="cc" name="ciudad" value="<?= $ciudad?>" ><br><br>
+            <label for="">Telefono: </label><input type="text" id="cc" name="telefono" value="<?= $tel?>" ><br><br>
+            <label for="">Fecha Nacimiento: </label><input type="date" id="cc" name="fecha" value="<?= $date?>" ><br><br>
+        </div>
+        <div class="buttons">
+            <button class="cancel" id="cancel">Cancelar</button>
+            <input type="submit" class="registrar" value="Actualizar">
+            <br><br><hr><br>
+        </div>
+    </form>
 
-
-
-<!--
-
-EN ESTA SECCIÓN SE DARÁ ESTILO A LAS VENTANAS PARA INFORMAR AL USUARIO
-
--->
-<footer>
-<img src="../img/bg.png" alt="" width="20%">
-</footer>
-
-
-
-<script src="../js/usuarios.js" refer></script>    
-<script>
-$(document).ready(function() {
-    $("#usuarios").draggable();
-    $("#form").draggable();
-});
-</script>
-    
+        
+    <script src="../js/usuarios.js" refer></script>    
+    <script>
+        $(document).ready(function() {
+            $("#usuarios").draggable();
+            $("#form").draggable();
+        });
+    </script>
 </body>
 </html>
