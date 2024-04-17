@@ -1,18 +1,23 @@
-.venta{width: 50%;margin: 50px auto; background-color: white;}
-form{padding: 5%;}
+body {
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+.table-desc-item{
+    width: 170px;
+}
+.u{
+    width: 110px;
+}
+.venta{width: 55%; background-color: white; position: fixed; left: 22.5%; bottom: 5%;}
+form{padding: 20px 30px;}
 .table-cell{
     width:200px;
 }
 .inp{width: 80px;}
-.tableheads{
-    background-color: gray;color: white; font-weight: bolder; text-align: center;
-}
-.tableheads>td{padding: 10px;}
-td{border: 1px solid gray; padding: 5px;}
-
-
-
-
+td{border: 1px solid gray; padding: 5px; font-weight: bolder; color: gray;}
+#item{color: gray; font-weight: bolder;}
+.mem{padding-bottom: 10px;}
+#pago{width: 200px; color: gray; font-weight: bolder;}
 
 .buttons{position: relative; left: 65%;}
 .cancel{
