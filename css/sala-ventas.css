@@ -6,9 +6,9 @@ body {
     width: 170px;
 }
 .u{
-    width: 110px;
+    width: 90px;
 }
-.venta{width: 55%; background-color: white; position: fixed; left: 22.5%; bottom: 5%;}
+.venta{width: 55%; background-color: white; position: fixed; left: 22.5%; bottom: 5%; max-height: 560px;}
 form{padding: 20px 30px;}
 .table-cell{
     width:200px;

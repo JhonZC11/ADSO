@@ -120,6 +120,74 @@
         </div>      
 </header>
 
+<script>   
+    $(document).ready(function(){
+        $('#cliente').change(function(){
+            realizarSolicitudAjax();
+        });
+        consultaStock();
+    });
+    
+    function realizarSolicitudAjax() {
+        // Obtener el valor del input
+        var valorInput = $('#cliente').val();
+    
+        $.ajax({
+            url: 'consulta_cliente.php',
+            type: 'GET',
+            data: { inputValue: valorInput},
+            dataType: 'json',
+            success: function (data) {
+                var resultadoTexto = '';
+    
+                $.each(data, function (index, proveedor) {
+                    resultadoTexto += proveedor.nombres;
+                    
+                });
+    
+                $('#resultado').text(resultadoTexto);
+    
+                // Agregar el evento change a los campos de cantidad
+                $('.cant').change(function() {
+                    calcularVtotal($(this).closest('tr')); // Pasar la fila correspondiente a la función calcularVtotal
+                });
+            },
+            error: function (xhr, status, error) {
+                console.error('Error al obtener los datos de los proveedores:', status, error);
+                $('#resultado').html('Error al cargar los datos de los proveedores. Por favor, intenta de nuevo más tarde.');
+            }
+        });
+    }
+    function consultaStock() {
+        // Obtener el valor del input
+        var valorInput = $('#item').val();
+    
+        $.ajax({
+            url: 'consulta_stock.php',
+            type: 'GET',
+            data: { inputValue: valorInput},
+            dataType: 'json',
+            success: function (data) {
+                var resultadoTexto = '';
+    
+                $.each(data, function (index, proveedor) {
+                    resultadoTexto += proveedor.cantidad;
+                    
+                });
+    
+                $('#unidadesD').val(resultadoTexto);
+    
+                
+            },
+            error: function (xhr, status, error) {
+                console.error('Error al obtener los datos de los proveedores:', status, error);
+                $('#resultado').html('Error al cargar los datos de los proveedores. Por favor, intenta de nuevo más tarde.');
+            }
+        });
+    }
+    
+</script>
+
 
 <div class="venta" id="form">
     <div class="bar" id="">
@@ -132,9 +200,9 @@
         </tr>
         <tr class="d">
             <td colspan="1">Cliente: </td><td colspan="1">
-                <input type="text" name="cliente" id="motivo" required onchange="cargaMotivo();">
+                <input type="text" name="cliente" id="cliente" required>
             </td>
-            <td colspan="1" class="table-cell"><label for="" id="d_motivo">.</label></td>
+            <td colspan="1" class="table-cell"><label for="" id="resultado">.</label></td>
             <td colspan="1">Número Factura: </td>
             <td colspan="1"><input type="text" name="n_factura" id="nf"></td>
         </tr>
@@ -143,7 +211,7 @@
             <td colspan="1" class="d">
                 <select name="pago" id="pago">
                     <option value="contado">Contado</option>
-                    <option value="credito">Crédito</option>
+                    <option value="credito">Crédito a 30 dias</option>
                 </select>
             </td>    
         
@@ -163,13 +231,13 @@
         <tbody id = "datos">
             <tr>
                 <td class="d">
-                    <input type="text" style="width:50px;" id="item" name="id_item" value="1">
+                    <input type="text" style="width:50px;" id="item" name="id_item" value="5">
                 </td>
                 <td class="table-desc-item">
-                    <label for="" id="d_item"></label>
+                    <label for="" id="d_item"> Guanabana Bolsa x10kg</label>
                 </td>
                 <td class="u">
-                    <label for="" id="unidadesD"></label>
+                    <input type="text" id="unidadesD" class="u" readonly>
                 </td>
                 <td class="d">
                     <input type="text" style="width:50px;" id="cant" name="cant">
