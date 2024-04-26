@@ -13,6 +13,24 @@ class cliente {
         $sql ="DELETE FROM clientes WHERE idclientes = '$id'";
         if($conn->query($sql)){header("location: ../../pages/clientes.php");} else{echo $conn->error();}
     }
+    public function select($conn){
+        $sql = "SELECT * FROM clientes";
+        $result = $conn->query($sql);
+        while ($resultado = $result->fetch_row()){
+            echo "<tr>
+            <td>$resultado[1]</td>
+            <td>$resultado[2]</td>
+            <td>$resultado[3]</td>
+            <td>$resultado[4]</td>
+            <td>$resultado[5]</td>
+            <td>$resultado[6]</td>
+            <td>$resultado[7]</td>
+            <td>
+            <a class='edit' href='../php/clientes/update.php?id=$resultado[0]&cc=$resultado[1]&nom=$resultado[2]&tel=$resultado[3]&dir=$resultado[4]&ciudad=$resultado[5]&correo=$resultado[6]&date=$resultado[7]'>Edit</button>
+            <a class='delete' href='../php/clientes/delete.php?id=$resultado[0]'>Delete</button></td>
+            </tr>";
+        }
+    }
 }
 
 $cliente = new cliente();

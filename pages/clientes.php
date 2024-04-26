@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="../css/general.css">
     <link rel="stylesheet" href="../css/clientes.css">
     <style>
-        td{font-weight: bolder; color:gray;}
+        td, label, input{font-weight: bolder; color:gray;}
     </style>
 </head>
 <body>
@@ -107,22 +107,8 @@
         <tbody>
             <?php
                 require ("../php/db.php");
-                $sql = "SELECT * FROM clientes";
-                $resultados = $conn->query($sql);
-                while ($resultado = $resultados->fetch_row()){
-                    echo "<tr>
-                    <td>$resultado[1]</td>
-                    <td>$resultado[2]</td>
-                    <td>$resultado[3]</td>
-                    <td>$resultado[4]</td>
-                    <td>$resultado[5]</td>
-                    <td>$resultado[6]</td>
-                    <td>$resultado[7]</td>
-                    <td>
-                    <a class='edit' href='../php/clientes/update.php?id=$resultado[0]&cc=$resultado[1]&nom=$resultado[2]&tel=$resultado[3]&dir=$resultado[4]&ciudad=$resultado[5]&correo=$resultado[6]&date=$resultado[7]'>Edit</button>
-                    <a class='delete' href='../php/clientes/delete.php?id=$resultado[0]'>Delete</button></td>
-                    </tr>";
-                }
+                require ("../php/clientes/o_clientes.php");
+                $resultados = $cliente->select($conn);
             ?>
         </tbody>
     </table>
@@ -141,13 +127,13 @@
     </div>
     
     <div class="content"><br>
-        <label for="">Identificación: </label><input type="text" id="iden" name="cc"><br><br>
-        <label for="">Nombres: </label><input type="text" id="nombre" name="nombres"><br><br>
-        <label for="">Telefono: </label><input type="text" id="telefono" name="telefono"><br><br>
+        <label for="">Identificación: </label><input type="text" id="iden" name="cc" required><br><br>
+        <label for="">Nombres: </label><input type="text" id="nombre" name="nombres" required><br><br>
+        <label for="">Telefono: </label><input type="text" id="telefono" name="telefono" required><br><br>
         <label for="">Direccion</label><input type="text" name="direccion" id="direccion"><br><br>
-        <label for="">Ciudad: </label><input type="text" name="ciudad" id="ciudad"><br><br>
-        <label for="">Correo: </label><input type="mail" id="mail" name="mail" ><br><br>
-        <label for="">Fecha Nacimiento: </label><input type="date" id="mail" name="fecha" ><br><br>
+        <label for="">Ciudad: </label><input type="text" name="ciudad" id="ciudad" required><br><br>
+        <label for="">Correo: </label><input type="mail" id="mail" name="mail"  required><br><br>
+        <label for="">Fecha Nacimiento: </label><input type="date" id="mail" name="fecha"  required><br><br>
        <br><br><hr> 
     </div>
     <div class="buttons">

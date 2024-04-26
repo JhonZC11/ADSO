@@ -14,7 +14,9 @@
     <link rel="stylesheet" href="../css/nav-bar.css">
     <link rel="stylesheet" href="../css/operarios.css">
     <link rel="stylesheet" href="../css/barra.css">
-
+    <style>
+        td, label, input{font-weight: bolder; color: gray;}
+    </style>
 </head>
 <body>
 <header>
@@ -138,7 +140,7 @@
 <form action="../php/operarios/insert.php" id="form" method="POST">
 
     <div class="bar">
-        <div class="txt">Registro Cliente</div><div class="close"><button  id="close">X</button></div>
+        <div class="txt">Registro Operario</div><div class="close"><button  id="close">X</button></div>
     </div>
     
     <div class="content"><br>
