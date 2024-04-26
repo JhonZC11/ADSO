@@ -1,4 +1,5 @@
 <?php
+header("location:../index.html");
 require ("db.php");
 $user = $_POST['user'];
 $pass = $_POST['pass'];
