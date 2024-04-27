@@ -77,9 +77,11 @@
                 </ul>
             </li>
         </ul>
-        <li><a href="../index.php" class="salir">Salir</a></li>
+            <li><a href="../../index.php" class="salir">Salir</a></li>
         </div>      
-    </header>
+</header>
+
+
     
     <footer>
 <img src="../../img/bg.png" alt="" width="20%">

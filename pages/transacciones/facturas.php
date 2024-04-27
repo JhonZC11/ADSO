@@ -46,6 +46,9 @@
         .table-main{
             margin-left: 250px;
         }        
+        #vt{
+            width: 350px;
+        }
    </style>
 </head>
 <body>
@@ -114,7 +117,7 @@
                 </ul>
             </li>
         </ul>
-        <li><a href="../index.php" class="salir">Salir</a></li>
+            <li><a href="../../index.php" class="salir">Salir</a></li>
         </div>      
 </header>
 
@@ -127,15 +130,15 @@
     <table>
         <tr>
             <td colspan="1">Motivo: </td><td colspan="1">
-                <input type="text" name="motivo" id="motivo" required onchange="cargaMotivo();">
+                <input type="text" required name="motivo" id="motivo"  onchange="cargaMotivo();">
             </td>
             <td colspan="1" class="table-cell"><label for="" id="d_motivo">.</label></td>
             <td colspan="1">Número Factura: </td>
-            <td colspan="1"><input type="text" name="n_factura" id="nf"></td>
+            <td colspan="1"><input type="number" name="n_factura" id="nf"></td>
         </tr>
         <tr>
             <td colspan="1">Proveedor: </td>
-            <td colspan="1"><input type="text" name="proveedor" id="p"></td>
+            <td colspan="1"><input type="number" name="proveedor" id="p" required></td>
             <td colspan="1" class="table-cell"><label for="" id="resultado">.</label></td>
                         
 
@@ -153,18 +156,18 @@
         <tbody id = "datos">
             <tr>
                 <td class="d">
-                    <input type="text" style="width:50px;" id="item" name="id_item" onchange="cargaItem();" >
+                    <input type="number" style="width:50px;" id="item" required name="id_item" onchange="cargaItem();" >
                 </td>
                 <td class="table-desc-item">
                     <label for="" id="d_item"></label>
                 </td>
                 <td class="d">
-                    <input type="text" style="width:50px;" id="cant" name="cant">
+                    <input type="number" style="width:50px;" required id="cant" name="cant">
                 </td>
                 <td class="d">
-                    <input type="text" style="width:80px;" id="v_kg"  name="v_kg" onchange="vTotal();">
+                    <input type="number" style="width:80px;" required id="v_kg"  name="v_kg" onchange="vTotal();">
                 </td>
-                <td class="d">
+                <td class="d" id="vt">
                     <input for="" id="v_total" name="v_total" readonly> $
                 </td>
             </tr>
@@ -249,7 +252,7 @@ function calcularVtotal(fila) {
 ?>
 
 <main class="">
-    <h1>Transacciones <span class="vT">FC hasta ahora: <?=$t;?></span></h1>
+    <h1>Facturas <span class="vT">FC hasta ahora: <?=$t;?></span></h1>
     <a href="movimientos.php" class="a">EAC</a>
     <button class="registrar" id="re" onclick="muestraForm();">Agregar</button><br><hr>
     <table class="table-main">

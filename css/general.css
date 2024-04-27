@@ -2,4 +2,7 @@
     font-family: 'PT Sans Narrow', sans-serif;
     font-family: 'Work Sans', sans-serif;
 }
-body{background: #dbe4d9;}  
+body{background: #dbe4d9;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}  

@@ -88,55 +88,54 @@
 
 <div class="usuarios" id="usuarios">
 
-<div class="bar" id="">
-    <div class="txt-m">Registro Proveedores</div><div class="close"><button id="closeUsuarios" onclick="cierraForm();" >X</button></div>
-</div>
+    <div class="bar" id="">
+        <div class="txt-m">Registro Proveedores</div><div class="close"><button id="closeUsuarios" onclick="cierraForm();" >X</button></div>
+    </div>
 
-<div class="tabla">
+    <div class="tabla">
 
-    <table id = "tabla">
-        <thead>
-            <tr>
-                <th>NIT</th><th>Nombres</th><th>Telefono</th><th>Dirección</th><th>Ciudad</th><th>Correo</th><th>Opciones</th>
-            </tr>
-            <hr>
-        </thead>
-        <tbody>
-            <?php
-                require ("../php/db.php");
-                $sql = "SELECT * FROM proveedores";
-                $resultados = $conn->query($sql);
-                while ($resultado = $resultados->fetch_row()){
-                    $id = $resultado[0];
-                    echo "<tr>
-                    <td>$resultado[1]</td>
-                    <td>$resultado[2]</td>
-                    <td>$resultado[3]</td>
-                    <td>$resultado[4]</td>
-                    <td>$resultado[5]</td>
-                    <td>$resultado[6]</td>
-                    <td><a class='edit' href='../php/update_proveedor.php?
-                    id=$resultado[0]&
-                    cc=$resultado[1]&
-                    nom=$resultado[2]&
-                    tel=$resultado[3]&
-                    dir=$resultado[4]&
-                    ciu=$resultado[5]&
-                    mail=$resultado[6]'>
-                    Edit</button>
-                    <a class='delete' href='../php/delete_proveedor.php?
-                    id=$resultado[0]'>Delete</button>
-                    </td></tr>";
-                }
+        <table id = "tabla">
+            <thead>
+                <tr>
+                    <th>NIT</th><th>Nombres</th><th>Telefono</th><th>Dirección</th><th>Ciudad</th><th>Correo</th><th>Opciones</th>
+                </tr>
+                <hr>
+            </thead>
+            <tbody>
+                <?php
+                    require ("../php/db.php");
+                    $sql = "SELECT * FROM proveedores";
+                    $resultados = $conn->query($sql);
+                    while ($resultado = $resultados->fetch_row()){
+                        $id = $resultado[0];
+                        echo "<tr>
+                        <td>$resultado[1]</td>
+                        <td>$resultado[2]</td>
+                        <td>$resultado[3]</td>
+                        <td>$resultado[4]</td>
+                        <td>$resultado[5]</td>
+                        <td>$resultado[6]</td>
+                        <td><a class='edit' href='../php/update_proveedor.php?
+                        id=$resultado[0]&
+                        cc=$resultado[1]&
+                        nom=$resultado[2]&
+                        tel=$resultado[3]&
+                        dir=$resultado[4]&
+                        ciu=$resultado[5]&
+                        mail=$resultado[6]'>
+                        Edit</button>
+                        <a class='delete' href='../php/delete_proveedor.php?
+                        id=$resultado[0]'>Delete</button>
+                        </td></tr>";
+                    }
 
-            ?>
-        </tbody>
-    </table>
-</div>
-<div class="ingresar">
-    <button class="registrar" id="registroCRUD" onclick="muestraForm();" >Agregar Usuario</button>
-</div>
-
+                ?>
+            </tbody>
+        </table>
+    </div>
+    <div class="ingresar">
+        <button class="registrar" id="registroCRUD" onclick="muestraForm();" >Agregar Usuario</button>
+    </div>
 
 </div>
 

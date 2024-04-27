@@ -69,7 +69,7 @@ class movimiento{
                             'vTotal'=>$valorT
                         );
                         $ids[] = array($idopcion);
-                        $sql = "UPDATE inventario_secos SET stock='$cantidades[$key]' WHERE id_secos='$idopcion'";
+                        //$sql = "UPDATE inventario_secos SET stock='$cantidades[$key]' WHERE id_secos='$idopcion'";
                         $sql3 = "SELECT cantidad FROM stock WHERE id='$idopcion'";
                         $eje = $conn->query($sql3);
                         while($fila = $eje->fetch_row()){
@@ -77,7 +77,7 @@ class movimiento{
                         }
                         $canti = $cantidades[$key] + $cantidad;
                         $sql2 = "UPDATE stock SET cantidad='$canti' WHERE id='$idopcion'";
-                        $conn->query($sql);
+                       // $conn->query($sql);
                         $conn->query($sql2);
                 }   
                 echo $total;

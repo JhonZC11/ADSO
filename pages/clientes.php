@@ -91,31 +91,31 @@
 
 <div class="usuarios" id="usuarios">
 
-<div class="bar" id="">
-    <div class="txt-m">Registro Clientes</div><div class="close"><button id="closeUsuarios" onclick="cierraForm();" >X</button></div>
-</div>
+    <div class="bar" id="">
+        <div class="txt-m">Registro Clientes</div><div class="close"><button id="closeUsuarios" onclick="cierraForm();" >X</button></div>
+    </div>
 
-<div class="tabla">
+    <div class="tabla">
 
-    <table id = "tabla">
-        <thead>
-            <tr>
-                <th>Cedula</th><th>Nombres</th><th>Telefono</th><th>Direccion</th><th>Ciudad</th><th>Correo</th><th>Fecha Nacimiento</th><th>Opciones</th>
-            </tr>
-            <hr>
-        </thead>
-        <tbody>
-            <?php
-                require ("../php/db.php");
-                require ("../php/clientes/o_clientes.php");
-                $resultados = $cliente->select($conn);
-            ?>
-        </tbody>
-    </table>
-</div>
-<div class="ingresar">
-    <button class="registrar" id="registroCRUD" onclick="muestraForm();" >Agregar Usuario</button>
-</div>
+        <table id = "tabla">
+            <thead>
+                <tr>
+                    <th>Cedula</th><th>Nombres</th><th>Telefono</th><th>Direccion</th><th>Ciudad</th><th>Correo</th><th>Fecha Nacimiento</th><th>Opciones</th>
+                </tr>
+                <hr>
+            </thead>
+            <tbody>
+                <?php
+                    require ("../php/db.php");
+                    require ("../php/clientes/o_clientes.php");
+                    $resultados = $cliente->select($conn);
+                ?>
+            </tbody>
+        </table>
+    </div>
+    <div class="ingresar">
+        <button class="registrar" id="registroCRUD" onclick="muestraForm();" >Agregar Usuario</button>
+    </div>
 
 
 </div>

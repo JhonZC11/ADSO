@@ -1,5 +1,5 @@
 
-.ad{width: 50%; margin: 0 auto; border: 1px solid #5E5E5E; position: absolute; left: 25%; top: 15%;}
+.ad{width: 50%; margin: 0 auto; border: 1px solid #5E5E5E; position: fixed; left: 25%; top: 15%;}
 .inp{width: 40%; font-weight: bold; color: rgb(96, 96, 96);}
 .t{width: 30%; font-weight: bold; color: rgb(96, 96, 96);}
 .d{width:10%;}

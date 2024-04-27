@@ -84,9 +84,11 @@
                 </ul>
             </li>
         </ul>
-        <li><a href="../index.php" class="salir">Salir</a></li>
+            <li><a href="../../index.php" class="salir">Salir</a></li>
         </div>      
 </header>
+
+
 
 <div id="ad" class="ad">
     <div class="bar" id="">

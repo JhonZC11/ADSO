@@ -51,7 +51,7 @@ Se da estilo a la barra de titulo del modal
 form{
     width: 30%; 
     border: 1px solid #949090; 
-    position: absolute; left: 35%; top: 20%; 
+    position: fixed; left: 35%; top: 20%; 
     color: #2f302e; 
     box-shadow:  18px 9px 34px -4px rgb(0,0,0,0.5);
     display: none;
@@ -159,16 +159,21 @@ background-color:  rgb(211, 20, 20);;
 
 
 .usuarios{
+    position: fixed;
     margin-top: 5%;
     margin-left: 18%;
     width: 63.5%;
-    height: 100%;
+    height: 19%;
     background-color: white;
     border: 1px solid #a2a5a0;
     display: block;
 }
+table{
+    background-color: white;
+}
 .usuarios>table{
     display: flex;
+    background-color: white;
 }
 .tabla{
     overflow: auto;

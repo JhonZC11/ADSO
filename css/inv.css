@@ -2,7 +2,7 @@
     width: 40%;
     text-align: center;
     border: 1px solid #858383;
-    position: absolute;
+    position: fixed;
     left: 30%;
     top: 20%;
     padding-bottom: 1%;

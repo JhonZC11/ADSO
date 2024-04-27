@@ -84,9 +84,9 @@
         </ul>
         <li><a href="../index.php" class="salir">Salir</a></li>
         </div>      
-    </header>
+</header>
     
-    <div class="usuarios" id="usuarios">
+<div class="usuarios" id="usuarios">
 
         <div class="bar" id="">
             <div class="txt-m">Registro Usuarios</div><div class="close"><button id="closeUsuarios" onclick="cierraForm();" >X</button></div>
@@ -130,9 +130,9 @@
         </div>
     
     
-    </div>
+</div>
     
-        <form action="../php/usuarios/insert.php" id="form" method="POST">
+<form action="../php/usuarios/insert.php" id="form" method="POST">
     
             <div class="bar">
                 <div class="txt">Registro Usuarios</div><div class="close"><button  id="close">X</button></div>
@@ -150,7 +150,7 @@
                 <input type="submit" class="registrar" value="Registrar">
                 <br><br><hr><br>
             </div>
-        </form>
+</form>
 
 
 

@@ -91,9 +91,11 @@
                 </ul>
             </li>
         </ul>
-        <li><a href="../index.php" class="salir">Salir</a></li>
+            <li><a href="../../index.php" class="salir">Salir</a></li>
         </div>      
 </header>
+
+
 <div id="form" class="inv">
     <div class="bar" id="">
         <div class="txt-m">Ingreso Inventario Físico</div><div class="close"><button id="closeUsuarios" onclick="cierraForm();" >X</button></div>

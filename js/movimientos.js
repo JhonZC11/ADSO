@@ -9,14 +9,13 @@ function cargaMotivo(){
     var d =document.getElementById("d_motivo")
     
     if(inp!=motivos[0]&&inp!=motivos[1]&&inp!=motivos[2]){
-        alert("Motivos invalidos!")
+        alert("Los motivos contemplados son: \n EAC, FC, DB");
         $("#motivo").focus()
-
+        $("#motivo").val("")
 
     } else if (inp==motivos[0]){
         d.innerHTML=d_motivos[0];
-        
-
+        alert("Con este motivo solo manejas el item 1")
 
     }  else if (inp==motivos[1]){
         d.innerHTML=d_motivos[1];
@@ -35,7 +34,6 @@ function cargaMotivo(){
 
     } else {
         alert("Motivos invalidos!")
-        $("#motivo").focus()
     }
 }
 
@@ -56,6 +54,7 @@ function cargaItem(){
         } else {
             alert("¡Item desconocido o fuera de rango!");
             document.getElementById("item").focus(); // Enfocar el input
+            $("#item").val("");
         }}
     else if(motivo==motivos[1]){
         let item = 

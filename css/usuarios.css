@@ -51,7 +51,7 @@ Se da estilo a la barra de titulo del modal
 form{
     width: 30%; 
     border: 1px solid #949090; 
-    position: absolute; left: 35%; top: 20%; 
+    position: fixed; left: 35%; top: 20%; 
     color: #2f302e; 
     box-shadow:  18px 9px 34px -4px rgb(0,0,0,0.5);
     display: none;
@@ -159,10 +159,11 @@ background-color:  rgb(211, 20, 20);;
 
 
 .usuarios{
+    position: fixed;
     margin-top: 5%;
     margin-left: 35.5%;
-    width: 30%;
-    height: 100%;
+    width: 400px;
+    height: 105px;
     background-color: white;
     border: 1px solid #a2a5a0;
     display: block;
@@ -174,7 +175,11 @@ background-color:  rgb(211, 20, 20);;
     overflow: auto;
     margin-left: 3%;
 }
+
+label, input{color: gray; font-weight: bolder;}
+
 th{
+
     background-color: #dbf7d9;
     font-size: 19px;
     padding: 5px 25px;
@@ -182,6 +187,7 @@ th{
     font-weight: bold;
 }
 td{
+    color: gray; font-weight: bolder;
     padding: 4px;
     border: 1px solid #c5c5c5;
     text-align: center;      

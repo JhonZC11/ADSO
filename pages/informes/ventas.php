@@ -90,9 +90,10 @@
                 </ul>
             </li>
         </ul>
-        <li><a href="../index.php" class="salir">Salir</a></li>
+            <li><a href="../../index.php" class="salir">Salir</a></li>
         </div>      
 </header>
+
 
 <div class="i-ventas" id="form">
     <div class="bar" id="">

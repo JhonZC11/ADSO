@@ -87,9 +87,11 @@
                 </ul>
             </li>
         </ul>
-        <li><a href="../index.php" class="salir">Salir</a></li>
+            <li><a href="../../index.php" class="salir">Salir</a></li>
         </div>      
 </header>
+
+
 <script>
     let item = ["1","Fruta Guanabana",
                 "2","Guanabana sin cascara",

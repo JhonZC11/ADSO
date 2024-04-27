@@ -89,9 +89,11 @@
                 </ul>
             </li>
         </ul>
-        <li><a href="../index.php" class="salir">Salir</a></li>
+            <li><a href="../../index.php" class="salir">Salir</a></li>
         </div>      
 </header>
+
+
 <div class="inv" id="form">
     <div class="bar" id="">
         <div class="txt-m">Búsqueda de Inventario</div><div class="close"><button id="closeUsuarios" onclick="cierraForm();" >X</button></div>
