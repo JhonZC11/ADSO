@@ -184,7 +184,7 @@ function realizarSolicitudAjax() {
     // Obtener el valor del input
     var valorInput = $('#p').val();
     var m = $('#motivo').val();
-
+    //Realizamos la solicitud de los productos que se desean utilizar en la transaccion
     $.ajax({
         url: 'consultar_proveedores.php',
         type: 'GET',
@@ -202,7 +202,8 @@ function realizarSolicitudAjax() {
 
             $('#resultado').text(resultadoTexto);
             const productos = JSON.parse(json);
-
+            //En base a los resultados creamos por cada uno de los productos una fila que, a su vez crea un input de tipo checkbox
+            //y un input de tipo text para la cantidad de productos que se desean utilizar y que estos sean manipulados en el backend
             productos.forEach(function(item){
                 datos += '<tr><td class="d"><input type="checkbox" name="items[]" value="' + item.id_secos + '_'+ item.descripcion+ '_'+ item.valor +'"></td><td>' + item.descripcion + ' / ' + item.unidad +
                 '</td><td class="d"><input type="text" class="cant" name="cantd[]" style="width:50px;"></td><td><input type="text" class="v_kg" readonly value="' + item.valor + '"></td><td class="d"><input type="text" class="v_total" readonly></td></tr>';

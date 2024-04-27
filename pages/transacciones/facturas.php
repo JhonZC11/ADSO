@@ -249,7 +249,9 @@ function calcularVtotal(fila) {
 ?>
 
 <main class="">
-    <h1>Transacciones <span class="vT">FC hasta ahora: <?php echo $t;?></span></h1><a href="movimientos.php" class="a">EAC</a><button class="registrar" id="re" onclick="muestraForm();">Agregar</button><br><hr>
+    <h1>Transacciones <span class="vT">FC hasta ahora: <?=$t;?></span></h1>
+    <a href="movimientos.php" class="a">EAC</a>
+    <button class="registrar" id="re" onclick="muestraForm();">Agregar</button><br><hr>
     <table class="table-main">
         <tr>
             <th>N Factura</th>
