@@ -44,6 +44,14 @@
             color: gray; 
             font-weight: bolder;
         }
+        .proveedores{
+            background-color: white;
+            position: fixed;
+            border: 1px solid gray;
+            width: 21%;
+            left: 65%;
+            top: 21%;
+        }
    </style>
 
 </head>
@@ -116,137 +124,173 @@
         <li><a href="../../index.php" class="salir">Salir</a></li>
         </div>      
 </header>
+<div class="proveedores" id="form2">
+    <div class="bar" id="">
+        <div class="txt-m">Proveedores</div><div class="close"><button id="closeUsuarios" onclick="cierraForm2();" >X</button></div>
+    </div>
+    <table>
+        <thead>
+            <th>Nit</th><th>Nombre</th><th>Categoría</th>
+        </thead>
+        <tbody id="dato">
+
+        </tbody>
+    </table>
+</div>
+
 
 
 <div class="movimientos" id="form">
     <div class="bar" id="">
             <div class="txt-m">Movimientos</div><div class="close"><button id="closeUsuarios" onclick="cierraForm();" >X</button></div>
     </div>
-<form action="../../php/o_movimientos.php" method="post" id="formu">
-    <table>
-        <tr>
-            <td colspan="1">Motivo: </td><td colspan="1">
-                <input type="text" name="motivo" id="motivo" required onchange="cargaMotivo();">
-            </td>
-            <td colspan="1" class="table-cell"><label for="" id="d_motivo">.</label></td>
-            <td colspan="1">Número Factura: </td>
-            <td colspan="1"><input type="number" name="n_factura" id="nf"></td>
-        </tr>
-        <tr>
-            <td colspan="1">Proveedor: </td>
-            <td colspan="1"><input type="number" name="proveedor" id="p"></td>
-            <td colspan="1" class="table-cell"><label for="" id="resultado">.</label></td>
-                        
-
-            <td colspan="1">Fecha Factura: </td>
-            <td colspan="1"><input type="date" name="f_factura" required id="ff"></td>
-        </tr>
-    </table>
-    <br><br>
-    <table class="table-items">
-        <thead>
+    <form action="../../php/o_movimientos.php" method="post" id="formu">
+        <table>
             <tr>
-                <th>Item</th><th>Descripción</th><th>Cantidad</th><th>Valor Unidad</th><th>Valor Total</th>
+                <td colspan="1">Motivo: </td><td colspan="1">
+                    <input type="text" name="motivo" id="motivo" required onchange="cargaMotivo();">
+                </td>
+                <td colspan="1" class="table-cell"><label for="" id="d_motivo">.</label></td>
+                <td colspan="1">Número Factura: </td>
+                <td colspan="1"><input type="number" name="n_factura" id="nf"></td>
             </tr>
-        </thead>
-        <tbody id = "datos">
             <tr>
-                <td class="d">
-                    <input type="number" style="width:50px;" id="item" required name="id_item" onchange="cargaItem();" >
-                </td>
-                <td class="table-desc-item">
-                    <label for="" id="d_item"></label>
-                </td>
-                <td class="d">
-                    <input type="number" style="width:50px;" id="cant" required name="cant">
-                </td>
-                <td class="d">
-                    <input type="number" style="width:80px;" id="v_kg"  required name="v_kg" onchange="vTotal();">
-                </td>
-                <td class="d">
-                    <input for="" id="v_total" name="v_total" readonly> $
-                </td>
-            </tr>
+                <td colspan="1">Proveedor: </td>
+                <td colspan="1"><input type="number" name="proveedor" id="p"></td>
+                <td colspan="1" class="table-cell"><label for="" id="resultado">.</label></td>
+                            
 
-        </tbody>
-    </table>
-    <br>
-    <div class="buttons">
-        <button class="cancel" id="close">Cancelar</button>
-        <input type="submit" class="registrar" value="Registrar">
-    </div>    
-</form>
+                <td colspan="1">Fecha Factura: </td>
+                <td colspan="1"><input type="date" name="f_factura" required id="ff"></td>
+            </tr>
+        </table>
+        <br><br>
+        <table class="table-items">
+            <thead>
+                <tr>
+                    <th>Item</th><th>Descripción</th><th>Cantidad</th><th>Valor Unidad</th><th>Valor Total</th>
+                </tr>
+            </thead>
+            <tbody id = "datos">
+                <tr>
+                    <td class="d">
+                        <input type="number" style="width:50px;" id="item" required name="id_item" onchange="cargaItem();" >
+                    </td>
+                    <td class="table-desc-item">
+                        <label for="" id="d_item"></label>
+                    </td>
+                    <td class="d">
+                        <input type="number" style="width:50px;" id="cant" required name="cant">
+                    </td>
+                    <td class="d">
+                        <input type="number" style="width:80px;" id="v_kg"  required name="v_kg" onchange="vTotal();">
+                    </td>
+                    <td class="d">
+                        <input for="" id="v_total" name="v_total" readonly> $
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <br>
+        <div class="buttons">
+            <button class="cancel" id="close">Cancelar</button>
+            <input type="submit" class="registrar" value="Registrar">
+        </div>    
+    </form>
 </div>
+
+
 <script>
-    
-$(document).ready(function(){
-    $('#p').change(function(){
-        realizarSolicitudAjax();
+    $("#form2").hide();
+    $(document).ready(function(){
+        $('#p').change(function(){
+            realizarSolicitudAjax();
+        });
+        $('#motivo').change(function(){
+            proveedoresAJAX();
+            $("#form2").show();
+        })
+
+
     });
 
-});
-
-function realizarSolicitudAjax() {
-    // Obtener el valor del input
-    var valorInput = $('#p').val();
-    var m = $('#motivo').val();
-    //Realizamos la solicitud de los productos que se desean utilizar en la transaccion
-    $.ajax({
-        url: 'consultar_proveedores.php',
-        type: 'GET',
-        data: { inputValue: valorInput, motivo: m},
-        dataType: 'json',
-        success: function (data) {
-            var resultadoTexto = '';
-            var json = '';
-            var datos = '';
-            $.each(data, function (index, proveedor) {
-                resultadoTexto += proveedor.nombre;
-                json += proveedor.productos;
-            });
-
-            $('#resultado').text(resultadoTexto);
-            const productos = JSON.parse(json);
-            //En base a los resultados creamos por cada uno de los productos una fila que, a su vez crea un input de tipo checkbox
-            //y un input de tipo text para la cantidad de productos que se desean utilizar y que estos sean manipulados en el backend
-            productos.forEach(function(item){
-                datos += '<tr><td class="d"><input type="checkbox" name="items[]" value="' + item.id_secos + '_'+ item.descripcion+ '_'+ item.valor +'"></td><td>' + item.descripcion + ' / ' + item.unidad +
-                '</td><td class="d"><input type="text" class="cant" name="cantd[]" style="width:50px;"></td><td><input type="text" class="v_kg" readonly value="' + item.valor + '"></td><td class="d"><input type="text" class="v_total" readonly></td></tr>';
-            });
-            $('#datos').html(datos);
-
-            // Agregar el evento change a los campos de cantidad
-            $('.cant').change(function() {
-                calcularVtotal($(this).closest('tr')); // Pasar la fila correspondiente a la función calcularVtotal
-            });
-        },
-        error: function (xhr, status, error) {
-            console.error('Error al obtener los datos de los proveedores:', status, error);
-            $('#resultado').html('Error al cargar los datos de los proveedores. Por favor, intenta de nuevo más tarde.');
-        }
-    });
-}
-
-function calcularVtotal(fila) {
-    var cantidad = parseInt(fila.find('.cant').val());
-    var valorUnidad = parseInt(fila.find('.v_kg').val());
-
-    if (!isNaN(cantidad) && !isNaN(valorUnidad)) {
-        var vtotal = cantidad * valorUnidad;
-        fila.find('.v_total').val(vtotal);
-    } else {
-        fila.find('.v_total').val('');
+    function proveedoresAJAX(){
+        var m = $('#motivo').val();
+        $.ajax({
+            url: 'trae_proveedor.php',
+            type: 'GET',
+            data: { motivo: m},
+            dataType: 'json',
+            success: function (data) {
+                var resultadoTexto = '';
+                $.each(data, function (index, proveedor) {
+                    resultadoTexto += '<tr><td>' + proveedor.nit + '</td><td>' + proveedor.nombre + '</td><td>'+ proveedor.categoria +'</td></tr>';
+                });
+                alert(resultadoTexto)
+                $("#dato").html(resultadoTexto)
+            },
+            error: function () {
+                alert('Error al realizar la solicitud');
+            }
+        });
     }
-}
+
+
+    function realizarSolicitudAjax() {
+        // Obtener el valor del input
+        var valorInput = $('#p').val();
+        var m = $('#motivo').val();
+        //Realizamos la solicitud de los productos que se desean utilizar en la transaccion
+        $.ajax({
+            url: 'consultar_proveedores.php',
+            type: 'GET',
+            data: { inputValue: valorInput, motivo: m},
+            dataType: 'json',
+            success: function (data) {
+                var resultadoTexto = '';
+                var json = '';
+                var datos = '';
+                $.each(data, function (index, proveedor) {
+                    resultadoTexto += proveedor.nombre;
+                    json += proveedor.productos;
+                });
+
+                $('#resultado').text(resultadoTexto);
+                const productos = JSON.parse(json);
+                //En base a los resultados creamos por cada uno de los productos una fila que, a su vez crea un input de tipo checkbox
+                //y un input de tipo text para la cantidad de productos que se desean utilizar y que estos sean manipulados en el backend
+                productos.forEach(function(item){
+                    datos += '<tr><td class="d"><input type="checkbox" name="items[]" value="' + item.id_secos + '_'+ item.descripcion+ '_'+ item.valor +'"></td><td>' + item.descripcion + ' / ' + item.unidad +
+                    '</td><td class="d"><input type="text" class="cant" name="cantd[]" style="width:50px;"></td><td><input type="text" class="v_kg" readonly value="' + item.valor + '"></td><td class="d"><input type="text" class="v_total" readonly></td></tr>';
+                });
+                $('#datos').html(datos);
+
+                // Agregar el evento change a los campos de cantidad
+                $('.cant').change(function() {
+                    calcularVtotal($(this).closest('tr')); // Pasar la fila correspondiente a la función calcularVtotal
+                });
+            },
+            error: function (xhr, status, error) {
+                console.error('Error al obtener los datos de los proveedores:', status, error);
+                $('#resultado').html('Error al cargar los datos de los proveedores. Por favor, intenta de nuevo más tarde.');
+            }
+        });
+    }
+
+
 </script>
 <?php
     require("../../php/db.php");
     require("../../php/movimiento.php");
     $movimiento = new movimiento();
-    $t = "$" . number_format($movimiento->valorTotal($conn), 0, '.');
-    if($t==null){
+    $number = $movimiento->valorTotal($conn);
+    if($number==null){
         $t=0;
+    }else{
+        $t = "$" . number_format($number, 0, '.'); 
     }
+    
 ?>
 
 <main class="">
@@ -266,29 +310,33 @@ function calcularVtotal(fila) {
             <th>Usuario</th>
         </tr>
 
-<?php
-    $movimiento->muestraMovimientos($conn);
-?>
+    <?php
+        $movimiento->muestraMovimientos($conn);
+    ?>
 
 </main>
 
 
+
+
 <footer>
-<img src="../../img/bg.png" alt="" width="20%">
+    <img src="../../img/bg.png" alt="" width="20%">
 </footer>
 
-   <script src="../../js/usuarios.js" refer></script>
+<script src="../../js/usuarios.js" refer></script>
 
-    <script>
-        $(document).ready(function() {
-            $("#form").draggable();
-        });
-    </script>
-    <script src="../../js/movimientos.js" refer></script> 
+<script>
+    $(document).ready(function() {
+        $("#form").draggable();
+        $("#form2").draggable();
+        $("#proveedores").draggable();
+    });
+</script>
+<script src="../../js/movimientos.js" refer></script> 
 
-    <script>
-        alert("Los motivos contemplados son: \n-EAC : Entrada al almacen \n-FC : Factura de Compra\n-DB : Dar Baja")
-    </script>
+<script>
+    alert("Los motivos contemplados son: \n-EAC : Entrada al almacen \n-FC : Factura de Compra\n-DB : Dar Baja")
+</script>
 
 </body>
 </html>

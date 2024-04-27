@@ -1,7 +1,7 @@
 let motivos = ["EAC", "DB", "FC"]
 let d_motivos = ["Entrada Almacen", "Dar baja", "Factura Compra(Insumos)"]
 
-
+//Control del input motivo
 
 function cargaMotivo(){
 
@@ -39,6 +39,8 @@ function cargaMotivo(){
 
 
 //============================== NO TOCAR  ====================================
+
+//Netamente validación de los items ingresados
 
 function cargaItem(){
     let motivo = document.getElementById("motivo").value;
@@ -86,12 +88,13 @@ function cargaItem(){
             document.getElementById("item").focus(); // Enfocar el input
         }
     } else if (motivo==motivos[2]) {
+        /*
         fetch("inventario_insumos.json")
             .then(response => response.json())
             .then(data =>{
                 alert(data)
             })
-            .catch(error=>console.log(error));
+            .catch(error=>console.log(error));/*/
 
     } else {
         alert("¡Motivo desconocido o fuera de rango!");
@@ -100,12 +103,6 @@ function cargaItem(){
 }
 
 //=========================================================================================
-
-
-
-
-
-
 function vTotal(){
     var inp1 = document.getElementById("cant").value;
     var inp2 = document.getElementById("v_kg").value;

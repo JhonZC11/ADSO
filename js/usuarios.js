@@ -3,9 +3,15 @@
     
     function muestraForm(){
         $("#form").show();
+   
     }
     function cierraForm(){
         $("#form").hide();
+
+    }
+    function cierraForm2(){
+
+        $("#form2").hide();
     }
     function cierra(){
         $("#ad").hide();

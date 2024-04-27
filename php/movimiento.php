@@ -216,11 +216,11 @@ class movimiento{
                 </tr>";
         }?>
         </table><br><br><?php
-    echo '<div class="paginacion">';
-    for ($i = 1; $i <= $numPaginas; $i++) {
-        echo '<a href="?pagina=' . $i . '" id="a">' . $i . '</a> ';
-    }
-    echo '</div>';
+        echo '<div class="paginacion">';
+        for ($i = 1; $i <= $numPaginas; $i++) {
+            echo '<a href="?pagina=' . $i . '" id="a">' . $i . '</a> ';
+        }
+        echo '</div>';
     }
 
     public function muestraFacturas($conn){
@@ -287,11 +287,11 @@ class movimiento{
                 </tr>";
         }?>
         </table><br><br><?php
-    echo '<div class="paginacion">';
-    for ($i = 1; $i <= $numPaginas; $i++) {
-        echo '<a href="?pagina=' . $i . '" id="a">' . $i . '</a> ';
-    }
-    echo '</div>';
+        echo '<div class="paginacion">';
+        for ($i = 1; $i <= $numPaginas; $i++) {
+            echo '<a href="?pagina=' . $i . '" id="a">' . $i . '</a> ';
+        }
+        echo '</div>';
     }
 
     public function valorTotalFacturas($conn){
