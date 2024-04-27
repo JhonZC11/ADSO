@@ -227,7 +227,6 @@
                 $.each(data, function (index, proveedor) {
                     resultadoTexto += '<tr><td>' + proveedor.nit + '</td><td>' + proveedor.nombre + '</td><td>'+ proveedor.categoria +'</td></tr>';
                 });
-                alert(resultadoTexto)
                 $("#dato").html(resultadoTexto)
             },
             error: function () {
