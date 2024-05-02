@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Movimientos</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&family=Work+Sans:wght@100&display=swap" rel="stylesheet">
@@ -34,6 +33,9 @@
             left: 80%;
             top: 13%;
             transition: ease-out 0.5s;
+            background-color: white;
+            color: gray;
+            font-weight: bolder;
         }
         .a:hover{
             color: white;
@@ -144,7 +146,7 @@
     <div class="bar" id="">
             <div class="txt-m">Movimientos</div><div class="close"><button id="closeUsuarios" onclick="cierraForm();" >X</button></div>
     </div>
-    <form action="../../php/o_movimientos.php" method="post" id="formu">
+    <form action="../../php/o_movimientos.php" method="post" id="formu" onsubmit="validarFecha()">
         <table>
             <tr>
                 <td colspan="1">Motivo: </td><td colspan="1">
@@ -161,7 +163,7 @@
                             
 
                 <td colspan="1">Fecha Factura: </td>
-                <td colspan="1"><input type="date" name="f_factura" required id="ff"></td>
+                <td colspan="1"><input type="date" name="f_factura" id="fecha" required id="ff"></td>
             </tr>
         </table>
         <br><br>
@@ -211,10 +213,34 @@
             proveedoresAJAX();
             $("#form2").show();
         })
-
-
+    });
+    document.getElementById("formu").addEventListener("submit", function(event) {
+        if (!validarFecha()) {
+            event.preventDefault(); // Evita que el formulario se envíe
+            location.reload();
+        }
     });
 
+
+    function validarFecha() {
+        var fechaInput = new Date(document.getElementById("fecha").value);
+        var fechaActual = new Date();
+        var unAnioAtras = new Date();
+        unAnioAtras.setFullYear(fechaActual.getFullYear() - 1);
+
+        if (fechaInput > fechaActual) {
+            alert("La fecha ingresada no puede ser mayor que la fecha actual.");
+            return false;
+        } else if (fechaInput < unAnioAtras) {
+            alert("La fecha ingresada no puede ser mayor a un año de antigüedad.");
+            return false;
+        }
+        return true;
+    }
+
+
+
+    //Función para traer los proveedores y ser mostrados como guias
     function proveedoresAJAX(){
         var m = $('#motivo').val();
         $.ajax({
@@ -276,6 +302,18 @@
             }
         });
     }
+
+    function calcularVtotal(fila) {
+    var cantidad = parseFloat(fila.find('.cant').val());
+    var valorUnidad = parseFloat(fila.find('.v_kg').val());
+
+    if (!isNaN(cantidad) && !isNaN(valorUnidad)) {
+        var vtotal = cantidad * valorUnidad;
+        fila.find('.v_total').val(vtotal.toLocaleString());
+    } else {
+        fila.find('.v_total').val('');
+    }
+}
 
 
 </script>
