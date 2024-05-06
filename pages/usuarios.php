@@ -76,9 +76,9 @@
                     <li><a href="operarios.php" id="a">Gestión operarios</a></li>                    
                 </ul>
             </li>
-            <li><a href="../ventas/main.php">Ventas</a>
+            <li><a href="ventas/main.php">Ventas</a>
                 <ul>
-                    <li><a href="../ventas/main.php" id="a">Sala de Ventas</a></li>                    
+                    <li><a href="ventas/main.php" id="a">Sala de Ventas</a></li>                    
                 </ul>
             </li>
         </ul>
@@ -103,7 +103,7 @@
                 </thead>
                 <tbody>
                     <?php
-                        require ("../php/db.php");
+                        require ("php/db.php");
                         $sql = "SELECT usuarios.*, operarios.*
                         FROM usuarios
                         JOIN operarios ON usuarios.operarios_idoperarios = operarios.idoperarios                        

@@ -1,5 +1,5 @@
 <?php
-require "db.php";
+require("../../php/db.php");
 require "movimiento.php";
 $a = new movimiento();
 $n_factura = $_POST["n_factura"];

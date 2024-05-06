@@ -62,8 +62,6 @@ class proceso{
         return $idusuario;
     }
 
-
-
 }
 
 $proceso = new proceso();

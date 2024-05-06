@@ -146,7 +146,7 @@
     <div class="bar" id="">
             <div class="txt-m">Movimientos</div><div class="close"><button id="closeUsuarios" onclick="cierraForm();" >X</button></div>
     </div>
-    <form action="../../php/o_movimientos.php" method="post" id="formu" onsubmit="validarFecha()">
+    <form action="movimientos/o_movimientos.php" method="post" id="formu" onsubmit="validarFecha()">
         <table>
             <tr>
                 <td colspan="1">Motivo: </td><td colspan="1">
@@ -244,7 +244,7 @@
     function proveedoresAJAX(){
         var m = $('#motivo').val();
         $.ajax({
-            url: 'trae_proveedor.php',
+            url: 'movimientos/trae_proveedor.php',
             type: 'GET',
             data: { motivo: m},
             dataType: 'json',
@@ -268,7 +268,7 @@
         var m = $('#motivo').val();
         //Realizamos la solicitud de los productos que se desean utilizar en la transaccion
         $.ajax({
-            url: 'consultar_proveedores.php',
+            url: 'movimientos/consultar_proveedores.php',
             type: 'GET',
             data: { inputValue: valorInput, motivo: m},
             dataType: 'json',
@@ -318,8 +318,8 @@
 
 </script>
 <?php
-    require("../../php/db.php");
-    require("../../php/movimiento.php");
+    require("../php/db.php");
+    require("movimientos/movimiento.php");
     $movimiento = new movimiento();
     $number = $movimiento->valorTotal($conn);
     if($number==null){

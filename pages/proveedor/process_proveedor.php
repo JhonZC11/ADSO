@@ -1,5 +1,5 @@
 <?php
-require("db.php");
+require("../php/db.php");
 require("o_proveedores.php");
 $id = $_POST["id"];
 $identificador = $_POST["iden"];

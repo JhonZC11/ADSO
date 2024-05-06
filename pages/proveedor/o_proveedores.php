@@ -5,7 +5,7 @@ class proveedor {
         $sql = "INSERT INTO proveedores (nit, nombre, telefono, dirección, ciudad, correo)
         VALUES ('$identificacion', '$nombre', '$telefono', '$direccion', '$ciudad', '$correo')";
         if ($conn->query($sql) === TRUE) {
-            header ("location: ../pages/proveedores.php");
+            header ("location: ..proveedores.php");
         } else {
             echo "Error al almacenar datos en la base de datos: " . $conn->error;
         }
@@ -14,7 +14,7 @@ class proveedor {
     public function delete($conn, $id){
         $sql = "DELETE FROM proveedores WHERE idproveedores='$id'";
         if ($conn->query($sql) === TRUE) {
-            header("location: ../pages/proveedores.php");
+            header("location: ../proveedores.php");
         } else {
             echo "Error al almacenar datos en la base de datos: " . $conn->error;
         }
@@ -30,7 +30,7 @@ class proveedor {
                 correo = '$correo' 
                 WHERE idproveedores='$id'";
         if ($conn->query($sql) === TRUE) {
-            header("location: ../pages/proveedores.php");
+            header("location: ../proveedores.php");
         } else {
             echo "Error al almacenar datos en la base de datos: " . $conn->error;
         }

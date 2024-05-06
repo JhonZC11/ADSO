@@ -39,7 +39,7 @@ class movimiento{
                 $sql2 = "UPDATE stock SET  
                 cantidad = '$canti' WHERE id = '$id_item'";
                 $conn->query($sql2);
-                header("location:../pages/transacciones/movimientos.php");
+                header("location:../movimientos.php");
             }
     }
     
@@ -86,7 +86,7 @@ class movimiento{
                 $sql = "INSERT INTO facturas_compras (n_fc, fecha_factura, fecha_actual, vTotal, proveedores_idproveedores, usuarios_idusuarios, detalle) 
                 VALUES  ('$n_factura', '$f_factura', CURRENT_TIMESTAMP, '$total', '$proveedor', '1', '$jsonDatos')";
                 $conn->query($sql);
-                header("location:../pages/transacciones/facturas.php");
+                header("location:../facturas.php");
     }
     
     public function insert(
@@ -130,7 +130,7 @@ class movimiento{
             $e = $conn ->query($sql2);
             $eje=$conn->query($sql3);
             
-            header("location:../pages/transacciones/movimientos.php");
+            header("location: ../movimientos.php");
         }
 
     }

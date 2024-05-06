@@ -76,9 +76,9 @@
                     <li><a href="operarios.php" id="a">Gestión operarios</a></li>                    
                 </ul>
             </li>
-            <li><a href="../ventas/main.php">Ventas</a>
+            <li><a href="ventas/main.php">Ventas</a>
                 <ul>
-                    <li><a href="../ventas/main.php" id="a">Sala de Ventas</a></li>                    
+                    <li><a href="ventas/main.php" id="a">Sala de Ventas</a></li>                    
                 </ul>
             </li>
         </ul>
@@ -103,7 +103,7 @@
             </thead>
             <tbody>
                 <?php
-                    require ("../php/db.php");
+                    require ("php/db.php");
                     $sql = "SELECT * FROM proveedores";
                     $resultados = $conn->query($sql);
                     while ($resultado = $resultados->fetch_row()){
@@ -115,7 +115,7 @@
                         <td>$resultado[4]</td>
                         <td>$resultado[5]</td>
                         <td>$resultado[6]</td>
-                        <td><a class='edit' href='../php/update_proveedor.php?
+                        <td><a class='edit' href='proveedor/update_proveedor.php?
                         id=$resultado[0]&
                         cc=$resultado[1]&
                         nom=$resultado[2]&
@@ -124,7 +124,7 @@
                         ciu=$resultado[5]&
                         mail=$resultado[6]'>
                         Edit</button>
-                        <a class='delete' href='../php/delete_proveedor.php?
+                        <a class='delete' href='proveedor/delete_proveedor.php?
                         id=$resultado[0]'>Delete</button>
                         </td></tr>";
                     }

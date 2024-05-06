@@ -26,8 +26,8 @@ class cliente {
             <td>$resultado[6]</td>
             <td>$resultado[7]</td>
             <td>
-            <a class='edit' href='../php/clientes/update.php?id=$resultado[0]&cc=$resultado[1]&nom=$resultado[2]&tel=$resultado[3]&dir=$resultado[4]&ciudad=$resultado[5]&correo=$resultado[6]&date=$resultado[7]'>Edit</button>
-            <a class='delete' href='../php/clientes/delete.php?id=$resultado[0]'>Delete</button></td>
+            <a class='edit' href='clientes/update.php?id=$resultado[0]&cc=$resultado[1]&nom=$resultado[2]&tel=$resultado[3]&dir=$resultado[4]&ciudad=$resultado[5]&correo=$resultado[6]&date=$resultado[7]'>Edit</button>
+            <a class='delete' href='clientes/delete.php?id=$resultado[0]'>Delete</button></td>
             </tr>";
         }
     }

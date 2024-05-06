@@ -79,9 +79,9 @@
                     <li><a href="operarios.php" id="a">Gestión operarios</a></li>                    
                 </ul>
             </li>
-            <li><a href="../ventas/main.php">Ventas</a>
+            <li><a href="ventas/main.php">Ventas</a>
                 <ul>
-                    <li><a href="../ventas/main.php" id="a">Sala de Ventas</a></li>                    
+                    <li><a href="ventas/main.php" id="a">Sala de Ventas</a></li>                    
                 </ul>
             </li>
         </ul>
@@ -106,8 +106,8 @@
             </thead>
             <tbody>
                 <?php
-                    require ("../php/db.php");
-                    require ("../php/clientes/o_clientes.php");
+                    require ("php/db.php");
+                    require ("clientes/o_clientes.php");
                     $resultados = $cliente->select($conn);
                 ?>
             </tbody>
@@ -120,7 +120,7 @@
 
 </div>
 
-<form action="../php/clientes/insert.php" id="form" method="POST">
+<form action="clientes/insert.php" id="form" method="POST">
 
     <div class="bar">
         <div class="txt">Registro Cliente</div><div class="close"><button  id="close">X</button></div>

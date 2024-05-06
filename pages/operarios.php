@@ -78,9 +78,9 @@
                     <li><a href="operarios.php" id="a">Gestión operarios</a></li>                    
                 </ul>
             </li>
-            <li><a href="../ventas/main.php">Ventas</a>
+            <li><a href="ventas/main.php">Ventas</a>
                 <ul>
-                    <li><a href="../ventas/main.php" id="a">Sala de Ventas</a></li>                    
+                    <li><a href="ventas/main.php" id="a">Sala de Ventas</a></li>                    
                 </ul>
             </li>
         </ul>
@@ -105,7 +105,7 @@
         </thead>
         <tbody>
             <?php
-                require ("../php/db.php");
+                require ("php/db.php");
                 $sql = "SELECT * FROM operarios";
                 $resultados = $conn->query($sql);
                 while ($resultado = $resultados->fetch_row()){

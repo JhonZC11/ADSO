@@ -126,7 +126,7 @@
     <div class="bar" id="">
             <div class="txt-m">Movimientos</div><div class="close"><button id="closeUsuarios" onclick="cierraForm();" >X</button></div>
     </div>
-<form action="../../php/o_movimientos.php" method="post">
+<form action="movimientos/o_movimientos.php" method="post">
     <table>
         <tr>
             <td colspan="1">Motivo: </td><td colspan="1">
@@ -195,7 +195,7 @@ function realizarSolicitudAjax() {
     var m = $('#motivo').val();
 
     $.ajax({
-        url: 'consultar_proveedores.php',
+        url: 'movimientos/consultar_proveedores.php',
         type: 'GET',
         data: { inputValue: valorInput, motivo: m},
         dataType: 'json',
@@ -244,8 +244,8 @@ function calcularVtotal(fila) {
 }
 </script>
 <?php
-    require("../../php/db.php");
-    require("../../php/movimiento.php");
+    require("../php/db.php");
+    require("movimientos/movimiento.php");
     $movimiento = new movimiento();
     $t = "$" . number_format($movimiento->valorTotalFacturas($conn), 0, '.');
 
