@@ -1,4 +1,5 @@
 .movimientos{
+    border: 1px solid gray;
     background-color: white;
     width: 50%;
     position: fixed;

@@ -24,7 +24,7 @@
 </head>
 <body>
 <?php
-    $file = file_get_contents("../../php/user.txt");
+    $file = file_get_contents("../php/user.txt");
 ?>
 <header>
         <div id="header">

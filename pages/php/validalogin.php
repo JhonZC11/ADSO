@@ -1,5 +1,5 @@
 <?php
-header("location:../index.html");
+//header("location:../index.html");
 require ("db.php");
 $user = $_POST['user'];
 $pass = $_POST['pass'];
@@ -18,7 +18,8 @@ if ($resultado) {
         }
         file_put_contents("id.txt",$idLogeado);
         file_put_contents("user.txt", $usuarioLogeado);
-        header ("location: ../pages/main.php");
+
+        header ("location: ../main.php");
     } else {
         echo "    
         <style>
@@ -38,7 +39,7 @@ if ($resultado) {
         echo "<div class='err'>No se encontraron registros.</div>";
         echo "
         <div class='err'>
-        <a href='../index.php'>
+        <a href='../../index.php'>
             Volver a intentarlo.
         </a>
         </div>";

@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&family=Work+Sans:wght@100&display=swap" rel="stylesheet">
 </head>
 <body>
-    <form action="php/validalogin.php" method="post">
+    <form action="pages/php/validalogin.php" method="post">
         <hr><br>
         <h1>Iniciar Sesión</h1><br>
         <hr><br>

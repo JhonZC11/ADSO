@@ -1,29 +1,4 @@
 
-    /*----------------ABRE EL FORM-----------------------*/ 
-    
-    function muestraForm(){
-        $("#form").show();
-   
-    }
-    function cierraForm(){
-        $("#form").hide();
-
-    }
-    function cierraForm2(){
-
-        $("#form2").hide();
-    }
-    function cierra(){
-        $("#ad").hide();
-    }
-
-    $(document).ready(function() {
-        $("#iv").draggable();
-        $("#usuarios").draggable();
-        $("#form").draggable();
-    });
-
-    /*----------------------------------------------------*/ 
 
 
 

@@ -126,6 +126,8 @@
         <li><a href="../../index.php" class="salir">Salir</a></li>
         </div>      
 </header>
+
+
 <div class="proveedores" id="form2">
     <div class="bar" id="">
         <div class="txt-m">Proveedores</div><div class="close"><button id="closeUsuarios" onclick="cierraForm2();" >X</button></div>
@@ -203,120 +205,6 @@
 </div>
 
 
-<script>
-    $("#form2").hide();
-    $(document).ready(function(){
-        $('#p').change(function(){
-            realizarSolicitudAjax();
-        });
-        $('#motivo').change(function(){
-            proveedoresAJAX();
-            $("#form2").show();
-        })
-    });
-    document.getElementById("formu").addEventListener("submit", function(event) {
-        if (!validarFecha()) {
-            event.preventDefault(); // Evita que el formulario se envíe
-            location.reload();
-        }
-    });
-
-
-    function validarFecha() {
-        var fechaInput = new Date(document.getElementById("fecha").value);
-        var fechaActual = new Date();
-        var unAnioAtras = new Date();
-        unAnioAtras.setFullYear(fechaActual.getFullYear() - 1);
-
-        if (fechaInput > fechaActual) {
-            alert("La fecha ingresada no puede ser mayor que la fecha actual.");
-            return false;
-        } else if (fechaInput < unAnioAtras) {
-            alert("La fecha ingresada no puede ser mayor a un año de antigüedad.");
-            return false;
-        }
-        return true;
-    }
-
-
-
-    //Función para traer los proveedores y ser mostrados como guias
-    function proveedoresAJAX(){
-        var m = $('#motivo').val();
-        $.ajax({
-            url: 'movimientos/trae_proveedor.php',
-            type: 'GET',
-            data: { motivo: m},
-            dataType: 'json',
-            success: function (data) {
-                var resultadoTexto = '';
-                $.each(data, function (index, proveedor) {
-                    resultadoTexto += '<tr><td>' + proveedor.nit + '</td><td>' + proveedor.nombre + '</td><td>'+ proveedor.categoria +'</td></tr>';
-                });
-                $("#dato").html(resultadoTexto)
-            },
-            error: function () {
-                alert('Error al realizar la solicitud');
-            }
-        });
-    }
-
-
-    function realizarSolicitudAjax() {
-        // Obtener el valor del input
-        var valorInput = $('#p').val();
-        var m = $('#motivo').val();
-        //Realizamos la solicitud de los productos que se desean utilizar en la transaccion
-        $.ajax({
-            url: 'movimientos/consultar_proveedores.php',
-            type: 'GET',
-            data: { inputValue: valorInput, motivo: m},
-            dataType: 'json',
-            success: function (data) {
-                var resultadoTexto = '';
-                var json = '';
-                var datos = '';
-                $.each(data, function (index, proveedor) {
-                    resultadoTexto += proveedor.nombre;
-                    json += proveedor.productos;
-                });
-
-                $('#resultado').text(resultadoTexto);
-                const productos = JSON.parse(json);
-                //En base a los resultados creamos por cada uno de los productos una fila que, a su vez crea un input de tipo checkbox
-                //y un input de tipo text para la cantidad de productos que se desean utilizar y que estos sean manipulados en el backend
-                productos.forEach(function(item){
-                    datos += '<tr><td class="d"><input type="checkbox" name="items[]" value="' + item.id_secos + '_'+ item.descripcion+ '_'+ item.valor +'"></td><td>' + item.descripcion + ' / ' + item.unidad +
-                    '</td><td class="d"><input type="text" class="cant" name="cantd[]" style="width:50px;"></td><td><input type="text" class="v_kg" readonly value="' + item.valor + '"></td><td class="d"><input type="text" class="v_total" readonly></td></tr>';
-                });
-                $('#datos').html(datos);
-
-                // Agregar el evento change a los campos de cantidad
-                $('.cant').change(function() {
-                    calcularVtotal($(this).closest('tr')); // Pasar la fila correspondiente a la función calcularVtotal
-                });
-            },
-            error: function (xhr, status, error) {
-                console.error('Error al obtener los datos de los proveedores:', status, error);
-                $('#resultado').html('Error al cargar los datos de los proveedores. Por favor, intenta de nuevo más tarde.');
-            }
-        });
-    }
-
-    function calcularVtotal(fila) {
-    var cantidad = parseFloat(fila.find('.cant').val());
-    var valorUnidad = parseFloat(fila.find('.v_kg').val());
-
-    if (!isNaN(cantidad) && !isNaN(valorUnidad)) {
-        var vtotal = cantidad * valorUnidad;
-        fila.find('.v_total').val(vtotal.toLocaleString());
-    } else {
-        fila.find('.v_total').val('');
-    }
-}
-
-
-</script>
 <?php
     require("../php/db.php");
     require("movimientos/movimiento.php");
@@ -360,15 +248,8 @@
     <img src="../../img/bg.png" alt="" width="20%">
 </footer>
 
-<script src="../../js/usuarios.js" refer></script>
+<script src="../../js/general.js" refer></script>
 
-<script>
-    $(document).ready(function() {
-        $("#form").draggable();
-        $("#form2").draggable();
-        $("#proveedores").draggable();
-    });
-</script>
 <script src="../../js/movimientos.js" refer></script> 
 
 <script>
