@@ -1,5 +1,5 @@
 <?php
-require "../db.php";
+require "../php/db.php";
 require "o_clientes.php";
 $id = $_POST['id'];
 $cc=$_POST['cc'];

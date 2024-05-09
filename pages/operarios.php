@@ -117,12 +117,15 @@
                     <td>$resultado[5]</td>
                     <td>$resultado[6]</td>
                     <td>
-                    <a class='edit' href='../php/update.php?
+                    <a class='edit' href='operarios/update.php?
                     id=$resultado[0]&
                     cc=$resultado[1]&
                     nom=$resultado[2]&
-                    ape=$resultado[3]'>Edit</button>
-                    <a class='delete' href='../php/delete.php?
+                    ape=$resultado[3]&
+                    tel=$resultado[4]&
+                    dir=$resultado[5]&
+                    correo=$resultado[6]'>Edit</button>
+                    <a class='delete' href='operarios/delete.php?
                     id=$resultado[0]'>Delete</button>
                     </td></tr>";
                 }
@@ -137,7 +140,7 @@
 
 </div>
 
-<form action="../php/operarios/insert.php" id="form" method="POST">
+<form action="operarios/insert.php" id="form" method="POST">
 
     <div class="bar">
         <div class="txt">Registro Operario</div><div class="close"><button  id="close">X</button></div>
@@ -175,6 +178,7 @@ EN ESTA SECCIÓN SE DARÁ ESTILO A LAS VENTANAS PARA INFORMAR AL USUARIO
 
 
 <script src="../js/usuarios.js" refer></script>    
+<script src="../js/general.js" refer></script>    
 <script>
 $(document).ready(function() {
     $("#usuarios").draggable();

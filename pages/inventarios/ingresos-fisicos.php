@@ -147,6 +147,7 @@
 </footer>
 
 <script src="../../js/usuarios.js" refer></script>
+<script src="../../js/general.js" refer></script>
 <script>
 $(document).ready(function() {
     $("#usuarios").draggable();
