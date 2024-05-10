@@ -10,14 +10,15 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'
     $operario->insert($_POST['cc'],$_POST['nombres'], $_POST['apellidos'], $_POST['tele'], $_POST['dir'], $_POST['correo']);
 }
 
-if($_SERVER['REQUEST_METHOD'] == 'DELETE' && isset($_GET['id']) ){
-    $operario->delete($_GET['id']);
-}
-
 if($_SERVER['REQUEST_METHOD'] == 'PUT' 
 && isset($_GET['id']) && isset($_GET['nombres']) && isset($_GET['apellidos'])  && isset($_GET['tele']) && isset($_GET['dir']) && isset($_GET['correo'])){
     $operario->update($_GET['id'],$_GET['nombres'], $_GET['apellidos'], $_GET['tele'], $_GET['dir'], $_GET['correo']);
 }
+
+if($_SERVER['REQUEST_METHOD'] == 'DELETE' && isset($_GET['id']) ){
+    $operario->delete($_GET['id']);
+}
+
 
 if($_SERVER['REQUEST_METHOD']== 'GET'){
     function get_all_clients(){
