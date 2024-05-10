@@ -125,8 +125,7 @@
                     tel=$resultado[4]&
                     dir=$resultado[5]&
                     correo=$resultado[6]'>Edit</button>
-                    <a class='delete' href='operarios/delete.php?
-                    id=$resultado[0]'>Delete</button>
+                    <a class='delete' href='operarios/delete.php?id=$resultado[0]'>Delete</button>
                     </td></tr>";
                 }
             ?>

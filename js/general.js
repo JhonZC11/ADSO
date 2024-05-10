@@ -59,7 +59,7 @@ function cargaMotivo(){
 
     }  else if (inp==motivos[2]){
         d.innerHTML=d_motivos[2];
-
+        alert("En este motivo los items dependen del proveedor que selecciones, los item del 1 al 5 no están disponibles con este motivo")
 
     } else {
         alert("Motivos invalidos!")
@@ -143,6 +143,7 @@ function vTotal(){
 
 var inputNumero = document.getElementById('cant');
 var inputNumero2 = document.getElementById('v_kg');
+var inputNumero3 = document.getElementById('nf');
 inputNumero.addEventListener('input', function() {
     var valor = parseFloat(inputNumero.value);
     if (valor < 0) { inputNumero.value = 0; }
@@ -150,6 +151,10 @@ inputNumero.addEventListener('input', function() {
 inputNumero2.addEventListener('input', function() {
     var valor = parseFloat(inputNumero2.value);
     if (valor < 0) { inputNumero2.value = 0; }
+});
+inputNumero3.addEventListener('input', function() {
+    var valor = parseFloat(inputNumero3.value);
+    if (valor < 0) { inputNumero3.value = 0; }
 });
 
 
