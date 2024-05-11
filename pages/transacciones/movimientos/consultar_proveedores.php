@@ -25,5 +25,3 @@ $m = $_GET['motivo'];
         echo "<script>alert('No se encontró el proveedor para el motivo seleccionado!');</script>";
     }
     $conexion->close();
-
-?>

@@ -1,6 +1,6 @@
 <?php
-require "../php/Database.class.php";
-require "o_operarios.php";
+require "../pages/php/Database.class.php";
+require "../pages/operarios/o_operarios.php";
 
 
 if($_SERVER['REQUEST_METHOD'] == 'POST' 

@@ -9,6 +9,7 @@ class operario{
             header('HTTP/1.1 404 Cliente no se ha creado correctamente');
         } else {
             header('HTTP/1.1 201 Cliente creado correctamente');
+            echo '<script>window.location.href = "../operarios.php";</script>';
         }
     }
 
@@ -22,6 +23,7 @@ class operario{
         } else {
             // Si la consulta se ejecuta correctamente, devuelve un éxito 201
             header('HTTP/1.1 201 Cliente actualizado correctamente');
+            echo '<script>window.location.href = "../operarios.php";</script>';
         }
     }
 
@@ -34,6 +36,7 @@ class operario{
             header('HTTP/1.1 404 Cliente no se ha creado correctamente');
         } else {
             header('HTTP/1.1 201 Cliente borrado correctamente');
+            echo '<script>window.location.href = "../operarios.php";</script>';
         }
     }
 }
