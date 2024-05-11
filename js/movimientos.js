@@ -17,6 +17,7 @@ $(document).ready(function() {
     $("#form").draggable();
     $("#form2").draggable();
     $("#proveedores").draggable();
+    $("#exampleModal").draggable();
 });
 
 //Función para traer los proveedores y ser mostrados como guias

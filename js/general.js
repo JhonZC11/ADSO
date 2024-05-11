@@ -20,6 +20,7 @@
         $("#iv").draggable();
         $("#usuarios").draggable();
         $("#form").draggable();
+        $("#exampleModal").draggable();
     });
 
     /*----------------------------------------------------*/ 

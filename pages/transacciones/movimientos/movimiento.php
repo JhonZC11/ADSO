@@ -180,37 +180,37 @@ class movimiento{
             $v = number_format($a[6],0,'.');
             echo 
                 "<tr>
-                    <td>
+                    <td class='text-center'>
                         $a[1]
                     </td>
-                    <td>
+                    <td class='text-center'>
                         $a[2]
                     </td>
-                    <td>
+                    <td class='text-center'>
                         $a[3]
                     </td>
-                    <td>
+                    <td class='text-center'>
                         $a[4]
                     </td>
-                    <td>
+                    <td class='text-center'>
                         $a[14]
                     </td>
-                    <td>
+                    <td class='text-center'>
                         $a[12]
                     </td>
-                    <td>
+                    <td class='text-center'>
                         $a[13]
                     </td>
-                    <td>
+                    <td class='text-center'>
                         $c
                     </td>
-                    <td>
+                    <td class='text-center'>
                         $v
                     </td>
-                    <td>
+                    <td class='text-center'>
                         $precio
                     </td>
-                    <td>
+                    <td class='text-center'>
                         $a[15]
                     </td>
                 </tr>";

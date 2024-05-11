@@ -1,4 +1,4 @@
-/*Se da estilo a la nav-bar*/
+/*Se da estilo a la nav-bar
 #header{
     display: inline-flex;
     margin:auto;
@@ -40,7 +40,21 @@ ul,ol{list-style: none;}
     background-color: #434343;
 }
 
-/*-------------------------------------*/
+-------------------------------------*/
+nav{
+    padding: 0;
+    margin: 0;
+}
+
+.container-fluid, .navbar, .collapse, .navbar-nav, .dropdown-menu{
+    background-color: #72CA5F;
+}
+.dropdown-item, .nav-link{
+    color: white;
+    font-weight: bolder;
+}
+
+
 
 *{margin: 0px; padding: 0px;             
     font-family: 'PT Sans Narrow', sans-serif;

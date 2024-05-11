@@ -1,4 +1,4 @@
-.movimientos{
+/*.movimientos{
     border: 1px solid gray;
     background-color: white;
     width: 50%;
@@ -44,13 +44,34 @@ main{
     background-color: #72CA5F;
     box-shadow: inset 0 -100px 0 0 #72CA5F;
 }
+*/
 
 
+.modal-header{
+    color: white;
+    background-color: #72CA5F;
+}
+.btn-close{
+    background-color: red;
+}
+.h{
+    background-color: #72CA5F;
+    color: white;
+}
+#abreModal{
+    background-color: #72CA5F;
+}
+#abreModal:hover{
+    background-color: #3b882a;
+}
+.row, option, select{
+    color: gray;
+    font-weight: bolder;
+}
 
-
-
-
-
+main{
+    background-color: white;
+}
 
 
 
