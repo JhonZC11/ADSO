@@ -18,10 +18,11 @@ if ($resultado) {
         }
         file_put_contents("id.txt",$idLogeado);
         file_put_contents("user.txt", $usuarioLogeado);
-
-        header ("location: ../main.php");
+        session_start();
+        $_SESSION['Campos'] = " Soy session";
+        header ("location: ../transacciones/movimientos.php");
     } else {
-        echo "    
+        /*echo "    
         <style>
             .err{
                 width: 40%;
@@ -42,7 +43,10 @@ if ($resultado) {
         <a href='../../index.php'>
             Volver a intentarlo.
         </a>
-        </div>";
+        </div>";*/
+        session_start();
+        $_SESSION['error'] = "No estoy";
+        header("location: ../../index.php");
     }
 } else {
     echo "Error en la consulta: " . $conn->error;

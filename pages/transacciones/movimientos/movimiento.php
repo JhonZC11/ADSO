@@ -215,12 +215,12 @@ class movimiento{
                     </td>
                 </tr>";
         }?>
-        </table><br><br><?php
-        echo '<div class="paginacion">';
+        </table><?php
+        echo '<br><div class="paginacion">';
         for ($i = 1; $i <= $numPaginas; $i++) {
             echo '<a href="?pagina=' . $i . '" id="a">' . $i . '</a> ';
         }
-        echo '</div>';
+        echo '</div><br>';
     }
 
     public function muestraFacturas($conn){

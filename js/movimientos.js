@@ -2,7 +2,7 @@
 
 $("#form2").hide();
 $(document).ready(function(){
-    $('#p').change(function(){
+    $('#inputProveedor').change(function(){
         realizarSolicitudAjax();
     });
     
@@ -18,7 +18,10 @@ $(document).ready(function() {
     $("#form2").draggable();
     $("#proveedores").draggable();
     $("#exampleModal").draggable();
+    $("#modalItems").draggable();
 });
+
+
 
 //Función para traer los proveedores y ser mostrados como guias
 function proveedoresAJAX(){
@@ -44,7 +47,7 @@ function proveedoresAJAX(){
 
 function realizarSolicitudAjax() {
     // Obtener el valor del input
-    var valorInput = $('#p').val();
+    var valorInput = $('#inputProveedor').val();
     var m = $('#motivo').val();
     //Realizamos la solicitud de los productos que se desean utilizar en la transaccion
     $.ajax({
@@ -66,9 +69,10 @@ function realizarSolicitudAjax() {
             //En base a los resultados creamos por cada uno de los productos una fila que, a su vez crea un input de tipo checkbox
             //y un input de tipo text para la cantidad de productos que se desean utilizar y que estos sean manipulados en el backend
             productos.forEach(function(item){
-                datos += '<tr><td class="d"><input type="checkbox" name="items[]" value="' + item.id_secos + '_'+ item.descripcion+ '_'+ item.valor +'"></td><td>' + item.descripcion + ' / ' + item.unidad +
-                '</td><td class="d"><input type="text" class="cant" name="cantd[]" style="width:50px;"></td><td><input type="text" class="v_kg" readonly value="' + item.valor + '"></td><td class="d"><input type="text" class="v_total" readonly></td></tr>';
+                datos += '<div class="row"><div class="col w-50 p-1 m-2 col border border-dark-subtle"><input type="checkbox" class="" name="items[]" value="' + item.id_secos + '_'+ item.descripcion+ '_'+ item.valor +'"></div><div class="col-4 p-1 m-2 border border-dark-subtle">' + item.descripcion + ' / ' + item.unidad +
+                '</div><div class="col p-1 m-2 border border-dark-subtle"><input type="text" class="cant w-50 p-1" name="cantd[]"></div><div class="col p-1 m-2 border border-dark-subtle"><input type="text" class="v_kg w-50 p-1"  readonly value="' + item.valor + '"></div><div class="col p-1 m-2 border border-dark-subtle" ><input type="text" class="v_total w-50 p-1" readonly></div></div>';
             });
+            $('#filaInputs').remove();
             $('#datos').html(datos);
 
             // Agregar el evento change a los campos de cantidad
@@ -84,13 +88,13 @@ function realizarSolicitudAjax() {
 }
 
 function calcularVtotal(fila) {
-var cantidad = parseFloat(fila.find('.cant').val());
-var valorUnidad = parseFloat(fila.find('.v_kg').val());
-    
-if (!isNaN(cantidad) && !isNaN(valorUnidad)) {
-    var vtotal = cantidad * valorUnidad;
-    fila.find('.v_total').val(vtotal.toLocaleString());
-} else {
-    fila.find('.v_total').val('');
-}
+    var cantidad = parseFloat(fila.find('.cant').val());
+    var valorUnidad = parseFloat(fila.find('.v_kg').val());
+        
+    if (!isNaN(cantidad) && !isNaN(valorUnidad)) {
+        var vtotal = cantidad * valorUnidad;
+        fila.find('.v_total').val(vtotal.toLocaleString());
+    } else {
+        fila.find('.v_total').val('');
+    }
 }

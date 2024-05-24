@@ -7,60 +7,71 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&family=Work+Sans:wght@100&display=swap" rel="stylesheet">
-
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
+    
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     
+
+
     <link rel="stylesheet" href="../../css/nav-bar.css">
     <link rel="stylesheet" href="../../css/barra.css">
     <link rel="stylesheet" href="../../css/general.css">
     <link rel="stylesheet" href="../../css/movimientos.css">
    <style>
-        .vT{
-            margin-left: 350px;
-        }
-        .a{
-            margin-left: 20px;
-            text-decoration: none;
-            padding: 9px 19px;
-            border: 2px solid blue;
-            border-radius: 0px 10px 0px 10px;
-            font-size: 18px;
-            position: absolute;
-            left: 80%;
-            top: 13%;
-            transition: ease-out 0.5s;
-            background-color: white;
-            color: gray;
-            font-weight: bolder;
-        }
-        .a:hover{
-            color: white;
-            background-color: blue;
-            box-shadow: inset 0 -100px 0 0 blue;
-        }
-        input{
-            color: gray; 
-            font-weight: bolder;
-        }
-        .proveedores{
-            background-color: white;
-            position: fixed;
-            border: 1px solid gray;
-            width: 21%;
-            left: 65%;
-            top: 21%;
-        }
+    .a{
+        margin-left: 20px;
+        text-decoration: none;
+        padding: 10px 19px;
+        border: 2px solid blue;
+        border-radius: 0px 10px 0px 10px;
+        font-size: 18px;
+        position: relative;
+        left: 0%;
+        top: 7%;
         
+        transition: ease-out 0.5s;
+        background-color: white;
+        color: gray;
+        font-weight: bolder;
+    }
+    .a:hover{
+        color: white;
+        background-color: blue;
+        box-shadow: inset 0 -100px 0 0 blue;
+    }
    </style>
 
 </head>
 <body>
+<?php 
+session_start();
+if(isset($_SESSION['Campos'])){
+    $campos = $_SESSION['Campos'];
+    ?>
+    
+    <script>
+        $(document).ready(function() {
+            Swal.fire({
+                title: 'Hello!',
+                text: 'Bienvenido<?php echo $campos; ?>',
+                icon: 'info',
+                confirmButtonText: 'Cool'
+            });
+        });
+    </script>
+    <?php 
+    session_destroy();
+}
+?>
+
 
 <nav class="navbar p-0 navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
@@ -146,6 +157,22 @@
 </div>
 
 
+<div id="modalItems" class="lista-items w-25">
+    <div class="bar" id="">
+        <div class="txt-m">Lista Items</div><div class="close"><button id="closeUsuarios" onclick="cierraForm2();" >X</button></div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr class="table-dark">
+                <th>Item</th><th>Descripcion</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+
+        </tbody>
+    </table>
+</div>
+
 
 <div class="modal modal-xl" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -160,25 +187,25 @@
                     <div class="row pe-5">
                         <div class="col-6 text-center">
                             <label for="" class=" pt-2">Motivo: </label>
-                            <select name="motivo" id="" class="p-1 m-1 w-50 float-end">
+                            <select name="motivo" id="motivo" class="p-1 m-1 w-50 float-end">
                                 <option value="EAC">EAC-Entrada Almacén</option>
                                 <option value="FC">FC-Factura Compra</option>
                                 <option value="DB">DB-Dar baja</option>
                             </select>
                         </div>
                         <div class="col-6 text-center">
-                            <label for="" class=" pt-2">Número Factura</label><input type="number" class="p-1 m-1 w-50 ms-5">
+                            <label for="" class=" pt-2">Número Factura</label><input type="number" id="numeroFactura" class="p-1 m-1 w-50 ms-5">
                         </div>
                     </div>
                     <div class="row pe-5">
                         <div class="col-4 text-center">
-                            <label for="" class=" pt-2">Proveedor: </label><input type="text" class="p-1 m-1 w-50 float-end">
+                            <label for="" class=" pt-2">Proveedor: </label><input type="text" id="inputProveedor" class="p-1 m-1 w-50 float-end">
                         </div>
                         <div class="col-4 text-center">
-                            <label for="" class=" pt-2">Sin proveedor aún</label>
+                            <label for="" id="resultado" class=" pt-2">Sin proveedor aún</label>
                         </div>
                         <div class="col-4 text-center">
-                            <label for="" class=" pt-2">Fecha Factura: </label><input type="date" name="" id="" class="p-1 m-1 w-50 float-end">
+                            <label for="" class=" pt-2">Fecha Factura: </label><input type="date" name="" id="fecha" class="p-1 m-1 w-50 float-end" required>
                         </div>
                     </div>
                     <!-- Datos Items -->
@@ -200,28 +227,31 @@
                                 Valor Total
                             </div>
                         </div>
-                        <div class="row p-1">
-                            <div class="col border border-dark-subtle text-center">
-                                <input type="number" class="p-1 w-50 ms-4 m-2">
-                            </div>
-                            <div class="col-4 border border-dark-subtle">
-                                <label for="" class="p-1 w-25 m-2"></label>
-                            </div>
-                            <div class="col border border-dark-subtle text-center">
-                                <input type="number" name="" id="" class="p-1 w-50 m-2">
-                            </div>
-                            <div class="col border border-dark-subtle text-center">
-                                <input type="number" name="" id="" class="p-1 w-50 m-2">
-                            </div>
-                            <div class="col border border-dark-subtle text-center">
-                                <input type="number" name="" id="" class="p-1 w-75 m-2" readonly>
-                            </div>
+                        <div class="row p-1" id="filaInputs">                        
+                                <div class="col border border-dark-subtle text-center">
+                                    <input type="number" id="item" class="p-1 w-50 ms-4 m-2" required>
+                                </div>
+                                <div class="col-4 border border-dark-subtle">
+                                    <label for="" id="d_item" class="p-1 w-25 m-2"></label>
+                                </div>
+                                <div class="col border border-dark-subtle text-center">
+                                    <input type="number" name="" id="cant" class="p-1 w-50 m-2" required>
+                                </div>
+                                <div class="col border border-dark-subtle text-center">
+                                    <input type="number" name="" id="v_kg" class="p-1 w-50 m-2">
+                                </div>
+                                <div class="col border border-dark-subtle text-center">
+                                    <input type="number" name="" id="v_total" class="p-1 w-75 m-2" readonly>
+                                </div>
+                        </div>
+                        <div class="row p-1" id="datos">
+
                         </div>
                     </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="" id="cancel" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="agregar" id="registrar" >Registrar</button>
                     </div>
             </form>
         </div>
@@ -246,34 +276,42 @@
 <div class="container mt-5">
     <div class="row">
         <main class="p-5">
-        <h1>Transacciones <span class="vT">EAC y DB hasta ahora: <?php echo $t;?></span></h1><a href="facturas.php" class="a">FC</a>
-        <button type="button" id="abreModal" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar</button>
-        <button class="registrar" id="re" onclick="muestraForm();">Agregar</button><br><hr>
-        <table class="table">
-            <thead class="table-dark">
-            <tr>
-                <th class="text-center">N Movimiento</th>
-                <th class="text-center">N Factura</th>
-                <th class="text-center">F Factura</th>
-                <th class="text-center">F Registro</th>
-                <th class="text-center">Proveedor</th>
-                <th class="text-center">Motivo</th>
-                <th class="text-center">Producto</th>
-                <th class="text-center">Cantidad</th>
-                <th class="text-center">Valor kg</th>
-                <th class="text-center">Valor total</th>
-                <th class="text-center">Usuario</th>
-            </tr>
-            </thead>
-        <?php
-            $movimiento->muestraMovimientos($conn);
-        ?>
 
+        <h1><strong> Transacciones <span class="vT">EAC y DB hasta ahora: <?php echo $t;?></strong></span></h1>
+        <hr><br>
+        <div class="row">
+            <div class="col">
+                <button type="button" id="abreModal" class="agregar" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar</button>
+                <a href="facturas.php" class="a">FC</a>
+            </div>
+        </div>
+
+
+        <br><hr>
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="table-dark">
+                <tr>
+                    <th class="text-center">N Movimiento</th>
+                    <th class="text-center">N Factura</th>
+                    <th class="text-center">F Factura</th>
+                    <th class="text-center">F Registro</th>
+                    <th class="text-center">Proveedor</th>
+                    <th class="text-center">Motivo</th>
+                    <th class="text-center">Producto</th>
+                    <th class="text-center">Cantidad</th>
+                    <th class="text-center">Valor kg</th>
+                    <th class="text-center">Valor total</th>
+                    <th class="text-center">Usuario</th>
+                </tr>
+                </thead>
+                <?php
+                    $movimiento->muestraMovimientos($conn);
+                ?>
+            </table>
+        </div>  
         </main>
-
     </div>
-
-
 </div>
 
 
@@ -295,10 +333,6 @@
         $(document).ready(function(){
             $("#exampleModal").draggable();
         })
-</script>
-
-<script>
-    alert("Los motivos contemplados son: \n-EAC : Entrada al almacen \n-FC : Factura de Compra\n-DB : Dar Baja")
 </script>
 
 </body>
