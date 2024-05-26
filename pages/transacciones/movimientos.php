@@ -51,25 +51,40 @@
 
 </head>
 <body>
-<?php 
-session_start();
-if(isset($_SESSION['Campos'])){
-    $campos = $_SESSION['Campos'];
-    ?>
     
-    <script>
-        $(document).ready(function() {
-            Swal.fire({
-                title: 'Hello!',
-                text: 'Bienvenido<?php echo $campos; ?>',
-                icon: 'info',
-                confirmButtonText: 'Cool'
+<?php 
+    session_start();
+    if(isset($_SESSION['Campos'])){
+        $campos = $_SESSION['Campos'];
+        ?>
+        
+        <script>
+            $(document).ready(function() {
+                Swal.fire({
+                    title: 'Hello!',
+                    text: 'Bienvenido<?php echo $campos; ?>',
+                    icon: 'info',
+                    confirmButtonText: 'Cool'
+                });
             });
-        });
-    </script>
-    <?php 
-    session_destroy();
-}
+        </script>
+        <?php 
+        session_destroy();
+    } else if (isset($_SESSION["error_motivo"])){
+        ?>
+        <script>
+            $(document).ready(function() {
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Motivo errado!',
+                    icon: 'error',
+                    confirmButtonText: 'Cool'
+                });
+            });
+        </script>
+        <?php 
+        session_destroy();
+    }
 ?>
 
 
@@ -182,30 +197,31 @@ if(isset($_SESSION['Campos'])){
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="" method="POST">
+                <form action="movimientos/o_movimientos.php" method="POST">
                     <!-- Datos principales -->
                     <div class="row pe-5">
                         <div class="col-6 text-center">
                             <label for="" class=" pt-2">Motivo: </label>
                             <select name="motivo" id="motivo" class="p-1 m-1 w-50 float-end">
+                                <option value="">--Seleccione--</option>
                                 <option value="EAC">EAC-Entrada Almacén</option>
                                 <option value="FC">FC-Factura Compra</option>
                                 <option value="DB">DB-Dar baja</option>
                             </select>
                         </div>
                         <div class="col-6 text-center">
-                            <label for="" class=" pt-2">Número Factura</label><input type="number" id="numeroFactura" class="p-1 m-1 w-50 ms-5">
+                            <label for="" class=" pt-2">Número Factura</label><input type="number" name="n_factura"  id="numeroFactura" class="p-1 m-1 w-50 ms-5">
                         </div>
                     </div>
                     <div class="row pe-5">
                         <div class="col-4 text-center">
-                            <label for="" class=" pt-2">Proveedor: </label><input type="text" id="inputProveedor" class="p-1 m-1 w-50 float-end">
+                            <label for="" class=" pt-2">Proveedor: </label><input type="text" id="inputProveedor" name="proveedor" class="p-1 m-1 w-50 float-end">
                         </div>
                         <div class="col-4 text-center">
                             <label for="" id="resultado" class=" pt-2">Sin proveedor aún</label>
                         </div>
                         <div class="col-4 text-center">
-                            <label for="" class=" pt-2">Fecha Factura: </label><input type="date" name="" id="fecha" class="p-1 m-1 w-50 float-end" required>
+                            <label for="" class=" pt-2">Fecha Factura: </label><input type="date" id="fecha" name="f_factura" class="p-1 m-1 w-50 float-end" required>
                         </div>
                     </div>
                     <!-- Datos Items -->
@@ -229,16 +245,16 @@ if(isset($_SESSION['Campos'])){
                         </div>
                         <div class="row p-1" id="filaInputs">                        
                                 <div class="col border border-dark-subtle text-center">
-                                    <input type="number" id="item" class="p-1 w-50 ms-4 m-2" required>
+                                    <input type="number" name="id_item" id="item" class="p-1 w-50 ms-4 m-2" required>
                                 </div>
                                 <div class="col-4 border border-dark-subtle">
                                     <label for="" id="d_item" class="p-1 w-25 m-2"></label>
                                 </div>
                                 <div class="col border border-dark-subtle text-center">
-                                    <input type="number" name="" id="cant" class="p-1 w-50 m-2" required>
+                                    <input type="number" name="cant" id="cant" class="p-1 w-50 m-2" required>
                                 </div>
                                 <div class="col border border-dark-subtle text-center">
-                                    <input type="number" name="" id="v_kg" class="p-1 w-50 m-2">
+                                    <input type="number" name="v_kg" id="v_kg" class="p-1 w-50 m-2">
                                 </div>
                                 <div class="col border border-dark-subtle text-center">
                                     <input type="number" name="" id="v_total" class="p-1 w-75 m-2" readonly>

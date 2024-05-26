@@ -13,4 +13,36 @@ class inventario {
         }
     }
 
+    public function buscaInventario($conn, $fecha){
+        $sql = "SELECT * FROM inventarios WHERE fecha = '$fecha'";
+        $resultado = $conn->query($sql);
+        while ($a = $resultado->fetch_row()) {
+            $json = json_decode($a[5], true);
+            $json_content = '';
+            print_r($json);
+            // Iterar sobre los datos del JSON
+            foreach ($json as $key => $value) {
+                // Concatenar los datos del registro en la variable
+                $json_content .= $key . ": " . $value . "<br>";
+            }
+            echo 
+                "<tr>
+                    <td>
+                        $a[2]
+                    </td>
+                    <td>
+                        $a[3]
+                    </td>
+                    <td>
+                        $a[4]
+                    </td>
+                    <td class='d'>
+                        <details><hr>
+                            $json_content<hr>
+                        </details>
+                    </td>
+                </tr>";
+        }
+    }
+
 }

@@ -4,13 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Procesar Fruta</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&family=Work+Sans:wght@100&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+
     <link rel="stylesheet" href="../../css/nav-bar.css">
     <link rel="stylesheet" href="../../css/barra.css">
     <link rel="stylesheet" href="../../css/general.css">
@@ -22,6 +32,7 @@
     </style>
 </head>
 <body>
+
 <header>
         <div id="header">
         <ul class="nav">
@@ -123,7 +134,10 @@
         var canti = document.getElementById("cantidad").value;
         var total = canti*0.15;
         var CantidadTotal = document.getElementById("cantidadTotal").value=canti-total;
+
+        var bolsasResultantes = canti/10;
         
+
         if(inp<5){
             if(inp==item[0]){ //1
                 descripcionPrimerItem.innerHTML=item[1] //Fruta guanabana
@@ -165,6 +179,7 @@
                 costo.value=valor[10]// 3000
                 costoTotal.value=valor[10] // multiplicacion
                 proceso.innerHTML=valor[11] // limpiar
+                var inputTotal = document.getElementById("cantidadTotal").value = bolsasResultantes;
             }else{
                 alert("Item desconocido!")
                 inp.focus();
@@ -197,7 +212,7 @@ function realizarSolicitudAjax() {
         window.location.reload()
     } else {
         $.ajax({
-        url: 'consulta_cantidad.php',
+        url: 'procesos/consulta_cantidad.php',
         type: 'GET',
         data: { inputValue: valorInput, cc: cc},
         dataType: 'json',
@@ -236,7 +251,7 @@ function realizarSolicitudAjax2() {
     // Obtener el valor del input
     var valorInput = $('#cc').val();
     $.ajax({
-        url: 'consulta_operario.php',
+        url: 'procesos/consulta_operario.php',
         type: 'GET',
         data: { inputValue: valorInput},
         dataType: 'json',
@@ -261,7 +276,7 @@ function realizarSolicitudAjax2() {
     <div class="bar" id="">
         <div class="txt-m">Procesar</div><div class="close"><button id="closeUsuarios" onclick="cierra();" >X</button></div>
     </div>
-    <form action="../../php/procesos.php" method="post">
+    <form action="procesos/procesos.php" method="post">
         <div class="head">
             <label for="">Operario:</label>    
             <input type="text" id="cc" name="cc" require>
@@ -323,7 +338,7 @@ function realizarSolicitudAjax2() {
 <img src="../../img/bg.png" alt="" width="20%">
 </footer>
 
-<script src="../../js/usuarios.js" refer></script>
+
 <script>
 $(document).ready(function() {
     $("#usuarios").draggable();
@@ -334,5 +349,7 @@ function cierra(){
     $("#ad").hide();
 }
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

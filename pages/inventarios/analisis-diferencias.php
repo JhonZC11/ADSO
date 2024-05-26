@@ -98,7 +98,7 @@
     <div class="bar" id="">
         <div class="txt-m">Búsqueda de Inventario</div><div class="close"><button id="closeUsuarios" onclick="cierraForm();" >X</button></div>
     </div>
-    <form action="../../php/inventarios/buscar.php" method="post">
+    <form action="inventarios/busca.php" method="post">
         <label for="">Fecha: </label><input type="date" name="fInventario" id="date">
         <div class="buttons">
             <button class="cancel" id="close">Cancelar</button>

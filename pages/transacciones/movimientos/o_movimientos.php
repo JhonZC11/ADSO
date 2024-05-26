@@ -26,6 +26,10 @@ if($motivo=="EAC"){
     $n_movimiento = $n_factura.$motivo_real;
     $proveedor_real = $a->proveedor($conn, $proveedor);
     $a->insertFC($conn,$motivo, $n_factura, $proveedor_real, $f_factura, $items,$cantidades);
+} else{
+    header("location: ../movimientos.php");
+    session_start();
+    $_SESSION["error_motivo"];
 }
 
 

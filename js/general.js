@@ -99,9 +99,7 @@ function cargaMotivo(){
         inp2.readOnly=false;
         inputProveedor.readOnly=false;
 
-    } else {
-        alert("Motivos invalidos!")
-    }
+    } 
 }
 
 
@@ -155,7 +153,7 @@ function cargaItem(){
             .catch(error=>console.log(error));/*/
 
     } else {
-        alert("¡Motivo desconocido o fuera de rango!");
+        
         document.getElementById("item").focus(); // Enfocar el input
     } 
 }

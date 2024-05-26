@@ -1,5 +1,4 @@
 <?php
-require "db.php";
 
 class proceso{
 
@@ -46,7 +45,7 @@ class proceso{
         $sql = "UPDATE stock SET cantidad = '$cantidad' WHERE id = '$itemProcesado'";
         $sql2 = "UPDATE stock SET cantidad = '$nextCantidad' WHERE id = '$siguienteItem'";
         if($conn->query($sql)==TRUE && $conn->query($sql2)==TRUE){
-            header("location: ../pages/centro-procesos/procesar.php");
+            header("location: ../procesar.php");
         } else {
             echo "Algo salio mal " . $conn->error();
         }

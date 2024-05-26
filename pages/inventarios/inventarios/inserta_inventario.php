@@ -1,5 +1,5 @@
 <?php
-require "db.php";
+require "../../php/db.php";
 require "o_inventarios.php";
 $user = file_get_contents("id.txt");
 $fecha = $_POST["d"];
