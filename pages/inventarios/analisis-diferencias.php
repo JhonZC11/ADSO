@@ -8,114 +8,171 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&family=Work+Sans:wght@100&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+
+
+
     <link rel="stylesheet" href="../../css/nav-bar.css">
     <link rel="stylesheet" href="../../css/barra.css">
     <link rel="stylesheet" href="../../css/general.css">
     <link rel="stylesheet" href="../../css/a-inv.css">
     <style>
-        .txt-m{
-            position: relative;
-            left:55%;
+        td{
+            font-weight: bolder;
+        }
+        
+        .agregar{
+            padding: 10px 19px;
+            border: 2px solid #72CA5F;
+            border-radius: 0px 10px 0px 10px;
+            background-color: white;
+            color: #72CA5F;
+            font-weight: bolder;
+            transition: ease-out 0.5s;
+
+        }
+        .agregar:hover{
+            color: white;
+            background-color: white;
+            box-shadow: inset 0 -100px 0 0 #72CA5F;
         }
     </style>
 
 </head>
 <body>
-<header>
-        <div id="header">
-        <ul class="nav">
-            
-            <li><a href="../transacciones/movimientos.php" id="M_Inventario">Transacciones</a>
-                <ul>
-                    <li><a href="../transacciones/movimientos.php" id="M_Inventario">Movimientos de Inventarios</a></li>
-                </ul>
-            </li>
+    <?php
+        require "../php/db.php";
+        require("inventarios/busca.php");
+    ?>
 
-            <li><a href="../inventarios/ingresos-fisicos.php">Inventarios</a>
-                <ul>
-                    <li><a href="../inventarios/ingresos-fisicos.php">Ingreso Físico</a></li>
-                    <li><a href="../inventarios/analisis-diferencias.php">Análisis de Diferencias</a></li>
-                </ul>        
+<nav class="navbar p-0 navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="../transacciones/movimientos.php">Transacciones</a>
             </li>
-                
-                                  
-            <li><a href="../centro-procesos/procesar.php">Centro de Procesos</a>
-                <ul>
-                    <li><a href="../centro-procesos/procesar.php">Procesar Fruta</a></li>
-                    <li><a href="../centro-procesos/registroxorden.php">Registro por Orden</a></li>
-                </ul>
-            </li>    
-            <li><a href="../informes/ventas.php">Informes</a>
-                <ul>
-                    <li><a href="../informes/ventas.php">Ventas</a></li>
-                    <li><a href="../informes/inventarios.php">Inventarios</a></li>
-                    <li><a href="../informes/balances.php">Contabilidad</a></li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="../inventarios/ingresos-fisicos.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Inventarios
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="../inventarios/ingresos-fisicos.php">Ingreso Físico</a></li>
+                    <li><a class="dropdown-item" href="../inventarios/analisis-diferencias.php">Análisis de Diferencias</a></li>
                 </ul>
             </li>
-            <li><a href="../consulta-documentos/ordenes-proceso.php">Consulta Documentos</a>
-                <ul>
-                    <li><a href="../consulta-documentos/ordenes-proceso.php">Ordenes de Proceso</a></li>
-                    <li><a href="../consulta-documentos/transacciones.php">Transacciones</a></li>
-                    <li><a href="../consulta-documentos/analisis-inventarios.php">Análisis de Inventarios</a></li>
-                    <li><a href="../consulta-documentos/devoluciones.php">Notas Crédito</a></li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="../centro-procesos/procesar.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Centro de Procesos
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="../centro-procesos/procesar.php">Procesar Fruta</a></li>
+                    <li><a class="dropdown-item" href="../centro-procesos/registroxorden.php">Registro por Orden</a></li>
                 </ul>
             </li>
-            <li><a href="../usuarios.php">Usuarios</a>
-                <ul>
-                    <li><a href="../usuarios.php" id="a">Gestión usuarios</a></li>                    
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="../informes/ventas.php">
+                    Informes</a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="../informes/ventas.php">Ventas</a></li>
+                    <li><a class="dropdown-item"  href="../informes/inventarios.php">Inventarios</a></li>
+                    <li><a class="dropdown-item"  href="../informes/balances.php">Contabilidad</a></li>
                 </ul>
             </li>
-            <li><a href="../clientes.php">Clientes</a>
-                <ul>
-                    <li><a href="../clientes.php" id="a">Gestión clientes</a></li>                    
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="../consulta-documentos/ordenes-proceso.php">
+                    Consulta Documentos</a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item"  href="../consulta-documentos/ordenes-proceso.php">Ordenes de Proceso</a></li>
+                    <li><a class="dropdown-item"  href="../consulta-documentos/transacciones.php">Transacciones</a></li>
+                    <li><a  class="dropdown-item" href="../consulta-documentos/analisis-inventarios.php">Análisis de Inventarios</a></li>
+                    <li><a  class="dropdown-item" href="../consulta-documentos/devoluciones.php">Notas Crédito</a></li>
                 </ul>
             </li>
-            <li><a href="../proveedores.php">Proveedores</a>
-                <ul>
-                    <li><a href="../proveedores.php" id="a">Gestión proveedores</a></li>                    
-                </ul>
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="../usuarios.php">Usuarios</a>
             </li>
-            <li><a href="../operarios.php">Operarios</a>
-                <ul>
-                    <li><a href="../operarios.php" id="a">Gestión operarios</a></li>                    
-                </ul>
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="../clientes.php">Clientes</a>
             </li>
-            <li><a href="../ventas/main.php">Ventas</a>
-                <ul>
-                    <li><a href="../ventas/main.php" id="a">Sala de Ventas</a></li>                    
-                </ul>
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="../proveedores.php">Proveedores</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="../operarios.php">Operarios</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="../ventas/main.php">Ventas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="../../index.php">Salir</a>
             </li>
         </ul>
-            <li><a href="../../index.php" class="salir">Salir</a></li>
-        </div>      
-</header>
-
-
-<div class="inv" id="form">
-    <div class="bar" id="">
-        <div class="txt-m">Búsqueda de Inventario</div><div class="close"><button id="closeUsuarios" onclick="cierraForm();" >X</button></div>
+        </div>
     </div>
-    <form action="inventarios/busca.php" method="post">
-        <label for="">Fecha: </label><input type="date" name="fInventario" id="date">
-        <div class="buttons">
-            <button class="cancel" id="close">Cancelar</button>
-        <input type="submit" class="registrar" value="Registrar">
-    </div>    
-    </form>
+</nav>
+
+
+
+
+
+<div class="container mt-5 ">
+
+    <div class="row">
+        <div>
+            <form action="inventarios/filtra.php">
+                <label for="">Busqueda por fecha: </label><input class="p-1 m-2" type="date" id="inputFiltro" name="inputFiltro" >
+                <input type="submit" class="agregar" value = "Buscar">
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <main class="p-5">
+        <br><hr>
+            <div class="table-responsive overflow-x-hidden">
+                <table class="table">
+                    <thead class="table-dark">
+                    <tr>
+                        <th class="text-center">Id Inventario</th>
+                        <th class="text-center">Fecha</th>
+                        <th class="text-center">Estado</th>
+                        <th class="text-center">Tipo</th>
+                        <th class="text-center">Usuario</th>
+                        <th class="text-center">Detalles</th>
+                    </tr>
+                    </thead>
+                    <tbody id="datos">
+                        <?php
+                            if(isset($_COOKIE['value'])){
+                                $m = $_COOKIE['value'];
+                                $inv->inventariosByFecha($conn,$m);
+                            }else{
+                                $inv->muestraInventarios($conn);
+                            }                            
+                        ?>
+                    </tbody>
+                </table>
+            </div>  
+        </main>
+    </div>
 </div>
 
 
 
 
 
-
-
-
-
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 
 
@@ -126,8 +183,6 @@
 
 
 
-<script src="../../js/usuarios.js" refer></script>
-<script src="../../js/general.js" refer></script>
 <script>
 $(document).ready(function() {
     $("#usuarios").draggable();

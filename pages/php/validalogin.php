@@ -17,9 +17,9 @@ if ($resultado) {
             $idLogeado = $fila[3];
         }
         file_put_contents("id.txt",$idLogeado);
-        file_put_contents("user.txt", $usuarioLogeado);
         session_start();
         $_SESSION['Campos'] = " Soy session";
+        setcookie("user", $idLogeado,time() + (86400 * 30), "/");
         header ("location: ../transacciones/movimientos.php");
     } else {
         /*echo "    

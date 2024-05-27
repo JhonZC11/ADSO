@@ -1,7 +1,12 @@
 <?php
 require "../../php/db.php";
 require "o_inventarios.php";
-$user = file_get_contents("id.txt");
+if(isset($_COOKIE['user'])){
+    $user = $_COOKIE['user'];
+    echo $user;
+}else{
+    echo "No existe la cookie";
+}
 $fecha = $_POST["d"];
 $tipo = $_POST["t"];
 $itemUno = $_POST["1"];
