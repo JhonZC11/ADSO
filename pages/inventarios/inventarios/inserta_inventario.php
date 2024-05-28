@@ -1,12 +1,7 @@
 <?php
 require "../../php/db.php";
 require "o_inventarios.php";
-if(isset($_COOKIE['user'])){
-    $user = $_COOKIE['user'];
-    echo $user;
-}else{
-    echo "No existe la cookie";
-}
+
 $fecha = $_POST["d"];
 $tipo = $_POST["t"];
 $itemUno = $_POST["1"];
@@ -21,6 +16,12 @@ $array = array ("1"=>$itemUno,
                 "5"=>$itemCinco);
 $detalle = json_encode($array);
 $n_inventario = $user . $tipo . $fecha;
-$in = new inventario();
-$stock = $in->traeStockJSON($conn);
-$in->insertaInventario($conn, $n_inventario, $fecha, $tipo, $detalle, $stock, $user);
+if(isset($_COOKIE['user'])){
+    $user = $_COOKIE['user'];
+    echo $user;
+    $in = new inventario();
+    $stock = $in->traeStockJSON($conn);
+    $in->insertaInventario($conn, $n_inventario, $fecha, $tipo, $detalle, $stock, $user);
+}else{
+    echo "No existe la cookie";
+}

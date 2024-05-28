@@ -127,18 +127,18 @@
 
 
 
-<div class="container mt-5 ">
+<div class="container mt-5 bg-white p-5">
 
-    <div class="row">
-        <div>
+    <div class="row text-center">
+        <div class="col">
             <form action="inventarios/filtra.php">
-                <label for="">Busqueda por fecha: </label><input class="p-1 m-2" type="date" id="inputFiltro" name="inputFiltro" >
+                <label class="fw-bold" for="">Busqueda por fecha: </label><input class="p-1 m-2" type="date" id="inputFiltro" name="inputFiltro" >
                 <input type="submit" class="agregar" value = "Buscar">
             </form>
         </div>
     </div>
     <div class="row">
-        <main class="p-5">
+        <main class="p-1">
         <br><hr>
             <div class="table-responsive overflow-x-hidden">
                 <table class="table">
@@ -168,35 +168,7 @@
     </div>
 </div>
 
-                <div class='modal fade' id='exampleModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
-                <div class='modal-dialog'>
-                  <div class='modal-content'>
-                    <div class='modal-header'>
-                      <h1 class='modal-title fs-5 fw-bold' id='exampleModalLabel'>Inventario Físico</h1>
-                      <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
-                    </div>
-                    <div class='modal-body'>
-                      <h5 class="text-center fw-bold">Contenido del inventario:</h5>                      
-                        <table class="table me-5">
-                            <thead class="table-dark">
-                                <th>Id Item</th>
-                                <th>Físico</th>
-                                <th>Stock</th>
-                                <th>Diferencia</th>
-                            </thead>
-                            <tbody>
-                                <?php echo $td;  ?>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class='modal-footer'>
-                      <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>
-                      <button type='button' class='btn btn-primary'>Save changes</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            
+
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
@@ -219,6 +191,34 @@ $(document).ready(function() {
 function cierra(){
     $("#ad").hide();
 }
+$("#danger").click(function(e){
+    e.preventDefault();
+    
+    // Obtener el ID del registro desde el atributo data-id
+    var recordId = $(this).data("id");
+
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success"
+            }).then(() => {
+                // Redirigir a elimina.php con el ID del registro
+                window.location.href = "inventarios/elimina.php?id=" + recordId;
+            });
+        }
+    });
+});
+
 </script>
 </body>
 </html>

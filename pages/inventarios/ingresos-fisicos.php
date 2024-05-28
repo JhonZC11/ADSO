@@ -29,12 +29,6 @@
     <link rel="stylesheet" href="../../css/barra.css">
     <link rel="stylesheet" href="../../css/general.css">
     <link rel="stylesheet" href="../../css/inv.css">
-    <style>
-        .txt-m{position: relative;left:51%;}
-        th {color:white;background-color: #5E5E5E;}
-        td{background-color: #D9D9D9;margin: 10px;}
-        .inp{width: 40%;}
-    </style>
 </head>
 <body>
 <?php
@@ -48,7 +42,7 @@
                 <a class="nav-link" aria-current="page" href="../transacciones/movimientos.php">Transacciones</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="../inventarios/ingresos-fisicos.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Inventarios
                 </a>
                 <ul class="dropdown-menu">
@@ -108,51 +102,64 @@
 </nav>
 
 
-<div id="form" class="inv">
-    <div class="bar" id="">
-        <div class="txt-m">Ingreso Inventario Físico</div><div class="close"><button id="closeUsuarios" onclick="cierraForm();" >X</button></div>
+<div class="modal" tabindex="-1" id="modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bar">
+        <h5 class="modal-title fw-bold">Registra Inventario</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" id="closeModal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <form action="inventarios/inserta_inventario.php" method="post"><br>
+        <label for="" class="fw-bold " >Usuario:  </label><span name="usuario" class="text-center fw-bold" ><?php echo $file; ?></span><br><br>
+        <label for="" class="fw-bold">Fecha: </label><input type="date" class="ms-3 fw-bold" name="d" id="">
+        <label for="" class="fw-bold">Tipo: </label>
+        <select name="t" id="" class="ms-3 fw-bold">
+            <option value="Diario">Diario</option>
+            <option value="Mensual">Semanal</option>
+        </select>    
+        
+        <br><br>
+        <table class="table">
+            <thead class="table-dark text-center">
+                <tr>
+                    <th>ID</th><th>DESCRIPCIÓN</th><th>CANTIDAD FISICA</th>
+                </tr>
+            </thead>
+            <tbody class="fw-bold text-center">
+                <tr>
+                    <td>01</td><td>FRUTA</td><td><input type="text" name="1" class="inp"></td>
+                </tr>
+                
+                <tr>
+                    <td>02</td><td>FRUTA SIN CASCARA</td><td><input type="text" name="2" class="inp"></td>
+                </tr>
+                
+                <tr>
+                    <td>03</td><td>FRUTA SIN SEMILLA</td><td><input type="text" name="3" class="inp"></td>
+                </tr>
+                
+                <tr>
+                    <td>04</td><td>FRUTA LIMPIA</td><td><input type="text" name="4" class="inp"></td>
+                </tr>
+                
+                <tr>
+                    <td>05</td><td>FRUTA BOLSA X10KG</td><td><input type="text" name="5" class="inp"></td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+          <button type="button" id="closeModal2" class="cancel" data-bs-dismiss="modal">Close</button>
+          <input type="submit" class="registrar" value="Registrar">
+      </div>
     </div>
-    <form action="inventarios/inserta_inventario.php" method="post"><br>
-    <label for="">Usuario: </label><span name="usuario"><?php echo $file; ?></span><br><br>
-    <label for="">Fecha: </label><input type="date" name="d" id="">
-    <label for="">Tipo: </label><input type="text" name="t">
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th><th>DESCRIPCIÓN</th><th>CANTIDAD FISICA</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>01</td><td>FRUTA</td><td><input type="text" name="1" class="inp"></td>
-            </tr>
-            
-            <tr>
-                <td>02</td><td>FRUTA SIN CASCARA</td><td><input type="text" name="2" class="inp"></td>
-            </tr>
-            
-            <tr>
-                <td>03</td><td>FRUTA SIN SEMILLA</td><td><input type="text" name="3" class="inp"></td>
-            </tr>
-            
-            <tr>
-                <td>04</td><td>FRUTA LIMPIA</td><td><input type="text" name="4" class="inp"></td>
-            </tr>
-            
-            <tr>
-                <td>05</td><td>FRUTA BOLSA X10KG</td><td><input type="text" name="5" class="inp"></td>
-            </tr>
-        </tbody>
-    </table>
-    <div class="buttons">
-        <button class="cancel" id="close">Cancelar</button>
-        <input type="submit" class="registrar" value="Registrar">
-    </div>    
-    </form>
+  </div>
 </div>
 
 
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 <footer>
 <img src="../../img/bg.png" alt="" width="20%">
@@ -163,8 +170,15 @@
 <script>
 $(document).ready(function() {
     $("#usuarios").draggable();
-    $("#form").draggable();
+    $("#modal").draggable();
+    $("#modal").show();
 });
+$("#closeModal").click(function(){
+    $("#modal").hide();
+})
+$("#closeModal2").click(function(){
+    $("#modal").hide();
+})
 </script>
 </body>
 </html>

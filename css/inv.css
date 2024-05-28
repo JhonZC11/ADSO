@@ -1,32 +1,6 @@
-.inv{background-color: white;
-    width: 40%;
-    text-align: center;
-    border: 1px solid #858383;
-    position: fixed;
-    left: 30%;
-    top: 20%;
-    padding-bottom: 1%;
+.btn-close{
+    background-color: red;
 }
-table{
-    margin-top: 5%;
-    border: 1px solid #cfcfcf;
-    padding: 10px;
-    position: relative;
-    left: 15%;
-}
-td{padding: 5px; border: 1px solid black;}
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

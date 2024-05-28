@@ -54,6 +54,7 @@ class inventario {
         }
     }
     public function muestraInventarios($conn){
+        $count = 0;
         $sql = "SELECT * FROM (SELECT inventarios.*, 
             operarios.nombres AS nombre_u
             FROM inventarios 
@@ -61,28 +62,18 @@ class inventario {
         $resultado = $conn->query($sql);
         while ($a = $resultado->fetch_row()) {
             $json = json_decode($a[5], true);
-            $json_content = '';
-            // Iterar sobre los datos del JSON
-            foreach ($json as $key => $value) {
-                // Concatenar los datos del registro en la variable
-                $json_content .= $key . ": " . $value . "<br>";
-            }
-
             $stockJSON = json_decode($a[6], true);
-            $stock_content = '';
-            foreach ($stockJSON as $key => $value) {
-                $stock_content .= $key . ": " . $value . "<br>";
-            }
-
             $td = '';
             $total = count($json);
-            echo $total;
-            for($i = 1; $i < $total+1; $i++){
-                $td .= "<tr><td>". $i ."</td><td>". $json[$i]."</td><td>".$stockJSON[$i]."</td><td>". $json[$i]-$stockJSON[$i] ."</td></tr>";
+            for($i = 1; $i < $total + 1; $i++){
+                if (isset($json[$i]) && isset($stockJSON[$i])) {
+                    $td .= "<div class='row'><div class='col p-1'>" . $i . "</div><div class='col'> " . $json[$i] . "</div><div class='col'> " . $stockJSON[$i] . " </div><div class='col'>" . ($json[$i] - $stockJSON[$i]) . "</div> </div>";
+                }
             }
-
-            echo 
-                "<tr>                    
+    
+            $modalId = 'exampleModal' . $count;
+            echo "
+                <tr>                    
                     <td class='text-center'>
                         $a[1]
                     </td>
@@ -99,16 +90,40 @@ class inventario {
                         $a[8]
                     </td>
                     <td class='d text-center'>
-                    <button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal'>
-                        Ver detalles
-                    </button>
+                        <button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#$modalId'>
+                            Ver detalles
+                        </button>
+                        <div class='modal fade' id='$modalId' tabindex='-1' aria-labelledby='$modalId' aria-hidden='true'>
+                            <div class='modal-dialog'>
+                                <div class='modal-content'>
+                                    <div class='modal-header'>
+                                        <h1 class='modal-title fs-5 fw-bold' id='$modalId'>Inventario Físico</h1>
+                                        <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                                    </div>
+                                    <div class='modal-body'>
+                                        <div class='row text-bg-dark p-1'>
+                                            <div class='col'>Id Item</div>
+                                            <div class='col'>Fisico</div>
+                                            <div class='col'>Stock</div>
+                                            <div class='col'>Diferencia</div>
+                                        </div>
+                                        $td
+                                    </div>
+                                    <div class='modal-footer'>
+                                        <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Cerrar</button>
+                                        <a class='btn btn-danger' id='danger' data-id='$a[0]' href='elimina.php'>Eliminar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </td>
-                </tr>"
-            ;
+                </tr>";
+    
+            $count++;   
         }
-        return $td;
     }
     public function inventariosByFecha($conn, $fecha){
+        $count = 0;
         $sql = "SELECT * FROM (SELECT inventarios.*, 
             operarios.nombres AS nombre_u
             FROM inventarios 
@@ -117,14 +132,18 @@ class inventario {
         $resultado = $conn->query($sql);
         while ($a = $resultado->fetch_row()) {
             $json = json_decode($a[5], true);
-            $json_content = '';
-            // Iterar sobre los datos del JSON
-            foreach ($json as $key => $value) {
-                // Concatenar los datos del registro en la variable
-                $json_content .= $key . ": " . $value . "<br>";
+            $stockJSON = json_decode($a[6], true);
+            $td = '';
+            $total = count($json);
+            for($i = 1; $i < $total + 1; $i++){
+                if (isset($json[$i]) && isset($stockJSON[$i])) {
+                    $td .= "<div class='row'><div class='col p-1'>" . $i . "</div><div class='col'> " . $json[$i] . "</div><div class='col'> " . $stockJSON[$i] . " </div><div class='col'>" . ($json[$i] - $stockJSON[$i]) . "</div> </div>";
+                }
             }
-            echo 
-                "<tr>                    
+    
+            $modalId = 'exampleModal' . $count;
+            echo "
+                <tr>                    
                     <td class='text-center'>
                         $a[1]
                     </td>
@@ -140,15 +159,48 @@ class inventario {
                     <td class='text-center'>
                         $a[8]
                     </td>
-                    <td class='d'>
-                        <details><hr>
-                            $json_content<hr>
-                        </details>
+                    <td class='d text-center'>
+                        <button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#$modalId'>
+                            Ver detalles
+                        </button>
+                        <div class='modal fade' id='$modalId' tabindex='-1' aria-labelledby='$modalId' aria-hidden='true'>
+                            <div class='modal-dialog'>
+                                <div class='modal-content'>
+                                    <div class='modal-header'>
+                                        <h1 class='modal-title fs-5 fw-bold' id='$modalId'>Inventario Físico</h1>
+                                        <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                                    </div>
+                                    <div class='modal-body'>
+                                        <div class='row text-bg-dark p-1'>
+                                            <div class='col'>Id Item</div>
+                                            <div class='col'>Fisico</div>
+                                            <div class='col'>Stock</div>
+                                            <div class='col'>Diferencia</div>
+                                        </div>
+                                        $td
+                                    </div>
+                                    <div class='modal-footer'>
+                                        <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Cerrar</button>
+                                        <a class='btn btn-danger' id='danger' data-id='$a[0]' href='elimina.php'>Eliminar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </td>
-                </tr>"
-            ;
+                </tr>";
+    
+            $count++;   
         }
 
     }
+    public function borrarInventario($conn, $idBorrar){
+        $sql = "DELETE FROM inventarios WHERE idinventarios = '$idBorrar'";
+        if (!$conn->query($sql)) {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        } else {
+            header("location: ../analisis-diferencias.php");
+        }
+    }
+    
 
 }
