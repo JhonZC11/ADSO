@@ -157,7 +157,7 @@
                             if(isset($_COOKIE['value'])){
                                 $m = $_COOKIE['value'];
                                 $inv->inventariosByFecha($conn,$m);
-                            }else{
+                            } else {
                                 $td = $inv->muestraInventarios($conn);
                             }                            
                         ?>

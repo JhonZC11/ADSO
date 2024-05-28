@@ -23,8 +23,6 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     
 
-
-
     <link rel="stylesheet" href="../../css/nav-bar.css">
     <link rel="stylesheet" href="../../css/barra.css">
     <link rel="stylesheet" href="../../css/general.css">
@@ -111,7 +109,7 @@
       </div>
       <div class="modal-body">
       <form action="inventarios/inserta_inventario.php" method="post"><br>
-        <label for="" class="fw-bold " >Usuario:  </label><span name="usuario" class="text-center fw-bold" ><?php echo $file; ?></span><br><br>
+        <label for="" class="fw-bold " >Estado:  Revisión</label><br><br>
         <label for="" class="fw-bold">Fecha: </label><input type="date" class="ms-3 fw-bold" name="d" id="">
         <label for="" class="fw-bold">Tipo: </label>
         <select name="t" id="" class="ms-3 fw-bold">

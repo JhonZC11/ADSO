@@ -1,6 +1,6 @@
 <?php
+require("../../php/db.php");
 require "o_procesos.php";
-require "../../php/db.php";
 $operario = $_POST['cc'];
 $fecha = $_POST['fecha'];
 $itemProcesado = $_POST['item'];

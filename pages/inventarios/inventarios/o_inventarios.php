@@ -130,6 +130,7 @@ class inventario {
             INNER JOIN operarios ON inventarios.usuarios_idusuarios = operarios.idoperarios
             WHERE inventarios.fecha = '$fecha') AS querysub";
         $resultado = $conn->query($sql);
+        if ($resultado && $resultado->num_rows > 0) {
         while ($a = $resultado->fetch_row()) {
             $json = json_decode($a[5], true);
             $stockJSON = json_decode($a[6], true);
@@ -191,8 +192,22 @@ class inventario {
     
             $count++;   
         }
-
+        }else {
+            $err = '';
+            $err.= "<script>";
+            $err.="$(document).ready(function(){
+                Swal.fire({
+                    title: 'No encontrados',
+                    text:  'Registros no encontrados en la base de datos',
+                    icon: 'info'
+                  });
+            })";
+            $err.="</script>";
+            echo $err;
+        }
     }
+    
+    
     public function borrarInventario($conn, $idBorrar){
         $sql = "DELETE FROM inventarios WHERE idinventarios = '$idBorrar'";
         if (!$conn->query($sql)) {

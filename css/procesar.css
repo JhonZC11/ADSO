@@ -12,6 +12,9 @@ tr, td{padding: 5px; margin: 5px;}
 .buttons2{position: relative; left: 65%; margin-top: 10px; margin-bottom: 20px;}
 
 
+.btn-close{
+    background-color: red;
+}
 
 
 
