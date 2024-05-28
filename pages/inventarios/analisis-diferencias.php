@@ -158,7 +158,7 @@
                                 $m = $_COOKIE['value'];
                                 $inv->inventariosByFecha($conn,$m);
                             }else{
-                                $inv->muestraInventarios($conn);
+                                $td = $inv->muestraInventarios($conn);
                             }                            
                         ?>
                     </tbody>
@@ -168,8 +168,35 @@
     </div>
 </div>
 
-
-
+                <div class='modal fade' id='exampleModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+                <div class='modal-dialog'>
+                  <div class='modal-content'>
+                    <div class='modal-header'>
+                      <h1 class='modal-title fs-5 fw-bold' id='exampleModalLabel'>Inventario Físico</h1>
+                      <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                    </div>
+                    <div class='modal-body'>
+                      <h5 class="text-center fw-bold">Contenido del inventario:</h5>                      
+                        <table class="table me-5">
+                            <thead class="table-dark">
+                                <th>Id Item</th>
+                                <th>Físico</th>
+                                <th>Stock</th>
+                                <th>Diferencia</th>
+                            </thead>
+                            <tbody>
+                                <?php echo $td;  ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class='modal-footer'>
+                      <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>
+                      <button type='button' class='btn btn-primary'>Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

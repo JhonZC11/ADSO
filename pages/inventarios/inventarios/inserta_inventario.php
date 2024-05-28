@@ -22,4 +22,5 @@ $array = array ("1"=>$itemUno,
 $detalle = json_encode($array);
 $n_inventario = $user . $tipo . $fecha;
 $in = new inventario();
-$in->insertaInventario($conn, $n_inventario, $fecha, $tipo, $detalle, $user);
+$stock = $in->traeStockJSON($conn);
+$in->insertaInventario($conn, $n_inventario, $fecha, $tipo, $detalle, $stock, $user);
