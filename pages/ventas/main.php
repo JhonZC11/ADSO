@@ -128,11 +128,8 @@
 
 
 
-<div class="venta" id="form">
-    <div class="bar" id="">
-            <div class="txt-m">Genera Factura Venta</div><div class="close"><button id="closeUsuarios" onclick="cierraForm();" >X</button></div>
-    </div>
-<form action="../../php/o_movimientos.php" method="post">
+
+<form action="inserta_factura.php" method="post">
     <table>
         <tr>
             <th colspan="5" class="mem"><hr><br>GUANABANA LTDA <br> NIT: 29849149 <br> Tel: 3117928284 <br> Correo: ceneida146@gmail.com <br> Dirección: Calle 13 # 1-57 <br>Ciudad: Toro - Valle del cauca <br><br><hr></th>
@@ -170,16 +167,16 @@
         <tbody id = "datos">
             <tr>
                 <td class="d">
-                    <input type="text" style="width:50px;" id="item" name="id_item" value="5">
+                    <input type="text" style="width:50px;" id="item" name="id_item" value="5" readonly>
                 </td>
                 <td class="table-desc-item">
                     <label for="" id="d_item"> Guanabana Bolsa x10kg</label>
                 </td>
                 <td class="u">
-                    <input type="text" id="unidadesD" class="u" readonly>
+                    <input type="number" id="unidadesD" class="u" name="cantidadStock" readonly>
                 </td>
                 <td class="d">
-                    <input type="text" style="width:50px;" id="cant" name="cant">
+                    <input type="text" style="width:50px;" id="cantidad" name="cant">
                 </td>
                 <td class="d">
                     <input type="text" style="width:80px;" id="v_kg"  name="v_kg" onchange="vTotal();">
@@ -197,16 +194,12 @@
         <input type="submit" class="registrar" value="Registrar">
     </div>    
 </form>
-</div>
+
 
 <footer>
 <img src="../../img/bg.png" alt="" width="20%">
 </footer>
-<script src="../../js/ventas.js"></script>
-<script>
-$(document).ready(function() {
-    $("#form").draggable();
-});
-</script>
+<script src="../../js/ventas.js" refer></script>
+
 </body>
 </html>
