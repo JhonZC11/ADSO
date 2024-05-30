@@ -2,7 +2,7 @@
 require "../php/db.php";
 
 $item = $_GET['inputValue'];
-$sql = "SELECT * FROM clientes WHERE identificacion = '29676714'";
+$sql = "SELECT * FROM clientes WHERE identificacion = '$item'";
 $resultado = $conn->query($sql);
 $proveedores = array();
 while ($fila = $resultado->fetch_assoc()) {

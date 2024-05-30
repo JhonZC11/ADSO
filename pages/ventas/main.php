@@ -58,6 +58,26 @@
    </style>
 </head>
 <body>
+    <?php
+        if(isset($_COOKIE['bien'])){
+            $well = '';
+            $well.= "<script>";
+            $well.="$(document).ready(function(){
+                Swal.fire({
+                    title: 'Venta registrada',
+                    text:  'Genial, venta realizada!',
+                    icon: 'success'
+                  });
+            })";
+            $well.="</script>";
+            echo $well;
+            setcookie("bien", "", time()-3600,"/");
+        } 
+    
+    ?>
+
+
+
 
 <nav class="navbar p-0 navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
@@ -144,12 +164,7 @@
         </tr>
         <tr>               
             <td colspan="2">Tipo de pago: </td>
-            <td colspan="1" class="d">
-                <select name="pago" id="pago">
-                    <option value="contado">Contado</option>
-                    <option value="credito">Crédito a 30 dias</option>
-                </select>
-            </td>    
+
         
             <td colspan="1">Fecha Factura: </td>
             <td colspan="1"><input type="date" name="f_factura" required id="ff"></td>
