@@ -1,8 +1,8 @@
 <?php
-require "../../php/db.php";
+require "../php/db.php";
 
 $item = $_GET['inputValue'];
-$sql = "SELECT * FROM clientes WHERE identificacion = '$item'";
+$sql = "SELECT * FROM clientes WHERE identificacion = '29676714'";
 $resultado = $conn->query($sql);
 $proveedores = array();
 while ($fila = $resultado->fetch_assoc()) {

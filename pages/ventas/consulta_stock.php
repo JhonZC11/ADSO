@@ -1,5 +1,5 @@
 <?php
-require "../../php/db.php";
+require "../php/db.php";
 
 $item = $_GET['inputValue'];
 $sql = "SELECT cantidad FROM stock WHERE id = '$item'";

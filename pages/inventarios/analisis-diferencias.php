@@ -116,7 +116,7 @@
                 <a class="nav-link" aria-current="page" href="../ventas/main.php">Ventas</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="../../index.php">Salir</a>
+                <a class="nav-link" aria-current="page" href="../php/sessiondestroy.php">Salir</a>
             </li>
         </ul>
         </div>

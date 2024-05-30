@@ -77,7 +77,7 @@
                 </ul>
             </li>
         </ul>
-            <li><a href="../../index.php" class="salir">Salir</a></li>
+            <li><a href="../php/sessiondestroy.php" class="salir">Salir</a></li>
         </div>      
 </header>
 
