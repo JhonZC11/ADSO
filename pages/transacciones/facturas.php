@@ -197,7 +197,7 @@
                         </div>
                     </div>
                     <!-- Datos Items -->
-                    <div class="row m-5 ps-3 text-center">
+                    <div class="row m-5 ps-3 text-center" id="row">
                         <div class="row p-1">
                             <div class="col border border-dark-subtle text-center p-2 h">
                                 Item
@@ -223,13 +223,13 @@
                                     <label for="" id="d_item" class="p-1 w-25 m-2"></label>
                                 </div>
                                 <div class="col border border-dark-subtle text-center">
-                                    <input type="number" name="cant" id="cant" class="p-1 w-50 m-2" required>
+                                    <input type="number" name="cant" id="cant" class="cant p-1 w-50 m-2" required>
                                 </div>
                                 <div class="col border border-dark-subtle text-center">
-                                    <input type="number" name="v_kg" id="v_kg" class="p-1 w-50 m-2">
+                                    <input type="number" name="v_kg" id="v_kg" class="v_kg p-1 w-50 m-2">
                                 </div>
                                 <div class="col border border-dark-subtle text-center">
-                                    <input type="number" name="" id="v_total" class="p-1 w-75 m-2" readonly>
+                                    <input type="number" name="" id="v_total" class="v_total p-1 w-75 m-2" readonly>
                                 </div>
                         </div>
                         <div class="row p-1" id="datos">
@@ -254,7 +254,9 @@
     $t = "$" . number_format($movimiento->valorTotalFacturas($conn), 0, '.');
 ?>
 
+<div id = "prueba">
 
+</div>
 
 
 <div class="container mt-5">

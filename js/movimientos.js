@@ -10,6 +10,14 @@ $(document).ready(function(){
         proveedoresAJAX();
         $("#form2").show();
     })
+    $(document).on('change', '#v_kg', function(){
+        var fila = $(this).closest('.row'); // O el contenedor adecuado de la fila
+        if (fila.length > 0) {
+            calcularVtotal(fila);
+        } else {
+            console.error('No se encontró la fila contenedora');
+        }
+    });
 
 });
 
@@ -85,16 +93,16 @@ function realizarSolicitudAjax() {
             $('#resultado').html('Error al cargar los datos de los proveedores. Por favor, intenta de nuevo más tarde.');
         }
     });
-}
 
+}
 function calcularVtotal(fila) {
-    var cantidad = parseFloat(fila.find('.cant').val());
-    var valorUnidad = parseFloat(fila.find('.v_kg').val());
+    var cantidad = parseFloat(fila.find('#cant').val());
+    var valorUnidad = parseFloat(fila.find('#v_kg').val());
         
     if (!isNaN(cantidad) && !isNaN(valorUnidad)) {
         var vtotal = cantidad * valorUnidad;
-        fila.find('.v_total').val(vtotal.toLocaleString());
+        fila.find('#v_total').val(vtotal.toLocaleString());
     } else {
-        fila.find('.v_total').val('');
+        fila.find('#v_total').val('');
     }
 }

@@ -51,7 +51,11 @@
 
 </head>
 <body>
+<script>
     
+
+
+</script>
 <?php 
     session_start();
     if(isset($_SESSION['Campos'])){
