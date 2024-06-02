@@ -80,12 +80,17 @@ function realizarSolicitudAjax() {
                 datos += '<div class="row"><div class="col w-50 p-1 m-2 col border border-dark-subtle"><input type="checkbox" class="" name="items[]" value="' + item.id_secos + '_'+ item.descripcion+ '_'+ item.valor +'"></div><div class="col-4 p-1 m-2 border border-dark-subtle">' + item.descripcion + ' / ' + item.unidad +
                 '</div><div class="col p-1 m-2 border border-dark-subtle"><input type="text" class="cant w-50 p-1" name="cantd[]"></div><div class="col p-1 m-2 border border-dark-subtle"><input type="text" class="v_kg w-50 p-1"  readonly value="' + item.valor + '"></div><div class="col p-1 m-2 border border-dark-subtle" ><input type="text" class="v_total w-50 p-1" readonly></div></div>';
             });
-            $('#filaInputs').remove();
+            $('#filaInputs').hide();
             $('#datos').html(datos);
 
             // Agregar el evento change a los campos de cantidad
-            $('.cant').change(function() {
-                calcularVtotal($(this).closest('tr')); // Pasar la fila correspondiente a la función calcularVtotal
+            $('.cant').change(function () {
+                var fila = $(this).closest('.row'); // O el contenedor adecuado de la fila
+                if (fila.length > 0) {
+                    calcularVtotal(fila);
+                } else {
+                    console.error('No se encontró la fila contenedora');
+                }
             });
         },
         error: function (xhr, status, error) {
@@ -96,13 +101,13 @@ function realizarSolicitudAjax() {
 
 }
 function calcularVtotal(fila) {
-    var cantidad = parseFloat(fila.find('#cant').val());
-    var valorUnidad = parseFloat(fila.find('#v_kg').val());
+    var cantidad = parseFloat(fila.find('.cant').val());
+    var valorUnidad = parseFloat(fila.find('.v_kg').val());
         
     if (!isNaN(cantidad) && !isNaN(valorUnidad)) {
         var vtotal = cantidad * valorUnidad;
-        fila.find('#v_total').val(vtotal.toLocaleString());
+        fila.find('.v_total').val(vtotal.toLocaleString());
     } else {
-        fila.find('#v_total').val('');
+        fila.find('.v_total').val('');
     }
 }

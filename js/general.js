@@ -51,7 +51,7 @@ let d_motivos = ["Entrada Almacen", "Dar baja", "Factura Compra(Insumos)"]
 function cargaMotivo() {
 
     limpiaInput();
-    var fila = "<div class='row p-1' id='filaInputs'><div class='col border border-dark-subtle text-center'><input type='number' name='id_item' id='item' class='p-1 w-50 ms-4 m-2' required></div><div class='col-4 border border-dark-subtle'><label for='' id='d_item' class='p-1 w-25 m-2'></label></div><div class='col border border-dark-subtle text-center'><input type='number' name='cant' id='cant' class='p-1 w-50 m-2' required></div><div class='col border border-dark-subtle text-center'><input type='number' name='v_kg' id='v_kg' class='p-1 w-50 m-2'></div><div class='col border border-dark-subtle text-center'><input type='number' name=' id='v_total' class='p-1 w-75 m-2' readonly></div></div>"; 
+    //var fila = "<div class='row p-1' id='filaInputs'><div class='col border border-dark-subtle text-center'><input type='number' name='id_item' id='item' class='p-1 w-50 ms-4 m-2' required></div><div class='col-4 border border-dark-subtle'><label for='' id='d_item' class='p-1 w-25 m-2'></label></div><div class='col border border-dark-subtle text-center'><input type='number' name='cant' id='cant' class='p-1 w-50 m-2' required></div><div class='col border border-dark-subtle text-center'><input type='number' name='v_kg' id='v_kg' class='p-1 w-50 m-2'></div><div class='col border border-dark-subtle text-center'><input type='number' name=' id='v_total' class='p-1 w-75 m-2' readonly></div></div>"; 
     
 
     var inp = document.getElementById("motivo").value;
@@ -238,6 +238,7 @@ function validarFecha() {
             title: "Oops...",
             text: "La fecha no puede ser mayor a la actual",
         });
+        limpiaInput()
         return false;
     } else if (fechaInput < unAnioAtras) {
         Swal.fire({
@@ -245,6 +246,7 @@ function validarFecha() {
             title: "Oops...",
             text: "La fecha ingresada no puede ser mayor a un año de antigüedad",
         });
+        limpiaInput()
         return false;
     }
     return true;
