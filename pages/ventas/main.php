@@ -124,16 +124,16 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="usuarios.php">Usuarios</a>
+                        <a class="nav-link" aria-current="page" href="../usuarios.php">Usuarios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="clientes.php">Clientes</a>
+                        <a class="nav-link" aria-current="page" href="../clientes.php">Clientes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="proveedores.php">Proveedores</a>
+                        <a class="nav-link" aria-current="page" href="../proveedores.php">Proveedores</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="operarios.php">Operarios</a>
+                        <a class="nav-link" aria-current="page" href="../operarios.php">Operarios</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="ventas/main.php">Ventas</a>
@@ -148,67 +148,89 @@
 
 
 
+<div class="modal modal-lg" tabindex="-1" id="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bar close">
+                <h5 class="modal-title fw-bold">Registra Inventario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" id="closeModal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-0 m-0">
+                <form action="inserta_factura.php" method="post" class="p-4 m-0">
+                    <div class="text-center fw-bold">
+                        <p colspan="5" class="mem"><hr>GUANABANA LTDA <br> NIT: 29849149 <br> Tel: 3117928284 <br> Correo: ceneida146@gmail.com <br> Dirección: Calle 13 # 1-57 <br>Ciudad: Toro - Valle del cauca <br><hr></p>
+                    </div>
+                    <div class="row fw-bold">
+                        <div class="col">
+                            <label for="">Cliente: </label><input type="text" name="cliente" id="cliente" class="fw-bold ms-2" required>
+                        </div>
+                        <div class="col-sm">
+                            <label for="" id="resultado"></label>
+                        </div>
+                        <div class="col-sm">
+                            <label for="">Número Factura: </label><input type="text" class="fw-bold" name="n_factura" id="nf">
+                        </div>
+                    </div>
+                    <div class="row fw-bold">
+                        <div class="col-sm">
+                            <label for="">Tipo de pago: </label>
+                        </div>
+                        <div class="col-sm">
+                            <select name="tipo_pago" id="" class="fw-bold">
+                                <option value="Efectivo" class="fw-bold">Efectivo</option>
+                                <option value="Tarjeta" class="fw-bold">Tarjeta</option>                                
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label for="">Fecha Factura: </label><input type="date" class="fw-bold" name="f_factura" required id="ff">
+                        </div>
+                    </div>
+                    <div class="table-responsive mt-4">
+                        <table class="table">
+                            <thead class="table-dark text-center">
+                                <tr class="th">
+                                    <th>Item</th><th>Descripción</th><th>Disponibles</th><th>Cantidad</th><th>Valor Unidad</th><th>Valor Total</th>
+                                </tr>
+                            </thead>
+                            <tbody id = "datos" class="text-center fw-bold">
+                                <tr>
+                                    <td class="d">
+                                        <input type="text" style="width:50px;" id="item" name="id_item" value="5" readonly>
+                                    </td>
+                                    <td class="table-desc-item">
+                                        <label for="" id="d_item"> G. Bolsa x10kg</label>
+                                    </td>
+                                    <td class="u">
+                                        <input type="number" id="unidadesD" class="u fw-bold" name="cantidadStock" readonly>
+                                    </td>
+                                    <td class="d">
+                                        <input type="number" class="fw-bold" style="width:50px;" id="cantidad" name="cant">
+                                    </td>
+                                    <td class="d">
+                                        <input type="number" class="fw-bold" style="width:80px;" id="v_kg"  name="v_kg">
+                                    </td>
+                                    <td class="d">
+                                        <input for="" id="v_total" class="inp fw-bold" name="v_total" readonly> $
+                                    </td>
+                                </tr>
+    
+                            </tbody>
+                        </table>
 
-<form action="inserta_factura.php" method="post">
-    <table>
-        <tr>
-            <th colspan="5" class="mem"><hr><br>GUANABANA LTDA <br> NIT: 29849149 <br> Tel: 3117928284 <br> Correo: ceneida146@gmail.com <br> Dirección: Calle 13 # 1-57 <br>Ciudad: Toro - Valle del cauca <br><br><hr></th>
-        </tr>
-        <tr class="d">
-            <td colspan="1">Cliente: </td><td colspan="1">
-                <input type="text" name="cliente" id="cliente" required>
-            </td>
-            <td colspan="1" class="table-cell"><label for="" id="resultado">.</label></td>
-            <td colspan="1">Número Factura: </td>
-            <td colspan="1"><input type="text" name="n_factura" id="nf"></td>
-        </tr>
-        <tr>               
-            <td colspan="2">Tipo de pago: </td>
+                    </div>
 
-        
-            <td colspan="1">Fecha Factura: </td>
-            <td colspan="1"><input type="date" name="f_factura" required id="ff"></td>
+                
+            </div>
+                <div class="modal-footer">
+                    <button type="button" id="closeModal2" class="cancel" data-bs-dismiss="modal">Close</button>
+                    <input type="submit" class="registrar" value="Registrar">
+                    </form>
+                </div>
+        </div>
+    </div>
+</div>
 
 
-        </tr>
-    </table>
-    <br><br>
-    <table class="table-items">
-        <thead>
-            <tr class="th">
-                <th>Item</th><th>Descripción</th><th>Unidades Disponibles</th><th>Cantidad</th><th>Valor Unidad</th><th>Valor Total</th>
-            </tr>
-        </thead>
-        <tbody id = "datos">
-            <tr>
-                <td class="d">
-                    <input type="text" style="width:50px;" id="item" name="id_item" value="5" readonly>
-                </td>
-                <td class="table-desc-item">
-                    <label for="" id="d_item"> Guanabana Bolsa x10kg</label>
-                </td>
-                <td class="u">
-                    <input type="number" id="unidadesD" class="u" name="cantidadStock" readonly>
-                </td>
-                <td class="d">
-                    <input type="text" style="width:50px;" id="cantidad" name="cant">
-                </td>
-                <td class="d">
-                    <input type="text" style="width:80px;" id="v_kg"  name="v_kg" onchange="vTotal();">
-                </td>
-                <td class="d">
-                    <input for="" id="v_total" class="inp" name="v_total" readonly> $
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <br>
-    <div class="buttons">
-        <button class="cancel" id="close">Cancelar</button>
-        <input type="submit" class="registrar" value="Registrar">
-    </div>    
-</form>
 
 
 <footer>

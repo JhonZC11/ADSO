@@ -195,11 +195,10 @@ function cargaItem() {
 
 //=========================================================================================
 function vTotal() {
-    var inp1 = document.getElementById("cant").value;
+    var inp1 = document.getElementById("cantidad").value;
     var inp2 = document.getElementById("v_kg").value;
     var vT = inp1 * inp2;
     var label = document.getElementById("v_total").value = vT;
-
 }
 
 

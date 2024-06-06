@@ -110,7 +110,7 @@
       <div class="modal-body">
       <form action="inventarios/inserta_inventario.php" method="post"><br>
         <label for="" class="fw-bold " >Estado:  Revisión</label><br><br>
-        <label for="" class="fw-bold">Fecha: </label><input type="date" class="ms-3 fw-bold" name="d" id="">
+        <label for="" class="fw-bold">Fecha: </label><input type="date" class="ms-3 fw-bold" name="d" id="" required>
         <label for="" class="fw-bold">Tipo: </label>
         <select name="t" id="" class="ms-3 fw-bold">
             <option value="Diario">Diario</option>
@@ -126,23 +126,23 @@
             </thead>
             <tbody class="fw-bold text-center">
                 <tr>
-                    <td>01</td><td>FRUTA</td><td><input type="text" name="1" class="inp"></td>
+                    <td>01</td><td>FRUTA</td><td><input type="text" name="1" class="inp" required></td>
                 </tr>
                 
                 <tr>
-                    <td>02</td><td>FRUTA SIN CASCARA</td><td><input type="text" name="2" class="inp"></td>
+                    <td>02</td><td>FRUTA SIN CASCARA</td><td><input type="text" name="2" class="inp" required></td>
                 </tr>
                 
                 <tr>
-                    <td>03</td><td>FRUTA SIN SEMILLA</td><td><input type="text" name="3" class="inp"></td>
+                    <td>03</td><td>FRUTA SIN SEMILLA</td><td><input type="text" name="3" class="inp" required></td>
                 </tr>
                 
                 <tr>
-                    <td>04</td><td>FRUTA LIMPIA</td><td><input type="text" name="4" class="inp"></td>
+                    <td>04</td><td>FRUTA LIMPIA</td><td><input type="text" name="4" class="inp" required></td>
                 </tr>
                 
                 <tr>
-                    <td>05</td><td>FRUTA BOLSA X10KG</td><td><input type="text" name="5" class="inp"></td>
+                    <td>05</td><td>FRUTA BOLSA X10KG</td><td><input type="text" name="5" class="inp" required></td>
                 </tr>
             </tbody>
         </table>
