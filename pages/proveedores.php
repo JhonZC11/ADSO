@@ -211,6 +211,17 @@
                         </div>
                         <div class="row">
                             <div class="col">
+                                <label for="">Cateogoría: </label><br>
+                                <select name="categoria" id="" class="w-75 fw-bold me-4">
+                                    <option value="" class="fw-bold">--Seleccine--</option>
+                                    <option value="EAC" class="fw-bold">EAC</option>
+                                    <option value="FC" class="fw-bold">FC</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
                                 <input type="text" value="<?php echo $id; ?>" hidden>
                             </div>
                         </div>

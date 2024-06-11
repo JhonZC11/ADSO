@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    $('#registroCRUD').hide()
     $('#exampleModal').draggable()
     $('#registroCRUD').click(function(){
         $('#exampleModal').show()
