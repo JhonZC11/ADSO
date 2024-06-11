@@ -1,6 +1,12 @@
 $(document).ready(function(){
-    $('#form').draggable    ()
+    $('#exampleModal').draggable()
     $('#registroCRUD').click(function(){
-        $('#form').show()
+        $('#exampleModal').show()
+    })
+    $('#close').click(function(){
+        $('#exampleModal').hide()
+    })
+    $('#cancel').click(function(){
+        $('#exampleModal').hide()
     })
 })
