@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="../css/proveedores.css">
 </head>
 <body>
+
 <nav class="navbar p-0 navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -93,22 +94,32 @@
             </div>
         </div>
 </nav>
-<div class="usuarios" id="usuarios">
 
-    <div class="bar" id="">
-        <div class="txt-m">Registro Proveedores</div><div class="close"><button id="closeUsuarios" onclick="cierraForm();" >X</button></div>
-    </div>
 
-    <div class="tabla">
 
-        <table id = "tabla">
-            <thead>
-                <tr>
-                    <th>NIT</th><th>Nombres</th><th>Telefono</th><th>Dirección</th><th>Ciudad</th><th>Correo</th><th>Opciones</th>
-                </tr>
-                <hr>
-            </thead>
-            <tbody>
+<div class="container mt-5 bg-white p-5">
+        <div class="row p-5">
+            <div class="col text-left">
+                <h2 class=" fw-bold" >Proveedores</h2>
+            </div>
+            <div class="col text-end">
+                <button class="registrar fw-bold " id="registroCRUD" >Agregar Proveedores</button>
+            </div>
+        </div>
+        <div class="table-responsive fw-bold text-center">
+            <table class="table table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombres</th>
+                        <th>Telefono</th>
+                        <th>Dirección</th>
+                        <th>Ciudad</th>
+                        <th>Correo</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
                 <?php
                     require ("php/db.php");
                     $sql = "SELECT * FROM proveedores";
@@ -137,16 +148,15 @@
                     }
 
                 ?>
-            </tbody>
-        </table>
-    </div>
-    <div class="ingresar">
-        <button class="registrar" id="registroCRUD" onclick="muestraForm();" >Agregar Usuario</button>
-    </div>
-
+                </tbody>
+            </table>
+        </div>
 </div>
 
-<form action="../php/inserta_proveedor.php" id="form" method="POST">
+
+
+
+<form action="../pages/proveedor/inserta_proveedor.php" id="form" method="POST">
 
     <div class="bar">
         <div class="txt">Registro Cliente</div><div class="close"><button  id="close">X</button></div>
@@ -184,13 +194,10 @@ EN ESTA SECCIÓN SE DARÁ ESTILO A LAS VENTANAS PARA INFORMAR AL USUARIO
 </footer>
 
 
-<script src="../js/usuarios.js" refer></script>    
+<script src="../js/proveedores.js" refer></script>    
 <script>
-$(document).ready(function() {
-    $("#usuarios").draggable();
-    $("#form").draggable();
-});
+
 </script>
-    
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

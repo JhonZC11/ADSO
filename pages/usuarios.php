@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,16 +22,15 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 
-
-
     <link rel="stylesheet" href="../css/nav-bar.css">
     <link rel="stylesheet" href="../css/general.css">
     <link rel="stylesheet" href="../css/barra.css">
     <link rel="stylesheet" href="../css/usuarios.css">
 </head>
+
 <body>
 
-<nav class="navbar p-0 navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar p-0 navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -95,34 +95,39 @@
                 </ul>
             </div>
         </div>
-</nav>
+    </nav>
 
-<div class="usuarios" id="usuarios">
-
-        <div class="bar" id="">
-            <div class="txt-m">Registro Usuarios</div><div class="close"><button id="closeUsuarios" onclick="cierraForm();" >X</button></div>
+    <div class="container mt-5 bg-white p-5">
+        <div class="row p-5">
+            <div class="col text-left">
+                <h2 class=" fw-bold">Usuarios</h2>
+            </div>
+<!--
+            <div class="col text-end">
+            <button class="registrar" id="registroCRUD">Agregar Usuario</button>
+            </div>
+-->
         </div>
-    
-        <div class="tabla">
-    
-            <table id = "tabla">
-                <thead>
+        <div class="table-responsive fw-bold text-center">
+            <table class="table table-hover">
+                <thead class="table-dark">
                     <tr>
-                        <th>Id</th><th>Ultimo ingreso</th><th>Opciones</th>
+                        <th>Id Usuario</th>
+                        <th>Ultimo Inicio</th>
+                        <th>Opciones</th>
                     </tr>
-                    <hr>
                 </thead>
                 <tbody>
-                    <?php
-                        require ("php/db.php");
-                        $sql = "SELECT usuarios.*, operarios.*
+                <?php
+                    require("php/db.php");
+                    $sql = "SELECT usuarios.*, operarios.*
                         FROM usuarios
                         JOIN operarios ON usuarios.operarios_idoperarios = operarios.idoperarios                        
                         ";
-                
-                        $resultados = $conn->query($sql);
-                        while ($resultado = $resultados->fetch_row()){
-                            echo "<tr>
+
+                    $resultados = $conn->query($sql);
+                    while ($resultado = $resultados->fetch_row()) {
+                        echo "<tr>
                             <td>$resultado[0]</td>
                             <td>$resultado[2]</td>
                             <td>
@@ -131,60 +136,87 @@
                             <a class='delete' href='../php/usuarios/delete.php?
                             id=$resultado[0]'>Delete</button>
                             </td></tr>";
-                        }
+                    }
                     ?>
                 </tbody>
             </table>
         </div>
-        <div class="ingresar">
-            <button class="registrar" id="registroCRUD" onclick="muestraForm();" >Agregar Usuario</button>
+    </div>
+
+    <div class="modal modal-sm" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content fw-bold">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Registra Usuarios</h1>
+                    <button type="button" id="close" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center p-5">    
+                <form action="../php/usuarios/insert.php" id="form" method="POST">
+
+                    <div class="row">
+                        <div class="col">
+                            <label for="">Nombres: </label>
+                            <input type="text" id="nombre" name="nombres" required>                      
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="">Apellidos: </label>
+                            <input type="text" id="apellido" name="apellidos" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="">Cédula: </label>
+                            <input type="text" id="cc" name="cc" required>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <label for="">Contraseña: </label>
+                            <input type="password" id="pass" name="password" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="">Fecha de nacimiento: </label>
+                            <input type="date" id="date" name="date" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="cancel" id="cancel">Cancelar</button>
+                    <input type="submit" class="registrar" value="Registrar">
+                </form>
+                </div>
+            </form> 
+            </div>
         </div>
+    </div>
+
+
     
-    
-</div>
-    
-<form action="../php/usuarios/insert.php" id="form" method="POST">
-    
-            <div class="bar">
-                <div class="txt">Registro Usuarios</div><div class="close"><button  id="close">X</button></div>
-            </div>
-            
-            <div class="content"><br>
-                <label for="">Nombres: </label><input type="text" id="nombre" name="nombres"><br><br>
-                <label for="">Apellidos: </label><input type="text" id="apellido" name="apellidos"><br><br>
-                <label for="">Cédula: </label><input type="text" id="cc" name="cc" ><br><br>
-                <label for="">Fecha de nacimiento: </label><input type="date" id="date" name="date"><br><br>
-                <label for="">Contraseña: </label><input type="password" id="pass" name="password"><br><br><br><hr> 
-            </div>
-            <div class="buttons">
-                <button class="cancel" id="cancel">Cancelar</button>
-                <input type="submit" class="registrar" value="Registrar">
-                <br><br><hr><br>
-            </div>
-</form>
 
 
 
 
 
-<!--
+
+    <!--
 
         EN ESTA SECCIÓN SE DARÁ ESTILO A LAS VENTANAS PARA INFORMAR AL USUARIO
 
 -->
 
-<footer>
-<img src="../img/bg.png" alt="" width="20%">
-</footer>
+    <footer>
+        <img src="../img/bg.png" alt="" width="20%">
+    </footer>
 
-    
-    <script src="../js/usuarios.js" refer></script>    
-    <script>
-        $(document).ready(function() {
-            $("#usuarios").draggable();
-            $("#form").draggable();
-        });
-    </script>
+
+    <script src="../js/usuarios.js" refer></script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
+
 </html>

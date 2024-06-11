@@ -10,5 +10,6 @@ $(document).ready(function(){
         muestraForm()
     })
 })
+
 function muestraForm() {$("#exampleModal").show();}
 function cierraForm() {$("#exampleModal").hide();}

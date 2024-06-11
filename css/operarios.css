@@ -48,14 +48,7 @@ Se da estilo a la barra de titulo del modal
 
 
 /*Estilo del forumlario para ingresar los datos*/
-form{
-    width: 30%; 
-    border: 1px solid #949090; 
-    position: absolute; left: 35%; top: 20%; 
-    color: #2f302e; 
-    box-shadow:  18px 9px 34px -4px rgb(0,0,0,0.5);
-    display: none;
-}
+
 
 .content{padding: 15px;   background-color:  aliceblue;}
 .content{text-align: center;}

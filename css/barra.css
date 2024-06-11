@@ -1,3 +1,10 @@
+.modal-header{
+    color: white;
+    background-color: #72CA5F;
+}
+.btn-close{
+    background-color: red;
+}
 .bar{
     background-color:#72CA5F; 
     color: white; 

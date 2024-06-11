@@ -5,7 +5,7 @@ class proveedor {
         $sql = "INSERT INTO proveedores (nit, nombre, telefono, dirección, ciudad, correo)
         VALUES ('$identificacion', '$nombre', '$telefono', '$direccion', '$ciudad', '$correo')";
         if ($conn->query($sql) === TRUE) {
-            header ("location: ..proveedores.php");
+            header ("location: ../../proveedores.php");
         } else {
             echo "Error al almacenar datos en la base de datos: " . $conn->error;
         }

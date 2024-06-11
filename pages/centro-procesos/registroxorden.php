@@ -106,13 +106,13 @@
     </nav>
 
 
-    <div class="container-sm mt-5 bg-white">
+    <div class="container-sm mt-5 p-5 bg-white">
 
         <div class="row text-center">
             <div class="col">
                 <form action="procesos/filtra.php">
-                    <label class="fw-bold" for="">Busqueda por fecha: </label><input class="p-1 m-2" type="date" id="inputFiltro" name="inputFiltro">
-                    <input type="submit" class="agregar" value="Buscar">
+                    <label class="fw-bold" for="">Busqueda por fecha: </label><input class="p-1 m-2 fw-bold" type="date" id="inputFiltro" name="inputFiltro">
+                    <input type="submit" class="registrar" value="Buscar">
                 </form>
             </div>
         </div>
