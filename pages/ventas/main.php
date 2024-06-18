@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movimientos</title>
+    <title>Ventas</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -73,6 +73,20 @@
             echo $well;
             setcookie("bien", "", time()-3600,"/");
         } 
+        if(isset($_COOKIE['mensaje'])){
+            $well = '';
+            $well.= "<script>";
+            $well.="$(document).ready(function(){
+                Swal.fire({
+                    title: 'Venta fallida',
+                    text:  'Comprubea los datos y realiza nuevamente la compra',
+                    icon: 'error'
+                  });
+            })";
+            $well.="</script>";
+            echo $well;
+            setcookie("mensaje", "", time()-3600,"/");
+        }
     
     ?>
 

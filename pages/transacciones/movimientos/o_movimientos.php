@@ -22,7 +22,7 @@ if ($motivo == "EAC") {
 
     //Usamos el objeto del balance para actualizarlo desde el movimiento que hagamos
     $valor_db = $general->traeBalance($conn);
-    $general->actualizaBalance($conn, $valor_db, $total, "2");
+    $general->actualizaBalance($conn, $valor_db, $total, "2"); //Gastos id 2
 } else if ($motivo == "DB") {
     $motivo_real = "2";
     $a->insertaBaja($conn, $id_item, $motivo_real, $cant, $f_factura);
