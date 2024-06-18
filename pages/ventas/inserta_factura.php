@@ -9,7 +9,7 @@ $idStock = $_POST['id_item'];
 $cantidadStock = $_POST['cantidadStock'];
 if($cantidadStock=="0"){
     echo "No hay stock disponible para este item";
-    setcookie("mensaje", "error",  time() + 3600, "/");
+    setcookie("stock", "error",  time() + 3600, "/");
     header("location: main.php");
     die;
 }

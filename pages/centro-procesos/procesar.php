@@ -138,7 +138,7 @@
       <form action="procesos/procesos.php" method="post">
         <div class="head">
             <label for="" class="fw-bold">Operario:</label>    
-            <input type="text" class="fw-bold ms-5" id="cc" name="cc" require>
+            <input type="text" class="fw-bold ms-5" id="cc" name="cc" required>
             <span id="operario-label" class="label">.</span>
             <label for="" class="fw-bold me-5" >Fecha:</label>
             <input type="date" class="fw-bold" name="fecha">

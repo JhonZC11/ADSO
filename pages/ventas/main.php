@@ -87,7 +87,20 @@
             echo $well;
             setcookie("mensaje", "", time()-3600,"/");
         }
-    
+        if(isset($_COOKIE['stock'])){
+            $well = '';
+            $well.= "<script>";
+            $well.="$(document).ready(function(){
+                Swal.fire({
+                    title: 'Venta fallida',
+                    text:  'Dirigite a procesar la materia prima, no tienes stock!',
+                    icon: 'info'
+                  });
+            })";
+            $well.="</script>";
+            echo $well;
+            setcookie("stock", "", time()-3600,"/");
+        }
     ?>
 
 

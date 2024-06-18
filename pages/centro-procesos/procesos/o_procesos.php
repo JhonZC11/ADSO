@@ -72,6 +72,20 @@ class proceso{
         }
     }
 
+    public function updateItem4($conn, $itemProcesado, $siguienteItem, $cantidadProcesada, $cantidadResultado, $cantidadStock, $nextCantidadStock){
+        $c = $cantidadStock-$cantidadProcesada;
+        $cantidad = number_format($c, 2);
+        $n = $cantidadResultado + $nextCantidadStock;
+        $nextCantidad = number_format($n, 2);
+        $sql = "UPDATE stock SET cantidad = '$cantidad' WHERE id = '$itemProcesado'";
+        $sql2 = "UPDATE stock SET cantidad = '$nextCantidad' WHERE id = '$siguienteItem'";
+        if($conn->query($sql)==TRUE && $conn->query($sql2)==TRUE){
+            header("location: ../procesar.php");
+            setcookie("done", "well",  time() + (86400 * 30), "/");
+        } else {
+            echo "Algo salio mal " . $conn->error();
+        }
+    }
 
     public function buscaOperario($conn, $operario){
         $sql = "SELECT idoperarios FROM operarios WHERE cedula='$operario'";
@@ -278,7 +292,6 @@ class proceso{
             header("location: ../registroxorden.php");
         }
     }
-
 
 }
 

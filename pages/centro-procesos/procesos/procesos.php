@@ -17,7 +17,12 @@ print_r($_POST);
 $idUsuario = $proceso->buscaOperario($conn, $operario);
 $proceso->inserta($conn, $fecha, $operario, $itemProcesado, $cantidadProcesada, $cantidadStock, $siguienteItem, $costo, $costoTotal, $cantidadResultado, $horas, $idUsuario, $idProceso);
 $nextCantidadStock = $proceso->stockNextItem($conn, $siguienteItem);
-$proceso->updateStock($conn, $itemProcesado, $siguienteItem, $cantidadResultado, $cantidadStock, $nextCantidadStock);
+if($itemProcesado=="4"){
+    $proceso->updateItem4($conn, $itemProcesado, $siguienteItem, $cantidadProcesada, $cantidadResultado, $cantidadStock, $nextCantidadStock);    
+} else {
+    $proceso->updateStock($conn, $itemProcesado, $siguienteItem, $cantidadResultado, $cantidadStock, $nextCantidadStock);
+}
+
 //Usamos el objeto del balance para actualizarlo desde el movimiento que hagamos
 $valor_db = $general->traeBalance($conn);
 $general->actualizaBalance($conn, $valor_db, $costoTotal, "2");

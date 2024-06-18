@@ -69,7 +69,7 @@ if(inp==item[0]){ //1
     descripcionPrimerItem.innerHTML=item[7] // Limpia
     descripcionSegundoItem.innerHTML=item[9] // Empacada
     idSegundoItem.value=item[8] // 4
-    idProceso.value=valor[9]
+    idProceso.value=valor[9] // 1000
     costo.value=valor[10]// 3000
     proceso.innerHTML=valor[11] // limpiar
     var inputTotal = document.getElementById("cantidadTotal").value = bolsasResultantes;
