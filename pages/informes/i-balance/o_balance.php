@@ -12,10 +12,10 @@ class balance{
     public function movimientos($conn, $fi, $ff, $motivo){
         if($motivo=="EAC" || $motivo == "DB"){
             if($motivo=="EAC"){
-                $motivo=1;
+                $motivo="1";
             }
             if($motivo=="DB"){
-                $motivo=2;
+                $motivo="2";
             }
             $sql = "SELECT * FROM movimientos WHERE fecha_factura BETWEEN '$fi' AND '$ff' AND motivos_idmotivos='$motivo'";
             $resultado = $conn->query($sql);

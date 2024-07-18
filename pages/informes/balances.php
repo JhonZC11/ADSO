@@ -28,6 +28,7 @@
 </head>
 
 <body>
+
 <?php 
     require("../php/db.php");
     require("i-balance/o_balance.php");

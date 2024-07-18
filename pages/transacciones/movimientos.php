@@ -67,6 +67,14 @@
 
     <?php
     session_start();
+
+    if(!isset($_SESSION['Campos'])){
+        header("Location: ../../index.php");
+        setcookie("error_sesion", "", time() + 8600 * 30, "/");
+    }
+
+
+
     if (isset($_SESSION['Campos'])) {
         $campos = $_SESSION['Campos'];
     ?>
