@@ -27,6 +27,9 @@
     <link rel="stylesheet" href="../../css/general.css">
     <link rel="stylesheet" href="../../css/movimientos.css">
     <style>
+        .container {
+            min-width: 5%;
+        }
         .a {
             margin-left: 20px;
             text-decoration: none;
@@ -67,11 +70,11 @@
 
     <?php
     session_start();
-
+/* 
     if(!isset($_SESSION['Campos'])){
         header("Location: ../../index.php");
         setcookie("error_sesion", "", time() + 8600 * 30, "/");
-    }
+    }*/
 
 
 
@@ -232,7 +235,7 @@
                     <form action="movimientos/o_movimientos.php" method="POST">
                         <!-- Datos principales -->
                         <div class="row pe-5">
-                            <div class="col-12 col-sm-6 lg-3 text-center">
+                            <div class="col-12 col-sm-12 col-lg-6 text-center">
                                 <label for="" class="pt-2">Motivo: </label>
                                 <select name="motivo" id="motivo" class="p-1 m-1 w-50 float-end">
                                     <option value="">--Seleccione--</option>
@@ -241,54 +244,54 @@
                                     <option value="DB">DB-Dar baja</option>
                                 </select>
                             </div>
-                            <div class="col-12 col-sm-6 lg-3 text-center">
+                            <div class="col-12 col-sm-12 col-lg-6 text-center">
                                 <label for="" class="pt-2">Número Factura</label><input type="number" name="n_factura" id="numeroFactura" class="p-1 m-1 w-50 ms-5">
                             </div>
                         </div>
                         <div class="row pe-5">
-                            <div class="col-12 col-sm-4 lg-3 text-center">
+                            <div class="col-12 col-sm-12 col-lg-4 text-center">
                                 <label for="" class="pt-2">Proveedor: </label><input type="text" id="inputProveedor" name="proveedor" class="p-1 m-1 w-50 float-end">
                             </div>
-                            <div class="col-12 col-sm-4 lg-3 text-center">
+                            <div class="col-12 col-sm-12 col-lg-4 text-center">
                                 <label for="" id="resultado" class="pt-2">Sin proveedor aún</label>
                             </div>
-                            <div class="col-12 col-sm-4 lg-3 text-center">
+                            <div class="col-12 col-sm-12 col-lg-4 text-center">
                                 <label for="" class="pt-2">Fecha Factura: </label><input type="date" id="fecha" name="f_factura" class="p-1 m-1 w-50 float-end" required>
                             </div>
                         </div>
                         <!-- Datos Items -->
-                        <div class="row m-5 ps-3 text-center">
+                        <div class="row m-5 ps-3 text-center overflow-x-scroll">
                             <div class="row p-1">
-                                <div class="col border border-dark-subtle text-center p-2 h">
+                                <div class="col col-sm-2 col-lg-2 border border-dark-subtle text-center p-2 h">
                                     Item
                                 </div>
-                                <div class="col border border-dark-subtle text-center p-2 h">
+                                <div class="col col-sm-4 col-lg-4 border border-dark-subtle text-center p-2 h">
                                     Descripcion
                                 </div>
-                                <div class="col border border-dark-subtle text-center p-2 h">
+                                <div class="col col-sm-2 border border-dark-subtle text-center p-2 h">
                                     Cantidad
                                 </div>
-                                <div class="col border border-dark-subtle text-center p-2 h">
+                                <div class="col col-sm-2 border border-dark-subtle text-center p-2 h">
                                     Valor U
                                 </div>
-                                <div class="col border border-dark-subtle text-center p-2 h">
+                                <div class="col col-sm-2 border border-dark-subtle text-center p-2 h">
                                     Valor Total
                                 </div>
                             </div>
                             <div class="row p-1" id="filaInputs">
-                                <div class="col col-sm-4 lg-3 border border-dark-subtle text-center">
+                                <div class="col col-sm-2 col-lg-2 border border-dark-subtle text-center">
                                     <input type="number" name="id_item" id="item" class="p-1 w-50 ms-4 m-2" required>
                                 </div>
-                                <div class="col col-sm-4 lg-3 border border-dark-subtle">
+                                <div class="col col-sm-4 col-lg-4 border border-dark-subtle">
                                     <label for="" id="d_item" class="p-1 w-25 m-2"></label>
                                 </div>
-                                <div class="col col-sm-4 lg-3 border border-dark-subtle text-center">
+                                <div class="col col-sm-2 col-lg-2 border border-dark-subtle text-center">
                                     <input type="number" name="cant" id="cant" class="cant p-1 w-50 m-2" required>
                                 </div>
-                                <div class="col col-sm-4 lg-3 border border-dark-subtle text-center">
+                                <div class="col col-sm-2 col-lg-2 border border-dark-subtle text-center">
                                     <input type="number" name="v_kg" id="v_kg" class="v_kg p-1 w-50 m-2">
                                 </div>
-                                <div class="col col-sm-4 lg-3 border border-dark-subtle text-center">
+                                <div class="col col-sm-2 col-lg-2 border border-dark-subtle text-center">
                                     <input type="number" name="" id="v_total" class="v_total p-1 w-75 m-2" readonly>
                                 </div>
                             </div>
